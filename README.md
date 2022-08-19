@@ -136,14 +136,14 @@ Functions in Titanium are very easy to declare and use: You should use the DEF k
 ```tsx
 --This is a simple function that takes two numbers and returns their sum
 DEF sumTwoNumbers():
-	RET x + y
+    RET x + y
 END
 
 output(sumTwoNumbers(2, 5))
 
 --This is a simple function that takes no arguments
 DEF getUsername():
-	RET username
+    RET username
 END
 ```
 
