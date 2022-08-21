@@ -2,11 +2,11 @@
 
 ## I-INTRODUCTION
 
-Titanium is a general-purpose fictional programming language designed specifically for one of my stories. It's been developed by the fictional characters Gustavo, Matheus and Léo Andrew. Since it's all fictional, there's no compiler for it, but you can develop one for it if you want. All the documentation about its grammar and syntax is here, you can use it as the basis for the compiller. Typologically, Titanium is a … dynamically typed programming language with a Python/Lua-like syntax. It was designed to be easy to write and remember and as such it has short keywords, inspired by Assembly's three letter keywords. Here's an example of what Titanium looks like:
+Titanium is a general-purpose fictional programming language designed specifically for one of my stories. It's been developed by the fictional characters Gustavo, Matheus, and Léo Andrew. Since it's all fictional, there's no compiler for it, but you can develop one for it if you want. All the documentation about its grammar and syntax is here, you can use it as the basis for the compiler. Furthermore, Titanium is a multi-paradigm dynamically typed programming language with a Python/Lua-like syntax. It was designed to be easy to write and remember and as such, it has short keywords, inspired by Assembly's three-letter keywords. Here's an example of what Titanium looks like:
 
 ```jsx
 START
-    --This is a single line comment in Titanium
+    --This is a single-line comment in Titanium
     Output("Hello, world!")
 END
 ```
@@ -41,7 +41,7 @@ Titanium has both variables and constants. The difference between them is that y
 
 ## III-RESERVED KEYWORDS
 
-All reserved keywords in Titanium are written with uppercase letters in order to clearly distinguish them from variable, classes and function names. You may not use any of the following words to name anything:
+All reserved keywords in Titanium are written with uppercase letters in order to clearly distinguish them from variable, classes, and function names. You may not use any of the following words to name anything:
 
 > **BOOL DECL DEF ELIF ELSE END EXIT FALSE IF IS NULL NUM OR REAL RET START STR THEN TRUE UNDEF**
 > 
@@ -50,10 +50,10 @@ All reserved keywords in Titanium are written with uppercase letters in order to
 
 ## IV-COMMENTS
 
-There are two types of comments in Titanium: one line and multiline comments. Two dashes represent a one line comment whereas $$ represent multiline ones. Example:
+There are two types of comments in Titanium: one-line and multiline comments. Two dashes represent a one-line comment, whereas $$ represents multiline ones. Example:
 
 ```jsx
---This is a single line comment
+--This is a single-line comment
 
 $$
 This is a comment
@@ -127,23 +127,23 @@ DECL status: STR = (age > 18) ? "Adult" : "Minor"
 
 ---
 
-## VII-CODEBLOCKS, FUNCTIONS AND STATEMENTS
+## VII-CODE BLOCKS, FUNCTIONS, AND STATEMENTS
 
 Unlike languages with curly brace syntax like C or Java and languages that use indentation like Python, Titanium marks the end of a block of code with the END keyword. Also, it doesn't require you to end statements with a semicolon, unlike C and Java. The syntax of the Titanium language was meant to be as clear as possible.
 
-Functions in Titanium are very easy to declare and use: You should use the DEF keyword, the same used for declaring constants, give them a name and then, optionally, pass arguments and parameters to them. Although they can return a value, like in other programming languages, not all of them are required to do so. If they do, you can return it with the RET keyword. An empty RET is used when you want to stop executing the function and go back. There’s also another keyword very similar to RET, which is EXIT, but this one ends the execution of the program, whereas RET simply gets out of the function. Example:
+Functions in Titanium are very easy to declare and use: You should use the DEF keyword, the same used for declaring constants, give them a name, and then, optionally, pass arguments and parameters to them. Although they can return a value, like in other programming languages, not all of them are required to do so. If they do, you can return it with the RET keyword. An empty RET is used when you want to stop executing the function and go back. There’s also another keyword very similar to RET, which is EXIT, but this one ends the execution of the program, whereas RET simply gets out of the function. Example:
 
 ```tsx
 --This is a simple function that takes two numbers and returns their sum
 DEF sumTwoNumbers():
-    RET x + y
+	RET x + y
 END
 
 output(sumTwoNumbers(2, 5))
 
 --This is a simple function that takes no arguments
 DEF getUsername():
-    RET username
+	RET username
 END
 ```
 
@@ -167,4 +167,6 @@ output("Hello, "..getUsername().."!")
 
 ---
 
-For more advanced topics, such as loops, modules, libraries and arrays, please read the ADVANCED TOPICS documentation. And, for even more advanced topics, you can read the OBJECT ORIENTED TITANIUM documentation.
+For more advanced topics, such as loops, modules, libraries, and arrays, please read the ADVANCED TOPICS documentation. And, for even more advanced topics, you can read the OBJECT-ORIENTED TITANIUM documentation.
+
+[TITANIUM - ADVANCED TOPICS](advanced.md)
