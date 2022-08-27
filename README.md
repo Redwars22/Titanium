@@ -43,7 +43,7 @@ Titanium has both variables and constants. The difference between them is that y
 
 All reserved keywords in Titanium are written with uppercase letters in order to clearly distinguish them from variable, classes, and function names. You may not use any of the following words to name anything:
 
-> **BOOL DECL DEF ELIF ELSE END EXIT FALSE IF IS NULL NUM OR REAL RET START STR THEN TRUE UNDEF**
+> **AS** **BOOL DECL DEF DO ELIF ELSE END EXIT EXP FALSE  FROM IF IS IMP JUMP LOOP MOD NULL NUM OR REAL RET START STR THEN TRUE UNDEF WHILE**
 > 
 
 ---
@@ -169,4 +169,6 @@ output("Hello, "..getUsername().."!")
 
 For more advanced topics, such as loops, modules, libraries, and arrays, please read the ADVANCED TOPICS documentation. And, for even more advanced topics, you can read the OBJECT-ORIENTED TITANIUM documentation.
 
-[TITANIUM - ADVANCED TOPICS](advanced.md)
+[TITANIUM - ADVANCED TOPICS](doc/advanced.md)
+
+[TITANIUM - OBJECT ORIENTED PROGRAMMING](doc/OOP.md)
