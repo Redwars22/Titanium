@@ -1,0 +1,33 @@
+body {
+	display: flex;
+	margin:  0;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.console {
+	width:  65vw;
+	height: 70vh;
+	max-height:  70vh;
+	overflow: auto;
+	border-radius:  15px;
+	background-color: #00050f;
+	padding:  15px;
+	color: white;
+}
+
+.input-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items:  center;
+	width:  70vw;
+	max-width:  70vw;
+	min-width:  70vw;
+	gap:  10px;
+}
+
+.input-field {
+	width:  550px !important;
+}
