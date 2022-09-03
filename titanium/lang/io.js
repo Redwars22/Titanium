@@ -20,3 +20,7 @@ function printFunction(text){
     throw("TITANIUM: Missing ) token at the end of the line")
   }
 }
+
+function printValueFromVariable(command){
+
+}
