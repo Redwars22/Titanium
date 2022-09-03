@@ -16,3 +16,4 @@ function checkType(value){
 	if(checkIfIsString(value)) return 'string';
 	if(checkIfIsBoolean(value)) return 'bool';
 }
+

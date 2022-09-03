@@ -23,7 +23,7 @@ function createVariable(command){
 
 			console.log(variables);
 		} else {
-			throw("TITANIUM: token = missing in variable declaration");
+			throw("❌️ TITANIUM: token = missing in variable declaration");
 		}
 	}
 }
@@ -44,6 +44,14 @@ function assignToVariable(command){
 		variables[variable] = value;
 		console.log(variables);
 	} else {
-		throw(`TITANIUM: Cannot assign a value to "${variable}" because it either doesn't exist or is a constant. Are you trying to create a new variable?`)
+		throw(`❌️ TITANIUM: Cannot assign a value to "${variable}" because it either doesn't exist or is a constant. Are you trying to create a new variable?`)
 	}
+}
+
+function getValueFromVariable(variable){
+	if(variables[variable]){
+		return variables[variable]
+	}
+
+	return;
 }

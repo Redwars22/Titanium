@@ -1,8 +1,23 @@
 function parse(command){
   try {
+    /*COMMENTS*/
+    if(command.match(singleLineComment)){
+      return;
+    }
+
     /*INPUT AND OUTPUT*/
     if(command.match(printCommand) || command.match(printCommandShorter)){
       printFunction(command);
+      return;
+    }
+
+    if(command.match(printCommandWithVariable)){
+      printValueFromVariable(command);
+      return;
+    }
+
+    if(command.match(clearConsoleCommand)){
+      clearConsole();
       return;
     }
 
@@ -17,7 +32,7 @@ function parse(command){
       return;
     }
 
-    throw("TITANIUM: Invalid token and/or character found or the command is not a valid Titanium keyword!")
+    throw("❌️ TITANIUM: Invalid token and/or character found or the command is not a valid Titanium keyword!")
   } catch(err) {
     document.getElementById('console').innerText += err + "\n$ _";
   }
