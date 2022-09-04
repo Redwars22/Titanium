@@ -40,10 +40,6 @@ function parseLine(command){
     throw("❌️ TITANIUM: Invalid token and/or character found or the command is not a valid Titanium keyword!")
   } catch(err) {
     document.getElementById('console').innerText += err + "\n$ _";
+    document.querySelector('.command-input').value = command;
   }
-}
-
-function run(){
-  const command = document.querySelector('.command-input').value;
-  if(command) parseLine(command);
 }

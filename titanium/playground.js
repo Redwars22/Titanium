@@ -27,3 +27,9 @@ function showHelp(){
 		confirmButtonText: 'I understand!'
 	});
 }
+
+function runCode(){
+  const command = document.querySelector('.command-input').value;
+  document.querySelector('.command-input').value = "";
+  if(command) parseLine(command);
+}
