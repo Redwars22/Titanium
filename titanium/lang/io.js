@@ -1,3 +1,7 @@
+function clearConsole(){
+  document.getElementById('console').innerText = "$ _";
+}
+
 function printFunction(text){
   if(text.includes("(") && text.includes(")")){
     if(text.includes("output")){
@@ -40,6 +44,11 @@ function printValueFromVariable(command){
   }
 }
 
-function clearConsole(){
-  document.getElementById('console').innerText = "$ _";
+function scanfFunction(command){
+  command = command.replace("get", "");
+  command = command.replace("(", "");
+  command = command.replace(")", "");
+
+  const variable = command;
+  assignToVariableFromScanf(variable);
 }

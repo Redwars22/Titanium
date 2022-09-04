@@ -24,6 +24,10 @@ body {
 }
 
 @media (max-width: 500px){
+	body {
+		justify-content: space-evenly;
+	}
+
 	.console {
 		width:  90vw;
 		height: 30vh;

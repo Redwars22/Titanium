@@ -48,6 +48,21 @@ function assignToVariable(command){
 	}
 }
 
+function assignToVariableFromScanf(variable, value){
+	if(variables[variable]){
+		const value = window.prompt(`Assign a value to "${variable}"`);
+
+		if(checkIfIsBoolean(value)){
+			variables[variable] = parseBoolean(value);
+		} else {
+			variables[variable] = value;
+		}
+		
+	} else {
+		throw("TITANIUM: ❌️ Cannot assign a value to a variable that doesn't exist")
+	}
+}
+
 function getValueFromVariable(variable){
 	if(variables[variable]){
 		return variables[variable]

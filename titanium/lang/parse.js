@@ -1,11 +1,11 @@
-function parse(command){
+function parseLine(command){
   try {
-    /*COMMENTS*/
+    /* -------------------------- COMMENTS -------------------------- */
     if(command.match(singleLineComment)){
       return;
     }
 
-    /*INPUT AND OUTPUT*/
+    /* -------------------------- INPUT AND OUTPUT -------------------------- */
     if(command.match(printCommand) || command.match(printCommandShorter)){
       printFunction(command);
       return;
@@ -21,7 +21,12 @@ function parse(command){
       return;
     }
 
-    /*VARIABLES AND DATA TYPES*/
+    if(command.match(scanfCommand)){
+      scanfFunction(command);
+      return;
+    }
+
+    /* -------------------------- VARIABLES AND DATA TYPES -------------------------- */
     if(command.match(variableDeclaration)){
       createVariable(command);
       return;
@@ -40,5 +45,5 @@ function parse(command){
 
 function run(){
   const command = document.querySelector('.command-input').value;
-  if(command) parse(command);
+  if(command) parseLine(command);
 }

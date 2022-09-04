@@ -17,3 +17,10 @@ function checkType(value){
 	if(checkIfIsBoolean(value)) return 'bool';
 }
 
+function parseBoolean(value){
+	if(value == "TRUE")
+		return true
+	
+	if(value == "FALSE")
+		return false;
+}
