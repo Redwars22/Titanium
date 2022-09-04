@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap');
+
+* {
+	font-family: 'Ubuntu Mono', monospace;
+	font-weight: 700;
+}
+
+body {
+	display: flex;
+	margin:  0;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height:  100vh;
+	background-color: #dde1eb;
+}
+
+.console {
+	overflow: auto;
+	border-radius:  15px;
+	background-color: #00050f;
+	padding:  15px;
+	color: #4dfa4d;
+}
+
+@media (max-width: 500px){
+	body {
+		justify-content: space-evenly;
+	}
+
+	.console {
+		width:  90vw;
+		height: 30vh;
+		max-height:  30vh;
+		font-size: 19px;
+	}
+
+	.input-field {
+		width:  600px !important;
+	}
+
+	.input-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items:  center;
+		width:  90vw;
+		max-width:  90vw;
+		min-width:  90vw;
+		gap:  10px;
+	}
+}
+
+@media (min-width: 501px){
+	.console {
+		width:  65vw;
+		height: 65vh;
+		max-height:  65vh;
+		font-size: 19px;
+	}
+
+	.input-field {
+		width:  600px !important;
+	}
+
+	.input-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items:  center;
+		width:  70vw;
+		max-width:  70vw;
+		min-width:  70vw;
+		gap:  10px;
+	}
+}
