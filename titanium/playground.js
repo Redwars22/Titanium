@@ -29,7 +29,10 @@ function showHelp(){
 }
 
 function runCode(){
-  const command = document.querySelector('.command-input').value;
-  document.querySelector('.command-input').value = "";
-  if(command) parseLine(command);
+  const code = document.querySelector('#code-area').innerText;
+  if(code) parseCode(code);
+}
+
+function clearCode(){
+	document.querySelector('#console').innerText = "";
 }

@@ -17,10 +17,7 @@ body {
 
 .console {
 	overflow: auto;
-	border-radius:  15px;
-	background-color: #00050f;
 	padding:  15px;
-	color: #4dfa4d;
 }
 
 @media (max-width: 500px){
@@ -53,10 +50,15 @@ body {
 
 @media (min-width: 501px){
 	.console {
-		width:  65vw;
+		width: 50vw;
 		height: 65vh;
 		max-height:  65vh;
 		font-size: 19px;
+	}
+
+	.code-area {
+		height: 65vh;
+		width: 40vw;
 	}
 
 	.input-field {
@@ -72,5 +74,10 @@ body {
 		max-width:  70vw;
 		min-width:  70vw;
 		gap:  10px;
+	}
+
+	.editor-container {
+		display: flex;
+		flex-direction: row;
 	}
 }

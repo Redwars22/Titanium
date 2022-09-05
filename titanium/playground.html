@@ -11,35 +11,21 @@
 	<meta name="Titanium is a general-purpose fictional programming language designed specifically for one of my stories. It's been developed by the fictional characters Matheus, Gustavo N, and Léo Andrew. Since it's all fictional, there's no compiler for it, but you can develop one for it if you want.">
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body>
+<body class="indigo darken-4">
 	<img width="80px" height="80px" src="https://redwars22.github.io/Titanium/titanium.png"></img>
-	<div class="">
-		<a 
-			class="waves-effect waves-light btn" 
+	<div class="menu">
+		<a class="waves-effect waves-light btn" onclick="runCode()"><i class="material-icons left">play_circle_filled</i>RUN</a>
+		<a class="waves-effect waves-light btn" onclick="clearCode()"><i class="material-icons left">clear</i>CLEAR</a>
+		<a class="waves-effect waves-light btn" 
 			href="https://leoandrew.notion.site/TITANIUM-PROGRAMMING-LANGUAGE-1101ce41bbb94e459d18dc982d517be8"
-		>
-			<i class="material-icons left">book</i>
-			TITANIUM PROGRAMMING LANGUAGE GUIDE
-		</a>
-		<a 
-			class="waves-effect waves-light btn" 
-			onclick="showHelp()"
-		>
-			<i class="material-icons left">help</i>
-			WHAT CAN IT DO ALREADY?
-		</a>
-</div>
-	<div class="input-container">
-	    <div class="input-field col s6">
-	      <i class="material-icons prefix">free_breakfast</i>
-	      <input id="icon_prefix" class="command-input" type="text" class="validate">
-	      <label for="icon_prefix">Insert a valid Titanium command here...</label>
-	    </div>
-	    <a class="waves-effect waves-light btn" onclick="runCode()"><i class="material-icons left">send</i>RUN</a>
+		><i class="material-icons left">book</i>REFERENCE GUIDE</a>
+		<a class="waves-effect waves-light btn" onclick="showHelp()"><i class="material-icons left">help</i>INFO</a>
 	</div>
-	<div class="console" id="console">
-		Welcome to Titanium's console... <br/>
-		$ _
+	<div class="editor-container">
+		<div class="card-panel teal white-text code-area" contenteditable id="code-area"></div>
+		<div class="card-panel black green-text console" id="console">
+			Welcome to Titanium's console... <br/>
+		</div>
 	</div>
 	<script src="./lang/io.js"></script>
 	<script src="./lang/parse.js"></script>
