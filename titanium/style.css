@@ -58,7 +58,8 @@ body {
 
 	.code-area {
 		height: 65vh;
-		width: 40vw;
+		width: 25vw;
+		font-size: 19px;
 	}
 
 	.input-field {

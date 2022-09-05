@@ -22,16 +22,25 @@
 		<a class="waves-effect waves-light btn" onclick="showHelp()"><i class="material-icons left">help</i>INFO</a>
 	</div>
 	<div class="editor-container">
-		<div class="card-panel teal white-text code-area" contenteditable id="code-area"></div>
+		<div class="card-panel grey darken-4 white-text code-area" contenteditable id="code-area"></div>
 		<div class="card-panel black green-text console" id="console">
 			Welcome to Titanium's console... <br/>
 		</div>
 	</div>
-	<script src="./lang/io.js"></script>
+
+	<!--TITANIUM DEF FILES-->
+	<script src="./lang/data/io.js"></script>
+	<script src="./lang/data/data.js"></script>
+
 	<script src="./lang/parse.js"></script>
-	<script src="./lang/rules.js"></script>
-	<script src="./lang/data.js"></script>
-	<script src="./lang/types.js"></script>
+	<script src="./lang/errors.js"></script>
+
+	<script src="./lang/rules/rules.js"></script>
+	<script src="./lang/rules/operators.js"></script>
+
+	<script src="./lang/types/types.js"></script>
+	<script src="./lang/types/number.js"></script>
+
 	<script type="text/javascript" src="./playground.js"></script>
 </body>
 </html>
