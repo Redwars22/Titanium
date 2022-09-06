@@ -21,77 +21,66 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
 //@ts-check
-
-let currentLine = 0;
-
+var currentLine = 0;
+var hasThrownAnError = false;
 function parseLine(command) {
-  try {
-    /* -------------------------- COMMENTS -------------------------- */
-    if (command.match(singleLineComment)) {
-      return;
+    try {
+        /* -------------------------- COMMENTS -------------------------- */
+        if (command.match(singleLineComment)) {
+            return;
+        }
+        /* -------------------------- INPUT AND OUTPUT -------------------------- */
+        if (command.match(printCommand) || command.match(printCommandShorter)) {
+            printFunction(command);
+            return;
+        }
+        if (command.match(printCommandWithVariable)) {
+            printValueFromVariable(command);
+            return;
+        }
+        if (command.match(clearConsoleCommand)) {
+            clearConsole();
+            return;
+        }
+        if (command.match(scanfCommand)) {
+            scanfFunction(command);
+            return;
+        }
+        /* -------------------------- VARIABLES AND DATA TYPES -------------------------- */
+        if (command.match(variableDeclaration)) {
+            createVariable(command);
+            return;
+        }
+        if (command.match(variableAssignment)) {
+            assignToVariable(command);
+            return;
+        }
+        throw "Invalid token and/or character found or the command is not a valid Titanium keyword!";
     }
-
-    /* -------------------------- INPUT AND OUTPUT -------------------------- */
-    if (command.match(printCommand) || command.match(printCommandShorter)) {
-      printFunction(command);
-      return;
+    catch (err) {
+        throwError(err, currentLine);
+        hasThrownAnError = true;
     }
-
-    if (command.match(printCommandWithVariable)) {
-      printValueFromVariable(command);
-      return;
-    }
-
-    if (command.match(clearConsoleCommand)) {
-      clearConsole();
-      return;
-    }
-
-    if (command.match(scanfCommand)) {
-      scanfFunction(command);
-      return;
-    }
-
-    /* -------------------------- VARIABLES AND DATA TYPES -------------------------- */
-    if (command.match(variableDeclaration)) {
-      createVariable(command);
-      return;
-    }
-
-    if (command.match(variableAssignment)) {
-      assignToVariable(command);
-      return;
-    }
-
-    throw "Invalid token and/or character found or the command is not a valid Titanium keyword!";
-  } catch (err) {
-    throwError(err, currentLine);
-    hasThrownAnError = true;
-  }
 }
-
 function parseCode(code) {
-  const linesOfCodeArray = code.split("\n");
-  currentLine = 0;
-  let hasThrownAnError = false;
-
-  try {
-    while (currentLine < linesOfCodeArray.length && !hasThrownAnError) {
-      if (linesOfCodeArray[currentLine].includes("EXIT")) {
-        throw " TITANIUM: the program has exited";
-      }
-
-      if (linesOfCodeArray[currentLine] != "") {
-        parseLine(linesOfCodeArray[currentLine]);
-      }
-
-      if(hasThrownAnError) break;
-
-      currentLine++;
+    var linesOfCodeArray = code.split("\n");
+    currentLine = 0;
+    hasThrownAnError = false;
+    try {
+        while (currentLine < linesOfCodeArray.length && !hasThrownAnError) {
+            if (linesOfCodeArray[currentLine].includes("EXIT")) {
+                throw " TITANIUM: the program has exited";
+            }
+            if (linesOfCodeArray[currentLine] != "") {
+                parseLine(linesOfCodeArray[currentLine]);
+            }
+            if (hasThrownAnError)
+                break;
+            currentLine++;
+        }
     }
-  } catch (err) {
-    throwWarning(err);
-  }
+    catch (err) {
+        throwWarning(err);
+    }
 }

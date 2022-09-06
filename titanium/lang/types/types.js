@@ -21,32 +21,38 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
-//@ts-check
-
-function checkIfIsString(value){
-	if(value.includes("\""))
-		return true;
-	
-	return false
+var types = {
+    string: 'string',
+    bool: 'bool',
+    number: 'num'
+};
+function checkIfIsString(value) {
+    if (value.includes("\""))
+        return true;
+    return false;
 }
-
-function checkIfIsBoolean(value){
-	if(value.includes("TRUE") || value.includes("FALSE"))
-		return true;
-	
-	return false;
+function checkIfIsBoolean(value) {
+    if (value.includes(keywords.boolTrue) || value.includes(keywords.boolFalse))
+        return true;
+    return false;
 }
-
-function checkType(value){
-	if(checkIfIsString(value)) return 'string';
-	if(checkIfIsBoolean(value)) return 'bool';
+function checkIfIsNumber(value) {
+    console.log('chegou aqui');
+    if (!isNaN(value))
+        return true;
+    return false;
 }
-
-function parseBoolean(value){
-	if(value == "TRUE")
-		return true
-	
-	if(value == "FALSE")
-		return false;
+function checkType(value) {
+    if (checkIfIsString(value))
+        return types.string;
+    if (checkIfIsBoolean(value))
+        return types.bool;
+    if (checkIfIsNumber(value))
+        return types.number;
+}
+function parseBoolean(value) {
+    if (value == keywords.boolTrue)
+        return true;
+    if (value == keywords.boolFalse)
+        return false;
 }

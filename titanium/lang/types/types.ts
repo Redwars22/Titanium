@@ -21,4 +21,44 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-//@ts-check
+
+const types = {
+	string: 'string',
+	bool: 'bool',
+	number: 'num'
+}
+
+function checkIfIsString(value): boolean {
+	if(value.includes("\""))
+		return true;
+	
+	return false
+}
+
+function checkIfIsBoolean(value): boolean {
+	if(value.includes(keywords.boolTrue) || value.includes(keywords.boolFalse))
+		return true;
+	
+	return false;
+}
+
+function checkIfIsNumber(value): boolean {
+	if(!isNaN(value))
+		return true;
+	
+	return false;
+}
+
+function checkType(value): string {
+	if(checkIfIsString(value)) return types.string;
+	if(checkIfIsBoolean(value)) return types.bool;
+	if(checkIfIsNumber(value)) return types.number;
+}
+
+function parseBoolean(value){
+	if(value == keywords.boolTrue)
+		return true
+	
+	if(value == keywords.boolFalse)
+		return false;
+}

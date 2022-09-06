@@ -21,15 +21,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
-//@ts-check
-
-const clearConsoleCommand = /clear\(\)/g;
-const constantDeclaration = "";
-const printCommand = /output\(\".*[A-Za-z0-9]+\"\)/g;
-const printCommandShorter = /out\(\".*[A-Za-z0-9]+\"\)/g;
-const printCommandWithVariable = /out?[put]\(.*[A-Za-z_]\)/gi
-const scanfCommand = /get\(.*[A-Za-z_]\)/gi;
-const singleLineComment = /--.*[A-Za-z0-9_ ]/gi;
-const variableAssignment = /.*[A-Za-z_] = "?.*[A-Za-z]"?/gi;
-const variableDeclaration = /DECL .*[A-Za-z_] = "?.*[A-Za-z]"?/gm;
+var clearConsoleCommand = /clear\(\)/g;
+var constantDeclaration = "";
+var printCommand = /output\(\".*[A-Za-z0-9]+\"\)/g;
+var printCommandShorter = /out\(\".*[A-Za-z0-9]+\"\)/g;
+var printCommandWithVariable = /out?[put]\(.*[A-Za-z_]\)/gi;
+var scanfCommand = /get\(.*[A-Za-z_]\)/gi;
+var singleLineComment = /--.*[A-Za-z0-9_ ]/gi;
+var variableAssignment = /.*[A-Za-z_] = "?.*[A-Za-z0-9]"?/gi;
+var variableDeclaration = /DECL .*[A-Za-z_] = "?.*[A-Za-z0-9]"?/gm;

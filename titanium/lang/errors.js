@@ -21,13 +21,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
 //@ts-check
-
-function throwError(err, line){
-    document.getElementById("console").innerText += `\n❌️ Line: ${line + 1} - ${err} \n`;
+function throwError(err, line) {
+    document.getElementById("console").innerText += "\n\u274C\uFE0F Line: " + (line + 1) + " - " + err + " \n";
 }
-
-function throwWarning(msg){
-    document.getElementById("console").innerText += `\n⚠️ ${msg} \n`;
+function throwWarning(msg) {
+    document.getElementById("console").innerText += "\n\u26A0\uFE0F " + msg + " \n";
 }
