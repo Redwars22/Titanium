@@ -24,58 +24,46 @@ SOFTWARE.
 var variables = {};
 var constants = {};
 function createVariable(command) {
-    if (command.includes(keywords.variableDecl)) {
-        command = command.replace(keywords.variableDecl, "");
-        command = command.split(' ');
-        var typeOfVariable = checkType(command[2]);
+    if (command.includes(keywords.VARIABLE)) {
+        command = command.replace(keywords.VARIABLE, "");
+        command = command.split(" = ");
+        var typeOfVariable = checkType(command[1]);
         /*
         COMMAND[0] = the name of the variable
-        COMMAND[1] = the operator
-        COMMAND[2] = the value
+        COMMAND[1] = the value
         */
-        if (command[1] == "=") {
-            if (typeOfVariable == types.string) {
-                command[2] = command[2].replaceAll("\"", "");
-                variables[command[0]] = command[2];
-                return;
-            }
-            if (typeOfVariable == types.bool) {
-                if (command[2] == keywords.boolTrue)
-                    variables[command[0]] = true;
-                if (command[2] == keywords.boolFalse)
-                    variables[command[0]] = false;
-                return;
-            }
-            if (typeOfVariable == types.number) {
-                variables[command[0]] = command[2];
-                return;
-            }
-            console.log(variables);
+        if (typeOfVariable == types.STRING) {
+            command[1] = command[1].replaceAll('"', "");
+            variables[command[0]] = command[1];
+            return;
         }
-        else {
-            throw ("token = missing in variable declaration");
+        if (typeOfVariable == types.BOOL) {
+            if (command[1] == keywords.BOOL_TRUE)
+                variables[command[0]] = true;
+            if (command[1] == keywords.BOOL_FALSE)
+                variables[command[0]] = false;
+            return;
+        }
+        if (typeOfVariable == types.NUMBER) {
+            variables[command[0]] = Number(command[1]);
+            return;
         }
     }
 }
 function assignToVariable(command) {
-    command = command.split(' ');
+    command = command.split(" = ");
     var variable, value;
-    if (command[1] == "=") {
-        variable = command[0];
-        if (command[2].includes("\"")) {
-            command[2] = command[2].replaceAll("\"", "");
-        }
-        value = command[2];
+    variable = command[0];
+    if (command[1].includes('"')) {
+        command[1] = command[1].replaceAll('"', "");
     }
-    else {
-        throw ("token = expected");
-    }
+    value = command[1];
     if (variables[variable]) {
         variables[variable] = value;
         console.log(variables);
     }
     else {
-        throw ("Cannot assign a value to \"" + variable + "\" because it either doesn't exist or is a constant. Are you trying to create a new variable?");
+        throw "Cannot assign a value to \"" + variable + "\" because it either doesn't exist or is a constant. Are you trying to create a new variable?";
     }
 }
 function assignToVariableFromScanf(variable) {
@@ -89,12 +77,38 @@ function assignToVariableFromScanf(variable) {
         }
     }
     else {
-        throw ("Cannot assign a value to a variable that doesn't exist");
+        throw "Cannot assign a value to a variable that doesn't exist";
     }
 }
 function getValueFromVariable(variable) {
     if (variables[variable]) {
         return variables[variable];
     }
+    else if (constants[variable]) {
+        return constants[variable];
+    }
     return;
+}
+function assignToConstant(expr) {
+    /*
+      It basically creates a new constant and, if it already exists,
+      it throws an error
+      */
+    var tokens = expr.replace(keywords.CONSTANT, "");
+    tokens = tokens.split(" = ");
+    var name = tokens[0];
+    var data = tokens[1];
+    if (constants[name]) {
+        throw "you cannot change the value of a constant once it's been declared";
+    }
+    else {
+        var typeOfData = checkType(data);
+        /* It parses the data and its type */
+        if (typeOfData == types.BOOL)
+            data = parseBoolean(data);
+        if (typeOfData == types.NUMBER)
+            data = Number(data);
+        constants[name] = data;
+        console.log(constants);
+    }
 }

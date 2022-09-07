@@ -22,9 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 var types = {
-    string: 'string',
-    bool: 'bool',
-    number: 'num'
+    STRING: 'string',
+    BOOL: 'bool',
+    NUMBER: 'num'
 };
 function checkIfIsString(value) {
     if (value.includes("\""))
@@ -32,27 +32,26 @@ function checkIfIsString(value) {
     return false;
 }
 function checkIfIsBoolean(value) {
-    if (value.includes(keywords.boolTrue) || value.includes(keywords.boolFalse))
+    if (value.includes(keywords.BOOL_TRUE) || value.includes(keywords.BOOL_FALSE))
         return true;
     return false;
 }
 function checkIfIsNumber(value) {
-    console.log('chegou aqui');
     if (!isNaN(value))
         return true;
     return false;
 }
 function checkType(value) {
     if (checkIfIsString(value))
-        return types.string;
+        return types.STRING;
     if (checkIfIsBoolean(value))
-        return types.bool;
+        return types.BOOL;
     if (checkIfIsNumber(value))
-        return types.number;
+        return types.NUMBER;
 }
 function parseBoolean(value) {
-    if (value == keywords.boolTrue)
+    if (value == keywords.BOOL_TRUE)
         return true;
-    if (value == keywords.boolFalse)
+    if (value == keywords.BOOL_FALSE)
         return false;
 }

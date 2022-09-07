@@ -23,10 +23,10 @@ SOFTWARE.
 */
 
 const clearConsoleCommand = /clear\(\)/g;
-const constantDeclaration = "";
+const constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9]"?/;
 const printCommand = /output\(\".*[A-Za-z0-9]+\"\)/g;
 const printCommandShorter = /out\(\".*[A-Za-z0-9]+\"\)/g;
-const printCommandWithVariable = /out?[put]\(.*[A-Za-z_]\)/gi
+const printCommandWithVariable = /out?[put]\(.*[A-Za-z_0-9]\)/gi
 const scanfCommand = /get\(.*[A-Za-z_]\)/gi;
 const singleLineComment = /--.*[A-Za-z0-9_ ]/gi;
 const variableAssignment = /.*[A-Za-z_] = "?.*[A-Za-z0-9]"?/gi;

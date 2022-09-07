@@ -22,10 +22,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 var clearConsoleCommand = /clear\(\)/g;
-var constantDeclaration = "";
+var constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9]"?/;
 var printCommand = /output\(\".*[A-Za-z0-9]+\"\)/g;
 var printCommandShorter = /out\(\".*[A-Za-z0-9]+\"\)/g;
-var printCommandWithVariable = /out?[put]\(.*[A-Za-z_]\)/gi;
+var printCommandWithVariable = /out?[put]\(.*[A-Za-z_0-9]\)/gi;
 var scanfCommand = /get\(.*[A-Za-z_]\)/gi;
 var singleLineComment = /--.*[A-Za-z0-9_ ]/gi;
 var variableAssignment = /.*[A-Za-z_] = "?.*[A-Za-z0-9]"?/gi;

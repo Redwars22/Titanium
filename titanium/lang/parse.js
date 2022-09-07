@@ -48,6 +48,10 @@ function parseLine(command) {
             return;
         }
         /* -------------------------- VARIABLES AND DATA TYPES -------------------------- */
+        if (command.match(constantDeclaration)) {
+            assignToConstant(command);
+            return;
+        }
         if (command.match(variableDeclaration)) {
             createVariable(command);
             return;

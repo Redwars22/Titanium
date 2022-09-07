@@ -23,9 +23,9 @@ SOFTWARE.
 */
 
 const types = {
-	string: 'string',
-	bool: 'bool',
-	number: 'num'
+	STRING: 'string',
+	BOOL: 'bool',
+	NUMBER: 'num'
 }
 
 function checkIfIsString(value): boolean {
@@ -36,7 +36,7 @@ function checkIfIsString(value): boolean {
 }
 
 function checkIfIsBoolean(value): boolean {
-	if(value.includes(keywords.boolTrue) || value.includes(keywords.boolFalse))
+	if(value.includes(keywords.BOOL_TRUE) || value.includes(keywords.BOOL_FALSE))
 		return true;
 	
 	return false;
@@ -50,15 +50,15 @@ function checkIfIsNumber(value): boolean {
 }
 
 function checkType(value): string {
-	if(checkIfIsString(value)) return types.string;
-	if(checkIfIsBoolean(value)) return types.bool;
-	if(checkIfIsNumber(value)) return types.number;
+	if(checkIfIsString(value)) return types.STRING;
+	if(checkIfIsBoolean(value)) return types.BOOL;
+	if(checkIfIsNumber(value)) return types.NUMBER;
 }
 
 function parseBoolean(value){
-	if(value == keywords.boolTrue)
+	if(value == keywords.BOOL_TRUE)
 		return true
 	
-	if(value == keywords.boolFalse)
+	if(value == keywords.BOOL_FALSE)
 		return false;
 }

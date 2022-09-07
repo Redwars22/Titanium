@@ -22,7 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 var keywords = {
-    boolTrue: "TRUE",
-    boolFalse: "FALSE",
-    variableDecl: "DECL ",
+    BOOL_TRUE: "TRUE",
+    BOOL_FALSE: "FALSE",
+    CONSTANT: "DEF ",
+    VARIABLE: "DECL ",
 };

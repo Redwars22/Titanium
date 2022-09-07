@@ -20,6 +20,10 @@ body {
 	padding:  15px;
 }
 
+.code-area {
+	overflow: auto;
+}
+
 @media (max-width: 500px){
 	body {
 		justify-content: space-evenly;

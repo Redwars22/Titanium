@@ -23,7 +23,8 @@ SOFTWARE.
 */
 
 const keywords = {
-    boolTrue: "TRUE",
-    boolFalse: "FALSE",
-    variableDecl: "DECL ",
+    BOOL_TRUE: "TRUE",
+    BOOL_FALSE: "FALSE",
+    CONSTANT: "DEF ",
+    VARIABLE: "DECL ",
 }
