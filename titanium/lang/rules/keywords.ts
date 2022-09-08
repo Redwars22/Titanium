@@ -28,3 +28,7 @@ const keywords = {
     CONSTANT: "DEF ",
     VARIABLE: "DECL ",
 }
+
+const functions = {
+    PRINT: 'print'
+}

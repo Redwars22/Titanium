@@ -64,6 +64,7 @@ function assignToVariable(command) {
   if (command[1].includes('"')) {
     command[1] = command[1].replaceAll('"', "");
   }
+  
   value = command[1];
 
   if (variables[variable]) {

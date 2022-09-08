@@ -23,42 +23,52 @@ SOFTWARE.
 */
 
 const types = {
-	STRING: 'string',
-	BOOL: 'bool',
-	NUMBER: 'num'
-}
+  STRING: "string",
+  BOOL: "bool",
+  NUMBER: "num",
+};
 
 function checkIfIsString(value): boolean {
-	if(value.includes("\""))
-		return true;
-	
-	return false
+  if (value.includes('"')) return true;
+
+  return false;
 }
 
 function checkIfIsBoolean(value): boolean {
-	if(value.includes(keywords.BOOL_TRUE) || value.includes(keywords.BOOL_FALSE))
-		return true;
-	
-	return false;
+  if (value.includes(keywords.BOOL_TRUE) || value.includes(keywords.BOOL_FALSE))
+    return true;
+
+  return false;
 }
 
 function checkIfIsNumber(value): boolean {
-	if(!isNaN(value))
-		return true;
-	
-	return false;
+  if (!isNaN(value)) return true;
+
+  return false;
+}
+
+function checkIfIsMathExpr(expr): boolean {
+  if (expr.match(mathExprRules.ADD)) return true;
+
+  if (expr.match(mathExprRules.SUBTRACT)) return true;
+
+  if (expr.match(mathExprRules.DIVISION)) return true;
+
+  if (expr.match(mathExprRules.MULTIPLY)) return true;
+
+  if (expr.match(mathExprRules.MODULUS)) return true;
+  return false;
 }
 
 function checkType(value): string {
-	if(checkIfIsString(value)) return types.STRING;
-	if(checkIfIsBoolean(value)) return types.BOOL;
-	if(checkIfIsNumber(value)) return types.NUMBER;
+  if (checkIfIsString(value)) return types.STRING;
+  if (checkIfIsBoolean(value)) return types.BOOL;
+  if (checkIfIsNumber(value)) return types.NUMBER;
+  if (checkIfIsMathExpr(value)) return "mathExpr";
 }
 
-function parseBoolean(value){
-	if(value == keywords.BOOL_TRUE)
-		return true
-	
-	if(value == keywords.BOOL_FALSE)
-		return false;
+function parseBoolean(value) {
+  if (value == keywords.BOOL_TRUE) return true;
+
+  if (value == keywords.BOOL_FALSE) return false;
 }

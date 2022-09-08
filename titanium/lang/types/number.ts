@@ -22,4 +22,25 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-//@ts-check
+function parseExpression(leftValue, operator, rightValue){
+    switch(operator){
+        case operators.ADD:
+            return leftValue + rightValue;
+            break;
+        case operators.SUBTRACT:
+            return leftValue - rightValue;
+            break;
+        case operators.MULTIPLY:
+            return leftValue * rightValue;
+            break;
+        case operators.DIVIDE:
+            return leftValue / rightValue;
+            break;
+        case operators.MODULUS:
+            return leftValue % rightValue;
+            break;
+        default:
+            throw("")
+            break;
+    }
+}

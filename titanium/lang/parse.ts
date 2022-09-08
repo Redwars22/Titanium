@@ -35,15 +35,6 @@ function parseLine(command) {
     }
 
     /* -------------------------- INPUT AND OUTPUT -------------------------- */
-    if (command.match(printCommand) || command.match(printCommandShorter)) {
-      printFunction(command);
-      return;
-    }
-
-    if (command.match(printCommandWithVariable)) {
-      printValueFromVariable(command);
-      return;
-    }
 
     if (command.match(clearConsoleCommand)) {
       clearConsole();
@@ -52,6 +43,11 @@ function parseLine(command) {
 
     if (command.match(scanfCommand)) {
       scanfFunction(command);
+      return;
+    }
+
+    if (command.match(printCommand)) {
+      printFunction(command);
       return;
     }
 

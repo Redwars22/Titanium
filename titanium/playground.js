@@ -34,6 +34,7 @@ const info = {
     "<li>Get input from the user and store it in a variable</li>" +
     "<li>Clear the console with the clear() command</li>" +
     "<li>Change the value of a variable</li>" +
+    "<li>Printing simple math expressions, such as 2 + 2 or 9 % 2</li>" +
     "<li>Support for String (without special symbols such as ! @ ?), Boolean and Number</li></ol></left>",
 };
 
@@ -46,7 +47,7 @@ window.onload = () => {
   });
 
   document.querySelector("#code-area").innerText =
-    'DECL msg = "Hello_World!"\nout(msg)\nEXIT';
+    'DECL msg = "Hello World!"\nprint(msg)\nEXIT';
 };
 
 function showHelp() {

@@ -24,57 +24,54 @@ SOFTWARE.
 
 //@ts-check
 
-function clearConsole(){
-  document.getElementById('console')!.innerText = "$ _";
+function clearConsole() {
+  document.getElementById("console")!.innerText = "";
 }
 
-function printFunction(text){
-  if(text.includes("(") && text.includes(")")){
-    if(text.includes("output")){
-    	text = text.split("output(")
-                .join("")
-                .split(")")
-                .join("")
-                .split("\"")
-                .join("");
-    } else {
-    	text = text.split("out(")
-                .join("")
-                .split(")")
-                .join("")
-                .split("\"")
-                .join("");
-    }
-      	document.getElementById('console')!.innerText += "\n" + text;
-  } else {
-    throw("Missing ) token at the end of the line")
-  }
-}
-
-function printValueFromVariable(command){
-  if(command.includes("out")) 
-    command = command.replace("out", "");
-  if(command.includes("output")) 
-    command = command.replace("output", "");
-
-  command = command.replace("(", "");
-  command = command.replace(")", "");
-
-  const variable = command;
-  const value = getValueFromVariable(variable);
-
-  if(value){
-    document.getElementById('console')!.innerText += "\n" + value;
-  } else {
-    throw(`variable "${variable}" either doesn't exist or hasn't been initialized yet!`);
-  }
-}
-
-function scanfFunction(command){
+function scanfFunction(command) {
   command = command.replace("get", "");
   command = command.replace("(", "");
   command = command.replace(")", "");
 
   const variable = command;
   assignToVariableFromScanf(variable);
+}
+
+function printToConsole(data){
+  document.getElementById("console")!.innerText += `\n${data}`;
+}
+
+function printFunction(command){
+  const data = command.replace(functions.PRINT + '(', '').replace(')', '');
+
+  /* It checks the type of the argument given to the print function */
+  const typeOfData = checkType(data);
+
+  /* If it isn't either a string or a number, then it treats it as a variable and
+  prints its value, if it exists.
+  */
+
+  switch(typeOfData){
+    case types.STRING:
+      printToConsole(data)
+      break;
+    case types.NUMBER:
+      printToConsole(data)
+      break;
+    case types.BOOL:
+      printToConsole(data)
+      break;
+    case 'mathExpr':
+      printToConsole(eval(data));
+      break;
+    default:
+      if(variables[data]){
+        printToConsole(variables[data]);
+      } else if(constants[data]){
+        printToConsole(constants[data]);
+      } else {
+        throw(error.VAR_DOES_NOT_EXIST);
+      }
+      break;
+  }
 }

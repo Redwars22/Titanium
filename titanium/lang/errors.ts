@@ -24,6 +24,10 @@ SOFTWARE.
 
 //@ts-check
 
+const error = {
+    VAR_DOES_NOT_EXIST: "the variable/constant you tried to access doesn't exist"
+}
+
 function throwError(err, line){
     document.getElementById("console").innerText += `\n❌️ Line: ${line + 1} - ${err} \n`;
 }

@@ -25,13 +25,13 @@ SOFTWARE.
 //@ts-check
 
 const operators = {
-    equal: '==',
-    greaterThan: '>',
-    lessThan: '<',
-    notEqual: '!=',
-    add: '+',
-    subtract: '-',
-    modulus: '%',
-    multiply: '*',
-    divide: '/',
+    EQUAL: '==',
+    GREATERTHAN: '>',
+    LESSTHAN: '<',
+    NOTEQUAL: '!=',
+    ADD: '+',
+    SUBTRACT: '-',
+    MODULUS: '%',
+    MULTIPLY: '*',
+    DIVIDE: '/',
 }

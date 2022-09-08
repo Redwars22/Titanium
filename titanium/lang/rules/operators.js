@@ -23,13 +23,13 @@ SOFTWARE.
 */
 //@ts-check
 var operators = {
-    equal: '==',
-    greaterThan: '>',
-    lessThan: '<',
-    notEqual: '!=',
-    add: '+',
-    subtract: '-',
-    modulus: '%',
-    multiply: '*',
-    divide: '/',
+    EQUAL: '==',
+    GREATERTHAN: '>',
+    LESSTHAN: '<',
+    NOTEQUAL: '!=',
+    ADD: '+',
+    SUBTRACT: '-',
+    MODULUS: '%',
+    MULTIPLY: '*',
+    DIVIDE: '/',
 };

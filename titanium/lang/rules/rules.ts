@@ -24,10 +24,16 @@ SOFTWARE.
 
 const clearConsoleCommand = /clear\(\)/g;
 const constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9]"?/;
-const printCommand = /output\(\".*[A-Za-z0-9]+\"\)/g;
-const printCommandShorter = /out\(\".*[A-Za-z0-9]+\"\)/g;
-const printCommandWithVariable = /out?[put]\(.*[A-Za-z_0-9]\)/gi
+const printCommand = /print\("?.*[0-9A-Z a-z!,_]"?\)/g;
 const scanfCommand = /get\(.*[A-Za-z_]\)/gi;
 const singleLineComment = /--.*[A-Za-z0-9_ ]/gi;
 const variableAssignment = /.*[A-Za-z_] = "?.*[A-Za-z0-9]"?/gi;
-const variableDeclaration = /DECL .*[A-Za-z_] = "?.*[A-Za-z0-9]"?/gm;
+const variableDeclaration = /DECL .*[A-Za-z_] = "?.*[A-Za-z0-9\+]"?/gm;
+
+const mathExprRules = {
+    ADD: /.*[0-9 ]\+.*[0-9 ]/g,
+    SUBTRACT: /.*[0-9 ]\-.*[0-9 ]/g,
+    MULTIPLY: /.*[0-9 ]\*.*[0-9 ]/g,
+    MODULUS: /.*[0-9 ]\%.*[0-9 ]/g,
+    DIVISION: /.*[0-9 ]\/.*[0-9 ]/g,
+}
