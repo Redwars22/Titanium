@@ -25,10 +25,6 @@ SOFTWARE.
 //@ts-check
 
 const operators = {
-    EQUAL: '==',
-    GREATERTHAN: '>',
-    LESSTHAN: '<',
-    NOTEQUAL: '!=',
     ADD: '+',
     SUBTRACT: '-',
     MODULUS: '%',

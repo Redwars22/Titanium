@@ -69,12 +69,23 @@ function parseCode(code) {
     hasThrownAnError = false;
     try {
         while (currentLine < linesOfCodeArray.length && !hasThrownAnError) {
-            if (linesOfCodeArray[currentLine].includes("EXIT")) {
-                throw " TITANIUM: the program has exited";
+            if (linesOfCodeArray[currentLine].includes("EXIT"))
+                throw "the program has exited";
+            if (linesOfCodeArray[currentLine].match(returnStatement)) {
+                var returnStatementLine = linesOfCodeArray[currentLine];
+                var valueOfReturnCode = returnStatementLine.replace("RET ", "");
+                var typeOfReturnCode = checkType(valueOfReturnCode);
+                var returnCode = typeOfReturnCode == types.STRING || typeOfReturnCode == types.BOOL
+                    ? valueOfReturnCode
+                    : typeOfReturnCode == types.NUMBER
+                        ? Number(valueOfReturnCode)
+                        : typeOfReturnCode == "mathExpr" || typeOfReturnCode == "logicExpr"
+                            ? eval(valueOfReturnCode)
+                            : "INVALID RETURN STATEMENT!";
+                throw "the program has exited with " + returnCode;
             }
-            if (linesOfCodeArray[currentLine] != "") {
+            if (linesOfCodeArray[currentLine] != "")
                 parseLine(linesOfCodeArray[currentLine]);
-            }
             if (hasThrownAnError)
                 break;
             currentLine++;

@@ -52,7 +52,7 @@ function parseLine(command) {
     }
 
     /* -------------------------- VARIABLES AND DATA TYPES -------------------------- */
-    if(command.match(constantDeclaration)){
+    if (command.match(constantDeclaration)) {
       assignToConstant(command);
       return;
     }
@@ -81,15 +81,29 @@ function parseCode(code) {
 
   try {
     while (currentLine < linesOfCodeArray.length && !hasThrownAnError) {
-      if (linesOfCodeArray[currentLine].includes("EXIT")) {
-        throw " TITANIUM: the program has exited";
+      if (linesOfCodeArray[currentLine].includes("EXIT"))
+        throw "the program has exited";
+
+      if (linesOfCodeArray[currentLine].match(returnStatement)) {
+        let returnStatementLine = linesOfCodeArray[currentLine];
+        const valueOfReturnCode = returnStatementLine.replace("RET ", "");
+        const typeOfReturnCode = checkType(valueOfReturnCode);
+        const returnCode =
+          typeOfReturnCode == types.STRING || typeOfReturnCode == types.BOOL
+            ? valueOfReturnCode
+            : typeOfReturnCode == types.NUMBER
+            ? Number(valueOfReturnCode)
+            : typeOfReturnCode == "mathExpr" || typeOfReturnCode == "logicExpr"
+            ? eval(valueOfReturnCode)
+            : "INVALID RETURN STATEMENT!";
+
+        throw `the program has exited with ${returnCode}`;
       }
 
-      if (linesOfCodeArray[currentLine] != "") {
+      if (linesOfCodeArray[currentLine] != "")
         parseLine(linesOfCodeArray[currentLine]);
-      }
 
-      if(hasThrownAnError) break;
+      if (hasThrownAnError) break;
 
       currentLine++;
     }

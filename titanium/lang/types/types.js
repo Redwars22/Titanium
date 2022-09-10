@@ -26,34 +26,6 @@ var types = {
     BOOL: "bool",
     NUMBER: "num",
 };
-function checkIfIsString(value) {
-    if (value.includes('"'))
-        return true;
-    return false;
-}
-function checkIfIsBoolean(value) {
-    if (value.includes(keywords.BOOL_TRUE) || value.includes(keywords.BOOL_FALSE))
-        return true;
-    return false;
-}
-function checkIfIsNumber(value) {
-    if (!isNaN(value))
-        return true;
-    return false;
-}
-function checkIfIsMathExpr(expr) {
-    if (expr.match(mathExprRules.ADD))
-        return true;
-    if (expr.match(mathExprRules.SUBTRACT))
-        return true;
-    if (expr.match(mathExprRules.DIVISION))
-        return true;
-    if (expr.match(mathExprRules.MULTIPLY))
-        return true;
-    if (expr.match(mathExprRules.MODULUS))
-        return true;
-    return false;
-}
 function checkType(value) {
     if (checkIfIsString(value))
         return types.STRING;
@@ -63,10 +35,6 @@ function checkType(value) {
         return types.NUMBER;
     if (checkIfIsMathExpr(value))
         return "mathExpr";
-}
-function parseBoolean(value) {
-    if (value == keywords.BOOL_TRUE)
-        return true;
-    if (value == keywords.BOOL_FALSE)
-        return false;
+    if (checkIfIsLogicExpr(value))
+        return "logicExpr";
 }

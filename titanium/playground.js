@@ -46,8 +46,14 @@ window.onload = () => {
     confirmButtonText: "Ok, got it!",
   });
 
-  document.querySelector("#code-area").innerText =
-    'DECL msg = "Hello World!"\nprint(msg)\nEXIT';
+  if (localStorage.getItem("autosave"))
+    document.querySelector("#code-area").innerText =
+      localStorage.getItem("autosave");
+  else
+    document.querySelector("#code-area").innerText =
+      'DECL msg = "Hello World!"\nprint(msg)\nEXIT';
+
+  setInterval(()=> localStorage.setItem('autosave', document.querySelector("#code-area").innerText), 1500);
 };
 
 function showHelp() {

@@ -54,7 +54,7 @@ body {
 
 @media (min-width: 501px){
 	.console {
-		width: 50vw;
+		width: 40vw;
 		height: 65vh;
 		max-height:  65vh;
 		font-size: 19px;
@@ -62,7 +62,7 @@ body {
 
 	.code-area {
 		height: 65vh;
-		width: 25vw;
+		width: 40vw;
 		font-size: 19px;
 	}
 

@@ -23,10 +23,6 @@ SOFTWARE.
 */
 //@ts-check
 var operators = {
-    EQUAL: '==',
-    GREATERTHAN: '>',
-    LESSTHAN: '<',
-    NOTEQUAL: '!=',
     ADD: '+',
     SUBTRACT: '-',
     MODULUS: '%',

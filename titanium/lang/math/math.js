@@ -21,3 +21,23 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+var mathExprRules = {
+    ADD: /.*[0-9 ]\+.*[0-9 ]/g,
+    SUBTRACT: /.*[0-9 ]\-.*[0-9 ]/g,
+    MULTIPLY: /.*[0-9 ]\*.*[0-9 ]/g,
+    MODULUS: /.*[0-9 ]\%.*[0-9 ]/g,
+    DIVISION: /.*[0-9 ]\/.*[0-9 ]/g,
+};
+function checkIfIsMathExpr(expr) {
+    if (expr.match(mathExprRules.ADD))
+        return true;
+    if (expr.match(mathExprRules.SUBTRACT))
+        return true;
+    if (expr.match(mathExprRules.DIVISION))
+        return true;
+    if (expr.match(mathExprRules.MULTIPLY))
+        return true;
+    if (expr.match(mathExprRules.MODULUS))
+        return true;
+    return false;
+}

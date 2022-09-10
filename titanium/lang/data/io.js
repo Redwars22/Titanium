@@ -55,6 +55,9 @@ function printFunction(command) {
         case 'mathExpr':
             printToConsole(eval(data));
             break;
+        case 'logicExpr':
+            printToConsole(eval(data));
+            break;
         default:
             if (variables[data]) {
                 printToConsole(variables[data]);
