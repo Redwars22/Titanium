@@ -63,9 +63,6 @@ function parseLine(command) {
       }
 
       /* STATEMENTS */
-      if(command.match(whileStatement)){
-        return;
-      }
   
       throw "Invalid token and/or character found or the command is not a valid Titanium keyword!";
     } catch (err) {

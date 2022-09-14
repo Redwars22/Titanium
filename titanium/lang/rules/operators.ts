@@ -30,4 +30,7 @@ const operators = {
     MODULUS: '%',
     MULTIPLY: '*',
     DIVIDE: '/',
+    TERNARY_CONDITION: '?',
+    TERNARY_IF_ELSE: ':',
+    EQUAL: '='
 }

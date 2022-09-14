@@ -28,7 +28,12 @@ const constants = {};
 function createVariable(command) {
   if (command.includes(keywords.VARIABLE)) {
     command = command.replace(keywords.VARIABLE, "");
-    command = command.split(" = ");
+    command = command.split(' ' + operators.EQUAL + ' ');
+
+    if(checkIfIsTernaryExpression(command[1])){
+      variables[command[0]] = TernaryStatement(command[1]); 
+      return;
+    }
 
     const typeOfVariable = checkType(command[1]);
 
@@ -57,10 +62,11 @@ function createVariable(command) {
 }
 
 function assignToVariable(command) {
-  command = command.split(" = ");
+  command = command.split(' ' + operators.EQUAL + ' ');
   let variable, value;
 
   variable = command[0];
+
   if (command[1].includes('"')) {
     command[1] = command[1].replaceAll('"', "");
   }
@@ -106,7 +112,7 @@ function assignToConstant(expr) {
 	*/
 
   let tokens = expr.replace(keywords.CONSTANT, "");
-  tokens = tokens.split(" = ");
+  tokens = tokens.split(' ' + operators.EQUAL + ' ');
 
   const name = tokens[0];
   let data = tokens[1];
