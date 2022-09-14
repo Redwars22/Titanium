@@ -27,53 +27,6 @@ SOFTWARE.
 let currentLine = 0;
 let hasThrownAnError = false;
 
-function parseLine(command) {
-  try {
-    /* -------------------------- COMMENTS -------------------------- */
-    if (command.match(singleLineComment)) {
-      return;
-    }
-
-    /* -------------------------- INPUT AND OUTPUT -------------------------- */
-
-    if (command.match(clearConsoleCommand)) {
-      clearConsole();
-      return;
-    }
-
-    if (command.match(scanfCommand)) {
-      scanfFunction(command);
-      return;
-    }
-
-    if (command.match(printCommand)) {
-      printFunction(command);
-      return;
-    }
-
-    /* -------------------------- VARIABLES AND DATA TYPES -------------------------- */
-    if (command.match(constantDeclaration)) {
-      assignToConstant(command);
-      return;
-    }
-
-    if (command.match(variableDeclaration)) {
-      createVariable(command);
-      return;
-    }
-
-    if (command.match(variableAssignment)) {
-      assignToVariable(command);
-      return;
-    }
-
-    throw "Invalid token and/or character found or the command is not a valid Titanium keyword!";
-  } catch (err) {
-    throwError(err, currentLine);
-    hasThrownAnError = true;
-  }
-}
-
 function parseCode(code) {
   const linesOfCodeArray = code.split("\n");
   currentLine = 0;
@@ -81,12 +34,12 @@ function parseCode(code) {
 
   try {
     while (currentLine < linesOfCodeArray.length && !hasThrownAnError) {
-      if (linesOfCodeArray[currentLine].includes("EXIT"))
+      if (linesOfCodeArray[currentLine].includes(keywords.EXIT))
         throw "the program has exited";
 
       if (linesOfCodeArray[currentLine].match(returnStatement)) {
         let returnStatementLine = linesOfCodeArray[currentLine];
-        const valueOfReturnCode = returnStatementLine.replace("RET ", "");
+        const valueOfReturnCode = returnStatementLine.replace(keywords.RETURN + " ", "");
         const typeOfReturnCode = checkType(valueOfReturnCode);
         const returnCode =
           typeOfReturnCode == types.STRING || typeOfReturnCode == types.BOOL

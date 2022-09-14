@@ -27,6 +27,11 @@ const keywords = {
     BOOL_FALSE: "FALSE",
     CONSTANT: "DEF ",
     VARIABLE: "DECL ",
+    WHILE: "WHILE",
+    END_WHILE: "ENDWHILE",
+    DO: "DO",
+    EXIT: "EXIT",
+    RETURN: "RET"
 }
 
 const functions = {

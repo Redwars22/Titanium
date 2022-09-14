@@ -25,7 +25,8 @@ SOFTWARE.
 //@ts-check
 
 const error = {
-    VAR_DOES_NOT_EXIST: "the variable/constant you tried to access doesn't exist"
+    VAR_DOES_NOT_EXIST: "the variable/constant you tried to access doesn't exist",
+    INVALID_EXPRESSION: "the expression is invalid or the variable doesn't exist"
 }
 
 function throwError(err, line){
