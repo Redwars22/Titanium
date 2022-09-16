@@ -54,6 +54,11 @@ function parseLine(command) {
             return;
         }
         /* STATEMENTS */
+        /* MATH CLASS */
+        if (command.match(MathLibrary.MATH_RANDOM.rule)) {
+            printToConsole(MathLibrary.MATH_RANDOM.parse(command));
+            return;
+        }
         throw "Invalid token and/or character found or the command is not a valid Titanium keyword!";
     }
     catch (err) {

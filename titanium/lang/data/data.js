@@ -27,15 +27,19 @@ function createVariable(command) {
     if (command.includes(keywords.VARIABLE)) {
         command = command.replace(keywords.VARIABLE, "");
         command = command.split(" " + operators.EQUAL + " ");
+        if (command[1].match(MathLibrary.MATH_RANDOM.rule)) {
+            variables[command[0]] = MathLibrary.MATH_RANDOM.parse(command[1]);
+            return;
+        }
         if (checkIfIsTernaryExpression(command[1])) {
             variables[command[0]] = TernaryStatement(command[1]);
             return;
         }
         var typeOfVariable = checkType(command[1]);
         /*
-        COMMAND[0] = the name of the variable
-        COMMAND[1] = the value
-        */
+          COMMAND[0] = the name of the variable
+          COMMAND[1] = the value
+          */
         if (typeOfVariable == types.STRING) {
             command[1] = command[1].replaceAll('"', "");
             variables[command[0]] = command[1];
@@ -107,6 +111,12 @@ function assignToConstant(expr) {
     }
     else {
         var typeOfData = checkType(data);
+        /* Checks if it references the MATH_RANDOM function */
+        if (data.match(MathLibrary.MATH_RANDOM.rule)) {
+            data = MathLibrary.MATH_RANDOM.parse(data);
+            constants[name] = data;
+            return;
+        }
         /* It parses the data and its type */
         if (typeOfData == types.BOOL)
             data = parseBoolean(data);
@@ -115,6 +125,5 @@ function assignToConstant(expr) {
         if (checkIfIsTernaryExpression(data))
             data = TernaryStatement(data);
         constants[name] = data;
-        console.log(constants);
     }
 }
