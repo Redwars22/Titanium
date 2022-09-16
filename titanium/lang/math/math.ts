@@ -40,5 +40,35 @@ function checkIfIsMathExpr(expr): boolean {
   if (expr.match(mathExprRules.MULTIPLY)) return true;
 
   if (expr.match(mathExprRules.MODULUS)) return true;
+
   return false;
 }
+
+const MathLibrary = {
+  MATH_RANDOM: {
+    keyword: "random",
+    rule: /random\(.*[0-9],?( ).*[0-9]\,?( ).*[A-Za-z]\)/,
+    function: (min: number, max: number, shouldRound: boolean) =>
+      shouldRound
+        ? Math.round(Math.random() * (max - min) + min)
+        : Math.random() * (max - min) + min,
+    parse: (command) => {
+      const mathRandomFunction = command
+        .replace(MathLibrary.MATH_RANDOM.keyword, "")
+        .replace(operators.LEFT_PARENTHESIS, "")
+        .replace(operators.RIGHT_PARENTHESIS, "")
+        .replaceAll(' ', '')
+        .split(",");
+      const arg = mathRandomFunction;
+      if (isNaN(arg[0]) || isNaN(arg[1])) throw error.RANDOM_INVALID_PARAM;
+
+      if (!arg[2]) throw error.FUNCTION_MISSING_ARG;
+
+      return MathLibrary.MATH_RANDOM.function(
+        Number(arg[0]),
+        Number(arg[1]),
+        parseBoolean(arg[2])
+      );
+    },
+  },
+};

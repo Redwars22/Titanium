@@ -32,5 +32,7 @@ const operators = {
     DIVIDE: '/',
     TERNARY_CONDITION: '?',
     TERNARY_IF_ELSE: ':',
-    EQUAL: '='
+    EQUAL: '=',
+    LEFT_PARENTHESIS: '(',
+    RIGHT_PARENTHESIS: ')'
 }

@@ -41,3 +41,28 @@ function checkIfIsMathExpr(expr) {
         return true;
     return false;
 }
+var MathLibrary = {
+    MATH_RANDOM: {
+        keyword: "random",
+        rule: /random\(.*[0-9],?( ).*[0-9]\,?( ).*[A-Za-z]\)/,
+        function: function (min, max, shouldRound) {
+            return shouldRound
+                ? Math.round(Math.random() * (max - min) + min)
+                : Math.random() * (max - min) + min;
+        },
+        parse: function (command) {
+            var mathRandomFunction = command
+                .replace(MathLibrary.MATH_RANDOM.keyword, "")
+                .replace(operators.LEFT_PARENTHESIS, "")
+                .replace(operators.RIGHT_PARENTHESIS, "")
+                .replaceAll(' ', '')
+                .split(",");
+            var arg = mathRandomFunction;
+            if (isNaN(arg[0]) || isNaN(arg[1]))
+                throw error.RANDOM_INVALID_PARAM;
+            if (!arg[2])
+                throw error.FUNCTION_MISSING_ARG;
+            return MathLibrary.MATH_RANDOM.function(Number(arg[0]), Number(arg[1]), parseBoolean(arg[2]));
+        },
+    },
+};

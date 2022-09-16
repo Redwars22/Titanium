@@ -23,11 +23,11 @@ SOFTWARE.
 */
 
 const clearConsoleCommand = /clear\(\)/g;
-const constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9]"?/;
+const constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9\(\)]"?/;
 const printCommand = /print\("?.*[0-9A-Z a-z!,_ ?:><=!]"?\)/g;
 const returnStatement = /(RET) (.*[0-9A-Za-z])?/gm;
 const scanfCommand = /get\(.*[A-Za-z_]\)/gi;
 const singleLineComment = /--.*[A-Za-z0-9_ ]/gi;
 const ternaryStatementRule = /.*["A-Za-z ><=!] ? .*["A-Z0-9a-z] : .*["A-Z0-9a-z]/gm; 
-const variableAssignment = /.*[A-Za-z_] = "?.*[A-Za-z0-9 ?:><=!]"?/gi;
+const variableAssignment = /.*[A-Za-z_] = "?.*[A-Za-z0-9 ?:><=!\(\)]"?/gi;
 const variableDeclaration = /DECL .*[A-Za-z_] = "?.*[A-Za-z0-9\+]"?/gm;

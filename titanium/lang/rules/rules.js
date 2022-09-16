@@ -22,11 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 var clearConsoleCommand = /clear\(\)/g;
-var constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9]"?/;
+var constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9\(\)]"?/;
 var printCommand = /print\("?.*[0-9A-Z a-z!,_ ?:><=!]"?\)/g;
 var returnStatement = /(RET) (.*[0-9A-Za-z])?/gm;
 var scanfCommand = /get\(.*[A-Za-z_]\)/gi;
 var singleLineComment = /--.*[A-Za-z0-9_ ]/gi;
 var ternaryStatementRule = /.*["A-Za-z ><=!] ? .*["A-Z0-9a-z] : .*["A-Z0-9a-z]/gm;
-var variableAssignment = /.*[A-Za-z_] = "?.*[A-Za-z0-9 ?:><=!]"?/gi;
+var variableAssignment = /.*[A-Za-z_] = "?.*[A-Za-z0-9 ?:><=!\(\)]"?/gi;
 var variableDeclaration = /DECL .*[A-Za-z_] = "?.*[A-Za-z0-9\+]"?/gm;
