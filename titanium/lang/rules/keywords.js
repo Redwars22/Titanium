@@ -33,5 +33,6 @@ var keywords = {
     RETURN: "RET"
 };
 var functions = {
-    PRINT: 'print'
+    PRINT: 'print',
+    GET: 'get'
 };

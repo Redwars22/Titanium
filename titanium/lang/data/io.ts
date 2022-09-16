@@ -29,7 +29,7 @@ function clearConsole() {
 }
 
 function scanfFunction(command) {
-  command = command.replace("get", "");
+  command = command.replace(functions.GET, "");
   command = command.replace("(", "");
   command = command.replace(")", "");
 
@@ -43,6 +43,12 @@ function printToConsole(data){
 
 function printFunction(command){
   const data = command.replace(functions.PRINT + '(', '').replace(')', '');
+
+  /* It checks if its argument is a ternary function */
+  if(checkIfIsTernaryExpression(data)){
+    printToConsole(TernaryStatement(data))
+    return;
+  }
 
   /* It checks the type of the argument given to the print function */
   const typeOfData = checkType(data);
@@ -63,18 +69,16 @@ function printFunction(command){
       break;
     case 'mathExpr':
       printToConsole(eval(data));
+      break; 
+    case 'logicExpr':
+      printToConsole(eval(data));
       break;
-      case 'logicExpr':
-        printToConsole(eval(data));
-        break;
     default:
-      if(variables[data]){
+      if(variables[data])
         printToConsole(variables[data]);
-      } else if(constants[data]){
+      else if(constants[data])
         printToConsole(constants[data]);
-      } else {
-        throw(error.VAR_DOES_NOT_EXIST);
-      }
+      else throw(error.VAR_DOES_NOT_EXIST);  
       break;
   }
 }

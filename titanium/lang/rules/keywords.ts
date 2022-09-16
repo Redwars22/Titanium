@@ -35,5 +35,6 @@ const keywords = {
 }
 
 const functions = {
-    PRINT: 'print'
+    PRINT: 'print',
+    GET: 'get'
 }

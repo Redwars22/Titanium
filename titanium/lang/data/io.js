@@ -26,7 +26,7 @@ function clearConsole() {
     document.getElementById("console").innerText = "";
 }
 function scanfFunction(command) {
-    command = command.replace("get", "");
+    command = command.replace(functions.GET, "");
     command = command.replace("(", "");
     command = command.replace(")", "");
     var variable = command;
@@ -37,6 +37,11 @@ function printToConsole(data) {
 }
 function printFunction(command) {
     var data = command.replace(functions.PRINT + '(', '').replace(')', '');
+    /* It checks if its argument is a ternary function */
+    if (checkIfIsTernaryExpression(data)) {
+        printToConsole(TernaryStatement(data));
+        return;
+    }
     /* It checks the type of the argument given to the print function */
     var typeOfData = checkType(data);
     /* If it isn't either a string or a number, then it treats it as a variable and
@@ -59,15 +64,12 @@ function printFunction(command) {
             printToConsole(eval(data));
             break;
         default:
-            if (variables[data]) {
+            if (variables[data])
                 printToConsole(variables[data]);
-            }
-            else if (constants[data]) {
+            else if (constants[data])
                 printToConsole(constants[data]);
-            }
-            else {
+            else
                 throw (error.VAR_DOES_NOT_EXIST);
-            }
             break;
     }
 }
