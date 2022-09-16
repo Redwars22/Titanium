@@ -23,7 +23,8 @@ SOFTWARE.
 */
 //@ts-check
 var error = {
-    VAR_DOES_NOT_EXIST: "the variable/constant you tried to access doesn't exist"
+    VAR_DOES_NOT_EXIST: "the variable/constant you tried to access doesn't exist",
+    INVALID_EXPRESSION: "the expression is invalid or the variable doesn't exist"
 };
 function throwError(err, line) {
     document.getElementById("console").innerText += "\n\u274C\uFE0F Line: " + (line + 1) + " - " + err + " \n";
