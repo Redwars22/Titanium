@@ -64,9 +64,9 @@ function printFunction(command) {
             printToConsole(eval(data));
             break;
         default:
-            if (variables[data])
+            if (variables[data] !== undefined)
                 printToConsole(variables[data]);
-            else if (constants[data])
+            else if (constants[data] !== undefined)
                 printToConsole(constants[data]);
             else
                 throw (error.VAR_DOES_NOT_EXIST);

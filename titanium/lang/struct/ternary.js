@@ -89,7 +89,12 @@ function TernaryStatement(ternaryExpr) {
     }
 }
 function checkIfIsTernaryExpression(expr) {
-    if (expr.match(ternaryStatementRule))
-        return true;
+    try {
+        if (expr.match(ternaryStatementRule))
+            return true;
+    }
+    catch (err) {
+        return false;
+    }
     return false;
 }

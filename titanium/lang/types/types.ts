@@ -26,12 +26,16 @@ const types = {
   STRING: "string",
   BOOL: "bool",
   NUMBER: "num",
+  NULL: 'NULL',
+  UNDEFINED: 'UNDEF'
 };
 
 function checkType(value): string {
   if (checkIfIsString(value)) return types.STRING;
   if (checkIfIsBoolean(value)) return types.BOOL;
   if (checkIfIsNumber(value)) return types.NUMBER;
+  if (checkIfIsNull(value)) return types.NULL;
+  if (checkIfIsUndefined(value)) return types.UNDEFINED;
   if (checkIfIsMathExpr(value)) return "mathExpr";
   if (checkIfIsLogicExpr(value)) return "logicExpr";
 }

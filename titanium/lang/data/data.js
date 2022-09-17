@@ -40,21 +40,26 @@ function createVariable(command) {
           COMMAND[0] = the name of the variable
           COMMAND[1] = the value
           */
-        if (typeOfVariable == types.STRING) {
-            command[1] = command[1].replaceAll('"', "");
-            variables[command[0]] = command[1];
-            return;
-        }
-        if (typeOfVariable == types.BOOL) {
-            if (command[1] == keywords.BOOL_TRUE)
-                variables[command[0]] = true;
-            if (command[1] == keywords.BOOL_FALSE)
-                variables[command[0]] = false;
-            return;
-        }
-        if (typeOfVariable == types.NUMBER) {
-            variables[command[0]] = Number(command[1]);
-            return;
+        switch (typeOfVariable) {
+            case types.STRING:
+                command[1] = command[1].replaceAll('"', "");
+                variables[command[0]] = command[1];
+                break;
+            case types.BOOL:
+                variables[command[0]] = parseBoolean(command[1]);
+                break;
+            case types.NUMBER:
+                variables[command[0]] = Number(command[1]);
+                break;
+            case types.NULL:
+                variables[command[0]] = "NULL";
+                break;
+            case types.UNDEFINED:
+                variables[command[0]] = "UNDEFINED";
+                break;
+            default:
+                throw (error.UNKNOWN_TYPE);
+                break;
         }
     }
 }
@@ -66,6 +71,8 @@ function assignToVariable(command) {
         command[1] = command[1].replaceAll('"', "");
     }
     value = command[1];
+    if (checkType(value) == types.NULL || checkType(value) == types.UNDEFINED)
+        value = parseNullValue(value);
     if (variables[variable]) {
         variables[variable] = value;
         console.log(variables);
@@ -79,6 +86,9 @@ function assignToVariableFromScanf(variable) {
         var value = window.prompt("Assign a value to \"" + variable + "\"");
         if (checkIfIsBoolean(value)) {
             variables[variable] = parseBoolean(value);
+        }
+        else if (checkIfIsNull(value) || checkIfIsUndefined(value)) {
+            variables[variable] = parseNullValue(value);
         }
         else {
             variables[variable] = value;
@@ -117,13 +127,23 @@ function assignToConstant(expr) {
             constants[name] = data;
             return;
         }
-        /* It parses the data and its type */
-        if (typeOfData == types.BOOL)
-            data = parseBoolean(data);
-        if (typeOfData == types.NUMBER)
-            data = Number(data);
         if (checkIfIsTernaryExpression(data))
             data = TernaryStatement(data);
-        constants[name] = data;
+        switch (typeOfData) {
+            case types.BOOL:
+                data = parseBoolean(data);
+                constants[name] = data;
+                break;
+            case types.NUMBER:
+                data = Number(data);
+                constants[name] = data;
+                break;
+            case types.NULL || types.UNDEFINED:
+                data = parseNullValue(data);
+                break;
+            default:
+                constants[name] = data;
+                break;
+        }
     }
 }

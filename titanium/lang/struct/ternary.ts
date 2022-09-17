@@ -121,7 +121,9 @@ function TernaryStatement(ternaryExpr: string){
 }
 
 function checkIfIsTernaryExpression(expr: string): boolean {
-    if(expr.match(ternaryStatementRule)) return true;
+    try { if(expr.match(ternaryStatementRule)) return true; } catch(err) {
+        return false;
+    }
 
     return false;
 }
