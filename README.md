@@ -19,4 +19,4 @@ You can try Titanium in its playground by clicking in the link below:
 
 [TITANIUM PROGRESS TRACKER](https://leoandrew.notion.site/TITANIUM-PROGRESS-TRACKER-821957e6a8c44f8bb533124254b1f9e6)
 
-[TITANIUM PROGRAMMING LANGUAGE](https://leoandrew.notion.site/TITANIUM-PROGRAMMING-LANGUAGE-1101ce41bbb94e459d18dc982d517be8)
+[TITANIUM PROGRAMMING LANGUAGE]()
