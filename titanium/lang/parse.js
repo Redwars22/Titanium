@@ -40,9 +40,11 @@ function parseCode(code) {
                     ? valueOfReturnCode
                     : typeOfReturnCode == types.NUMBER
                         ? Number(valueOfReturnCode)
-                        : typeOfReturnCode == "mathExpr" || typeOfReturnCode == "logicExpr"
-                            ? eval(valueOfReturnCode)
-                            : "INVALID RETURN STATEMENT!";
+                        : typeOfReturnCode == "mathExpr"
+                            ? eval(parseMathExpression(valueOfReturnCode))
+                            : typeOfReturnCode == "logicExpr"
+                                ? eval(valueOfReturnCode)
+                                : "INVALID RETURN STATEMENT!";
                 throw "the program has exited with " + returnCode;
             }
             if (linesOfCodeArray[currentLine] != "")

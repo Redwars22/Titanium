@@ -22,12 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-type TernaryStatement = {
-    condition: null | string;
-    returnValueIfTrue: any;
-    returnValueIfFalse: any;
-}
-
 const Ternary = {
     condition: null,
     returnValueIfTrue: null,

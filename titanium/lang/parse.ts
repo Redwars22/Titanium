@@ -39,14 +39,19 @@ function parseCode(code) {
 
       if (linesOfCodeArray[currentLine].match(returnStatement)) {
         let returnStatementLine = linesOfCodeArray[currentLine];
-        const valueOfReturnCode = returnStatementLine.replace(keywords.RETURN + " ", "");
+        const valueOfReturnCode = returnStatementLine.replace(
+          keywords.RETURN + " ",
+          ""
+        );
         const typeOfReturnCode = checkType(valueOfReturnCode);
         const returnCode =
           typeOfReturnCode == types.STRING || typeOfReturnCode == types.BOOL
             ? valueOfReturnCode
             : typeOfReturnCode == types.NUMBER
             ? Number(valueOfReturnCode)
-            : typeOfReturnCode == "mathExpr" || typeOfReturnCode == "logicExpr"
+            : typeOfReturnCode == "mathExpr"
+            ? eval(parseMathExpression(valueOfReturnCode))
+            : typeOfReturnCode == "logicExpr"
             ? eval(valueOfReturnCode)
             : "INVALID RETURN STATEMENT!";
 

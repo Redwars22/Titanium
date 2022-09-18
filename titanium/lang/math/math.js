@@ -28,19 +28,6 @@ var mathExprRules = {
     MODULUS: /.*[0-9 ]\%.*[0-9 ]/g,
     DIVISION: /.*[0-9 ]\/.*[0-9 ]/g,
 };
-function checkIfIsMathExpr(expr) {
-    if (expr.match(mathExprRules.ADD))
-        return true;
-    if (expr.match(mathExprRules.SUBTRACT))
-        return true;
-    if (expr.match(mathExprRules.DIVISION))
-        return true;
-    if (expr.match(mathExprRules.MULTIPLY))
-        return true;
-    if (expr.match(mathExprRules.MODULUS))
-        return true;
-    return false;
-}
 var MathLibrary = {
     MATH_RANDOM: {
         keyword: "random",
@@ -66,3 +53,68 @@ var MathLibrary = {
         },
     },
 };
+function checkIfIsMathExpr(expr) {
+    if (expr.match(mathExprRules.ADD))
+        return true;
+    if (expr.match(mathExprRules.SUBTRACT))
+        return true;
+    if (expr.match(mathExprRules.DIVISION))
+        return true;
+    if (expr.match(mathExprRules.MULTIPLY))
+        return true;
+    if (expr.match(mathExprRules.MODULUS))
+        return true;
+    return false;
+}
+function parseMathExpression(expr) {
+    var expression = {
+        left: 0,
+        operator: "",
+        right: 0
+    };
+    if (expr.match(mathExprRules.ADD))
+        expression.operator = operators.ADD;
+    else if (expr.match(mathExprRules.SUBTRACT))
+        expression.operator = operators.SUBTRACT;
+    else if (expr.match(mathExprRules.DIVISION))
+        expression.operator = operators.DIVIDE;
+    else if (expr.match(mathExprRules.MULTIPLY))
+        expression.operator = operators.MULTIPLY;
+    else if (expr.match(mathExprRules.MODULUS))
+        expression.operator = operators.MODULUS;
+    else
+        throw (error.INVALID_EXPRESSION);
+    var tokensArray = expr.split(expression.operator);
+    if (tokensArray[0].includes(' '))
+        expression.left = tokensArray[0].replaceAll(' ', '');
+    else
+        expression.left = tokensArray[0];
+    if (tokensArray[1].includes(' '))
+        expression.right = tokensArray[1].replaceAll(' ', '');
+    else
+        expression.right = tokensArray[1];
+    console.log(expression);
+    if (isNaN(expression.left))
+        if (variables[expression.left]) {
+            expression.left = variables[expression.left];
+        }
+        else if (constants[expression.left]) {
+            expression.left = constants[expression.left];
+        }
+        else
+            throw (error.VAR_DOES_NOT_EXIST);
+    if (isNaN(expression.right))
+        if (variables[expression.right]) {
+            expression.right = variables[expression.right];
+        }
+        else if (constants[expression.right]) {
+            expression.right = variables[expression.right];
+        }
+        else
+            throw (error.VAR_DOES_NOT_EXIST);
+    var parsedMathExpression = [];
+    parsedMathExpression.push(expression.left);
+    parsedMathExpression.push(expression.operator);
+    parsedMathExpression.push(expression.right);
+    return parsedMathExpression.join(' ');
+}
