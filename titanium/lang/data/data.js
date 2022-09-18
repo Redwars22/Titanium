@@ -73,7 +73,7 @@ function assignToVariable(command) {
     value = command[1];
     if (checkType(value) == types.NULL || checkType(value) == types.UNDEFINED)
         value = parseNullValue(value);
-    if (variables[variable]) {
+    if (variables[variable] || variables[variable] == 0) {
         variables[variable] = value;
         console.log(variables);
     }
@@ -82,7 +82,7 @@ function assignToVariable(command) {
     }
 }
 function assignToVariableFromScanf(variable) {
-    if (variables[variable]) {
+    if (variables[variable] || variables[variable] == 0) {
         var value = window.prompt("Assign a value to \"" + variable + "\"");
         if (checkIfIsBoolean(value)) {
             variables[variable] = parseBoolean(value);
@@ -99,10 +99,10 @@ function assignToVariableFromScanf(variable) {
     }
 }
 function getValueFromVariable(variable) {
-    if (variables[variable]) {
+    if (variables[variable] || variables[variable] == 0) {
         return variables[variable];
     }
-    else if (constants[variable]) {
+    else if (constants[variable] || constants[variable] == 0) {
         return constants[variable];
     }
     return;
@@ -116,7 +116,7 @@ function assignToConstant(expr) {
     tokens = tokens.split(" " + operators.EQUAL + " ");
     var name = tokens[0];
     var data = tokens[1];
-    if (constants[name]) {
+    if (constants[name] || constants[name] == 0) {
         throw "you cannot change the value of a constant once it's been declared";
     }
     else {

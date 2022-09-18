@@ -53,13 +53,13 @@ function parseCondition(condition: string){
     ConditionTokens.right = tokens[2];
 
      if(isNaN(ConditionTokens.left)){
-        if(variables[ConditionTokens.left])
+        if(variables[ConditionTokens.left] !== undefined)
             Ternary.condition =
                 Ternary.condition.replace(
                     ConditionTokens.left, 
                     Number(variables[ConditionTokens.left])
                 )
-        else if(constants[ConditionTokens.left])
+        else if(constants[ConditionTokens.left] !== undefined)
             Ternary.condition =
                 Ternary.condition.replace(
                     ConditionTokens.left, 
@@ -69,13 +69,13 @@ function parseCondition(condition: string){
     }
     
     if(isNaN(ConditionTokens.right)){
-        if(variables[ConditionTokens.right])
+        if(variables[ConditionTokens.right] !== undefined)
             Ternary.condition =
                 Ternary.condition.replace(
                     ConditionTokens.right, 
                     Number(variables[ConditionTokens.right])
                 )
-        else if(constants[ConditionTokens.right])
+        else if(constants[ConditionTokens.right] !== undefined)
             Ternary.condition =
                 Ternary.condition.replace(
                     ConditionTokens.right, 
@@ -121,7 +121,9 @@ function TernaryStatement(ternaryExpr: string){
 }
 
 function checkIfIsTernaryExpression(expr: string): boolean {
-    try { if(expr.match(ternaryStatementRule)) return true; } catch(err) {
+    try { 
+        if(expr.match(ternaryStatementRule)) return true; 
+    } catch(err) {
         return false;
     }
 

@@ -41,20 +41,20 @@ function parseCondition(condition) {
     ConditionTokens.left = tokens[0];
     ConditionTokens.right = tokens[2];
     if (isNaN(ConditionTokens.left)) {
-        if (variables[ConditionTokens.left])
+        if (variables[ConditionTokens.left] !== undefined)
             Ternary.condition =
                 Ternary.condition.replace(ConditionTokens.left, Number(variables[ConditionTokens.left]));
-        else if (constants[ConditionTokens.left])
+        else if (constants[ConditionTokens.left] !== undefined)
             Ternary.condition =
                 Ternary.condition.replace(ConditionTokens.left, Number(constants[ConditionTokens.left]));
         else
             throw (error.VAR_DOES_NOT_EXIST);
     }
     if (isNaN(ConditionTokens.right)) {
-        if (variables[ConditionTokens.right])
+        if (variables[ConditionTokens.right] !== undefined)
             Ternary.condition =
                 Ternary.condition.replace(ConditionTokens.right, Number(variables[ConditionTokens.right]));
-        else if (constants[ConditionTokens.right])
+        else if (constants[ConditionTokens.right] !== undefined)
             Ternary.condition =
                 Ternary.condition.replace(ConditionTokens.right, Number(constants[ConditionTokens.right]));
         else
