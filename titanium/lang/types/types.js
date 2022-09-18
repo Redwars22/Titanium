@@ -25,6 +25,8 @@ var types = {
     STRING: "string",
     BOOL: "bool",
     NUMBER: "num",
+    NULL: 'NULL',
+    UNDEFINED: 'UNDEF'
 };
 function checkType(value) {
     if (checkIfIsString(value))
@@ -33,6 +35,10 @@ function checkType(value) {
         return types.BOOL;
     if (checkIfIsNumber(value))
         return types.NUMBER;
+    if (checkIfIsNull(value))
+        return types.NULL;
+    if (checkIfIsUndefined(value))
+        return types.UNDEFINED;
     if (checkIfIsMathExpr(value))
         return "mathExpr";
     if (checkIfIsLogicExpr(value))

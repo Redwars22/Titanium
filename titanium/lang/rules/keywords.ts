@@ -25,13 +25,15 @@ SOFTWARE.
 const keywords = {
     BOOL_TRUE: "TRUE",
     BOOL_FALSE: "FALSE",
+    BOOL_YES: "YES",
+    BOOL_NO: "NO",
     CONSTANT: "DEF ",
     VARIABLE: "DECL ",
     WHILE: "WHILE",
     END_WHILE: "ENDWHILE",
     DO: "DO",
     EXIT: "EXIT",
-    RETURN: "RET"
+    RETURN: "RET",
 }
 
 const functions = {
