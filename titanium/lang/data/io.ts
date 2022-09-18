@@ -68,7 +68,7 @@ function printFunction(command){
       printToConsole(data)
       break;
     case 'mathExpr':
-      printToConsole(eval(data));
+      printToConsole(eval(parseMathExpression(data)));
       break; 
     case 'logicExpr':
       printToConsole(eval(data));
