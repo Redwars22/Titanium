@@ -52,6 +52,8 @@ var MathLibrary = {
             return MathLibrary.MATH_RANDOM.function(Number(arg[0]), Number(arg[1]), parseBoolean(arg[2]));
         },
     },
+    PRINT_DEC_TO_HEX: {},
+    PRINT_DEC_TO_BIN: {}
 };
 function checkIfIsMathExpr(expr) {
     if (expr.match(mathExprRules.ADD))

@@ -32,11 +32,19 @@ function scanfFunction(command) {
     var variable = command;
     assignToVariableFromScanf(variable);
 }
-function printToConsole(data) {
+function printToConsole(data, isArray) {
+    if (isArray) {
+        document.getElementById("console").innerText += "\n[" + data + "]";
+        return;
+    }
+    if (data.includes("\"")) {
+        document.getElementById("console").innerText += "\n" + data.replaceAll('"', '');
+        return;
+    }
     document.getElementById("console").innerText += "\n" + data;
 }
 function printFunction(command) {
-    var data = command.replace(functions.PRINT + '(', '').replace(')', '');
+    var data = command.replace(functions.PRINT + "(", "").replace(")", "");
     /* It checks if its argument is a ternary function */
     if (checkIfIsTernaryExpression(data)) {
         printToConsole(TernaryStatement(data));
@@ -57,10 +65,10 @@ function printFunction(command) {
         case types.BOOL:
             printToConsole(data);
             break;
-        case 'mathExpr':
+        case "mathExpr":
             printToConsole(eval(parseMathExpression(data)));
             break;
-        case 'logicExpr':
+        case "logicExpr":
             printToConsole(eval(data));
             break;
         default:
@@ -68,8 +76,10 @@ function printFunction(command) {
                 printToConsole(variables[data]);
             else if (constants[data] !== undefined)
                 printToConsole(constants[data]);
+            else if (arrays[data] !== undefined)
+                printToConsole(arrays[data], true);
             else
-                throw (error.VAR_DOES_NOT_EXIST);
+                throw error.VAR_DOES_NOT_EXIST;
             break;
     }
 }

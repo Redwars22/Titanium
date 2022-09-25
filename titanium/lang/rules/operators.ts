@@ -34,5 +34,8 @@ const operators = {
     TERNARY_IF_ELSE: ':',
     EQUAL: '=',
     LEFT_PARENTHESIS: '(',
-    RIGHT_PARENTHESIS: ')'
+    RIGHT_PARENTHESIS: ')',
+    ARRAY_START: '[',
+    ARRAY_END: ']',
+    ARRAY_ELEMENT_SEPARATOR: ','
 }

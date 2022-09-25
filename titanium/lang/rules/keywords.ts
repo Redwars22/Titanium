@@ -23,6 +23,7 @@ SOFTWARE.
 */
 
 const keywords = {
+    ARRAY: 'ARR ',
     BOOL_TRUE: "TRUE",
     BOOL_FALSE: "FALSE",
     BOOL_YES: "YES",

@@ -69,6 +69,7 @@ const info = {
     const code = (document.querySelector("#code-area") as HTMLDivElement).innerText;
     constants = {};
     variables = {};
+    arrays = {};
     if (code) parseCode(code);
   }
   

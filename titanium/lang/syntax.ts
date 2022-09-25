@@ -23,56 +23,60 @@ SOFTWARE.
 */
 
 function parseLine(command) {
-    try {
-      /* -------------------------- COMMENTS -------------------------- */
-      if (command.match(singleLineComment)) {
-        return;
-      }
-  
-      /* -------------------------- INPUT AND OUTPUT -------------------------- */
-  
-      if (command.match(clearConsoleCommand)) {
-        clearConsole();
-        return;
-      }
-  
-      if (command.match(scanfCommand)) {
-        scanfFunction(command);
-        return;
-      }
-  
-      if (command.match(printCommand)) {
-        printFunction(command);
-        return;
-      }
-  
-      /* -------------------------- VARIABLES AND DATA TYPES -------------------------- */
-      if (command.match(constantDeclaration)) {
-        assignToConstant(command);
-        return;
-      }
-  
-      if (command.match(variableDeclaration)) {
-        createVariable(command);
-        return;
-      }
-  
-      if (command.match(variableAssignment)) {
-        assignToVariable(command);
-        return;
-      }
-
-      /* STATEMENTS */
-
-      /* MATH CLASS */
-      if (command.match(MathLibrary.MATH_RANDOM.rule)) {
-        printToConsole(MathLibrary.MATH_RANDOM.parse(command))
-        return;
-      }
-  
-      throw "Invalid token and/or character found or the command is not a valid Titanium keyword!";
-    } catch (err) {
-      throwError(err, currentLine);
-      hasThrownAnError = true;
+  try {
+    /* -------------------------- COMMENTS -------------------------- */
+    if (command.match(singleLineComment)) {
+      return;
     }
+
+    /* -------------------------- INPUT AND OUTPUT -------------------------- */
+
+    if (command.match(clearConsoleCommand)) {
+      clearConsole();
+      return;
+    }
+
+    if (command.match(scanfCommand)) {
+      scanfFunction(command);
+      return;
+    }
+
+    if (command.match(printCommand)) {
+      printFunction(command);
+      return;
+    }
+
+    /* -------------------------- VARIABLES AND DATA TYPES -------------------------- */
+    /* Array declaration */
+    if (command.match(arrayDeclaration)) {
+      handleCreateNewArray(command);
+      return;
+    }
+
+    if (command.match(constantDeclaration)) {
+      assignToConstant(command);
+      return;
+    }
+
+    if (command.match(variableDeclaration)) {
+      createVariable(command);
+      return;
+    }
+
+    if (command.match(variableAssignment)) {
+      assignToVariable(command);
+      return;
+    }
+
+    /* MATH CLASS */
+    if (command.match(MathLibrary.MATH_RANDOM.rule)) {
+      printToConsole(MathLibrary.MATH_RANDOM.parse(command));
+      return;
+    }
+
+    throw "Invalid token and/or character found or the command is not a valid Titanium keyword!";
+  } catch (err) {
+    throwError(err, currentLine);
+    hasThrownAnError = true;
   }
+}

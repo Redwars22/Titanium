@@ -23,6 +23,7 @@ SOFTWARE.
 */
 var variables = {};
 var constants = {};
+var arrays = {};
 function createVariable(command) {
     if (command.includes(keywords.VARIABLE)) {
         command = command.replace(keywords.VARIABLE, "");
@@ -57,8 +58,14 @@ function createVariable(command) {
             case types.UNDEFINED:
                 variables[command[0]] = "UNDEFINED";
                 break;
+            case "mathExpr":
+                variables[command[0]] = eval(parseMathExpression(command[1]));
+                break;
+            case "logicExpr":
+                variables[command[0]] = eval(command[1]);
+                break;
             default:
-                throw (error.UNKNOWN_TYPE);
+                throw error.UNKNOWN_TYPE;
                 break;
         }
     }
@@ -71,11 +78,30 @@ function assignToVariable(command) {
         command[1] = command[1].replaceAll('"', "");
     }
     value = command[1];
-    if (checkType(value) == types.NULL || checkType(value) == types.UNDEFINED)
-        value = parseNullValue(value);
+    var typeOfData = checkType(value);
     if (variables[variable] || variables[variable] == 0) {
-        variables[variable] = value;
-        console.log(variables);
+        switch (typeOfData) {
+            case types.BOOL:
+                value = parseBoolean(value);
+                variables[variable] = value;
+                break;
+            case types.NUMBER:
+                value = Number(value);
+                variables[variable] = value;
+                break;
+            case types.NULL || types.UNDEFINED:
+                value = parseNullValue(value);
+                break;
+            case "mathExpr":
+                variables[variable] = eval(parseMathExpression(value));
+                break;
+            case "logicExpr":
+                variables[variable] = eval(value);
+                break;
+            default:
+                variables[variable] = value;
+                break;
+        }
     }
     else {
         throw "Cannot assign a value to \"" + variable + "\" because it either doesn't exist or is a constant. Are you trying to create a new variable?";
@@ -140,6 +166,12 @@ function assignToConstant(expr) {
                 break;
             case types.NULL || types.UNDEFINED:
                 data = parseNullValue(data);
+                break;
+            case "mathExpr":
+                constants[name] = eval(parseMathExpression(data));
+                break;
+            case "logicExpr":
+                constants[name] = eval(data);
                 break;
             default:
                 constants[name] = data;
