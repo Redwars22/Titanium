@@ -41,6 +41,11 @@ function parseLine(command) {
             return;
         }
         /* -------------------------- VARIABLES AND DATA TYPES -------------------------- */
+        /* Array declaration */
+        if (command.match(arrayDeclaration)) {
+            handleCreateNewArray(command);
+            return;
+        }
         if (command.match(constantDeclaration)) {
             assignToConstant(command);
             return;
@@ -53,7 +58,6 @@ function parseLine(command) {
             assignToVariable(command);
             return;
         }
-        /* STATEMENTS */
         /* MATH CLASS */
         if (command.match(MathLibrary.MATH_RANDOM.rule)) {
             printToConsole(MathLibrary.MATH_RANDOM.parse(command));

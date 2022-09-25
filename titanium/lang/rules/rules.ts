@@ -22,6 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+const arrayDeclaration = /ARR .*[A-Za-z_] = \[.*[0-9A-Za-z_"!@]\]/gm;
+const arrayRetrieveElement = /.*[A-Za-z_]\[.*[0-9]\]/gm;
 const clearConsoleCommand = /clear\(\)/g;
 const constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9\(\)]"?/;
 const printCommand = /print\("?.*[0-9A-Z a-z!,_ ?:><=!]"?\)/g;

@@ -37,16 +37,23 @@ function scanfFunction(command) {
   assignToVariableFromScanf(variable);
 }
 
-function printToConsole(data){
+function printToConsole(data, isArray?: boolean) {
+  if (isArray) { document.getElementById("console")!.innerText += `\n[${data}]`; return; }
+
+  if(data.includes("\"")){
+    document.getElementById("console")!.innerText += `\n${data.replaceAll('"', '')}`;
+    return;
+  }
+
   document.getElementById("console")!.innerText += `\n${data}`;
 }
 
-function printFunction(command){
-  const data = command.replace(functions.PRINT + '(', '').replace(')', '');
+function printFunction(command) {
+  const data = command.replace(functions.PRINT + "(", "").replace(")", "");
 
   /* It checks if its argument is a ternary function */
-  if(checkIfIsTernaryExpression(data)){
-    printToConsole(TernaryStatement(data))
+  if (checkIfIsTernaryExpression(data)) {
+    printToConsole(TernaryStatement(data));
     return;
   }
 
@@ -57,28 +64,27 @@ function printFunction(command){
   prints its value, if it exists.
   */
 
-  switch(typeOfData){
+  switch (typeOfData) {
     case types.STRING:
-      printToConsole(data)
+      printToConsole(data);
       break;
     case types.NUMBER:
-      printToConsole(data)
+      printToConsole(data);
       break;
     case types.BOOL:
-      printToConsole(data)
+      printToConsole(data);
       break;
-    case 'mathExpr':
+    case "mathExpr":
       printToConsole(eval(parseMathExpression(data)));
-      break; 
-    case 'logicExpr':
+      break;
+    case "logicExpr":
       printToConsole(eval(data));
       break;
     default:
-      if(variables[data] !== undefined)
-        printToConsole(variables[data]);
-      else if(constants[data] !== undefined)
-        printToConsole(constants[data]);
-      else throw(error.VAR_DOES_NOT_EXIST);  
+      if (variables[data] !== undefined) printToConsole(variables[data]);
+      else if (constants[data] !== undefined) printToConsole(constants[data]);
+      else if (arrays[data] !== undefined) printToConsole(arrays[data], true);
+      else throw error.VAR_DOES_NOT_EXIST;
       break;
   }
 }

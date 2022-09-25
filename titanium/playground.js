@@ -61,6 +61,7 @@ function runCode() {
     var code = document.querySelector("#code-area").innerText;
     constants = {};
     variables = {};
+    arrays = {};
     if (code)
         parseCode(code);
 }

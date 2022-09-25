@@ -57,6 +57,12 @@ const MathLibrary = {
       );
     },
   },
+  PRINT_DEC_TO_HEX: {
+    
+  },
+  PRINT_DEC_TO_BIN: {
+    
+  }
 };
 
 function checkIfIsMathExpr(expr): boolean {

@@ -30,7 +30,7 @@ type TernaryStatement = {
     returnValueIfFalse: any;
 }
 
-type TitaniumArray = {
+type TitaniumArrayStructure = {
     name: null | string;
     data: any[];
     length: null | number;

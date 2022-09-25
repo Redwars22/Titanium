@@ -29,7 +29,8 @@ const error = {
     INVALID_EXPRESSION: "the expression is invalid or the variable doesn't exist",
     FUNCTION_MISSING_ARG: "one or more of the required the arguments of the function is missing",
     RANDOM_INVALID_PARAM: "invalid parameters to the random() function. Both parameters should be of type number",
-    UNKNOWN_TYPE: "Titanium couldn't guess the type automatically. Are you sure you used one of the supported types?"
+    UNKNOWN_TYPE: "Titanium couldn't guess the type automatically. Are you sure you used one of the supported types?",
+    CANNOT_MODIFY_ARRY: "You cannot modify or redeclare an array that already exists"
 }
 
 function throwError(err, line){
