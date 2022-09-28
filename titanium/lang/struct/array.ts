@@ -56,7 +56,9 @@ class TitaniumArray {
     else throw error.CANNOT_MODIFY_ARRY;
   }
 
-  retrieveElement(statement) {}
+  retrieveElement(statement) {
+    return null;
+  }
 }
 
 function handleCreateNewArray(declaration: string) {
@@ -66,4 +68,8 @@ function handleCreateNewArray(declaration: string) {
     .split(" = ");
 
   array.createArray(arrayStatement);
+}
+
+function handleRetrieveElementFromArray(){
+
 }

@@ -47,7 +47,9 @@ var TitaniumArray = /** @class */ (function () {
         else
             throw error.CANNOT_MODIFY_ARRY;
     };
-    TitaniumArray.prototype.retrieveElement = function (statement) { };
+    TitaniumArray.prototype.retrieveElement = function (statement) {
+        return null;
+    };
     return TitaniumArray;
 }());
 function handleCreateNewArray(declaration) {
@@ -56,4 +58,6 @@ function handleCreateNewArray(declaration) {
         .replace(keywords.ARRAY, "")
         .split(" = ");
     array.createArray(arrayStatement);
+}
+function handleRetrieveElementFromArray() {
 }

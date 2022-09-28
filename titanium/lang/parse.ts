@@ -27,6 +27,10 @@ SOFTWARE.
 let currentLine = 0;
 let hasThrownAnError = false;
 
+function skipLine(): void {
+  currentLine++;
+}
+
 function parseCode(code) {
   const linesOfCodeArray = code.split("\n");
   currentLine = 0;
@@ -34,6 +38,21 @@ function parseCode(code) {
 
   try {
     while (currentLine < linesOfCodeArray.length && !hasThrownAnError) {
+      if (linesOfCodeArray[currentLine].includes(operators.MULTILINE_COMMENT)) {
+        currentLine++;
+
+        //It keeps skipping the next lines until it finds the other $$ token
+        while (
+          !linesOfCodeArray[currentLine].includes(operators.MULTILINE_COMMENT)
+        ) {
+          skipLine();
+        }
+
+        currentLine++;
+        //It should throw an error if it reaches the end of the file 
+        //and still hasn't found the other $$ operator
+      }
+
       if (linesOfCodeArray[currentLine].includes(keywords.EXIT))
         throw "the program has exited";
 
