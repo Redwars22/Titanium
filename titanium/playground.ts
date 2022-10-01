@@ -70,6 +70,7 @@ const info = {
     constants = {};
     variables = {};
     arrays = {};
+    iterations;
     if (code) parseCode(code);
   }
   

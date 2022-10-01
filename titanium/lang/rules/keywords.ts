@@ -24,6 +24,8 @@ SOFTWARE.
 
 const keywords = {
     ARRAY: 'ARR ',
+    ARRAY_LENGTH: 'MAX',
+    ARRAY_LENGTH_ALT: 'LEN',
     BOOL_TRUE: "TRUE",
     BOOL_FALSE: "FALSE",
     BOOL_YES: "YES",

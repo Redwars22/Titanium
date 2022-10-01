@@ -62,6 +62,7 @@ function runCode() {
     constants = {};
     variables = {};
     arrays = {};
+    iterations;
     if (code)
         parseCode(code);
 }

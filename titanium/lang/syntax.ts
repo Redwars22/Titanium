@@ -46,6 +46,11 @@ function parseLine(command) {
       return;
     }
 
+    if (command.match(printLineCommand)){
+      printLine();
+      return;
+    }
+
     /* -------------------------- VARIABLES AND DATA TYPES -------------------------- */
     /* Array declaration */
     if (command.match(arrayDeclaration)) {
@@ -73,6 +78,8 @@ function parseLine(command) {
       printToConsole(MathLibrary.MATH_RANDOM.parse(command));
       return;
     }
+
+    if (command.match(jumpStatement)) return;
 
     throw "Invalid token and/or character found or the command is not a valid Titanium keyword!";
   } catch (err) {

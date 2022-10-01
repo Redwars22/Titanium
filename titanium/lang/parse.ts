@@ -24,16 +24,38 @@ SOFTWARE.
 
 //@ts-check
 
+let iterations = 0;
 let currentLine = 0;
 let hasThrownAnError = false;
+const linesOfCodeArray = [];
+
+function skipLine(): void {
+  currentLine++;
+}
 
 function parseCode(code) {
   const linesOfCodeArray = code.split("\n");
   currentLine = 0;
+  iterations = 0;
   hasThrownAnError = false;
 
   try {
     while (currentLine < linesOfCodeArray.length && !hasThrownAnError) {
+      if (linesOfCodeArray[currentLine].includes(operators.MULTILINE_COMMENT)) {
+        currentLine++;
+
+        //It keeps skipping the next lines until it finds the other $$ token
+        while (
+          !linesOfCodeArray[currentLine].includes(operators.MULTILINE_COMMENT)
+        ) {
+          skipLine();
+        }
+
+        currentLine++;
+        //It should throw an error if it reaches the end of the file 
+        //and still hasn't found the other $$ operator
+      }
+
       if (linesOfCodeArray[currentLine].includes(keywords.EXIT))
         throw "the program has exited";
 
@@ -62,6 +84,20 @@ function parseCode(code) {
         parseLine(linesOfCodeArray[currentLine]);
 
       if (hasThrownAnError) break;
+
+      if (linesOfCodeArray[currentLine].match(jumpStatement)){
+        const parsed = linesOfCodeArray[currentLine].split(' ');
+        
+        while(iterations < Number(parsed[2] - 1)){
+          iterations++;
+          currentLine = Number(parsed[1] - 1);
+
+          while(currentLine < linesOfCodeArray.length / 2){
+            parseLine(linesOfCodeArray[currentLine]);
+            currentLine++;
+          }
+        }
+      }
 
       currentLine++;
     }

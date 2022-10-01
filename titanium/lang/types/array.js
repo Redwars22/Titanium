@@ -21,28 +21,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-var types = {
-    STRING: "string",
-    BOOL: "bool",
-    NUMBER: "num",
-    NULL: 'NULL',
-    UNDEFINED: 'UNDEF'
-};
-function checkType(value) {
-    if (checkIfIsString(value))
-        return types.STRING;
-    if (checkIfIsBoolean(value))
-        return types.BOOL;
-    if (checkIfIsNumber(value))
-        return types.NUMBER;
-    if (checkIfIsNull(value))
-        return types.NULL;
-    if (checkIfIsUndefined(value))
-        return types.UNDEFINED;
-    if (checkIfIsMathExpr(value))
-        return "mathExpr";
-    if (checkIfIsLogicExpr(value))
-        return "logicExpr";
-    if (checkIfIsArrayRetrieveElementStatement(value))
-        return "arrRetrieveEl";
+function checkIfIsArrayRetrieveElementStatement(statement) {
+    if (statement.match(arrayRetrieveElement))
+        return true;
+    return false;
 }

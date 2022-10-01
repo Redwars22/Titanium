@@ -38,4 +38,5 @@ function checkType(value): string {
   if (checkIfIsUndefined(value)) return types.UNDEFINED;
   if (checkIfIsMathExpr(value)) return "mathExpr";
   if (checkIfIsLogicExpr(value)) return "logicExpr";
+  if (checkIfIsArrayRetrieveElementStatement(value)) return "arrRetrieveEl";
 }
