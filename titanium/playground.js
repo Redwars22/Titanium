@@ -35,6 +35,7 @@ var info = {
         "<li>Support for String (without special symbols such as ! @ ?), Boolean and Number</li></ol></left>",
 };
 window.onload = function () {
+    console.log('carregou');
     Swal.fire({
         title: "Welcome to Titanium's Playground",
         text: info.text,
@@ -42,12 +43,12 @@ window.onload = function () {
         confirmButtonText: "Ok, got it!",
     });
     if (localStorage.getItem("autosave"))
-        document.querySelector("#code-area").innerText =
+        document.querySelector(".code-editor").innerText =
             localStorage.getItem("autosave");
     else
-        document.querySelector("#code-area").innerText =
+        document.querySelector(".code-editor").innerText =
             'DECL msg = "Hello World!"\nprint(msg)\nEXIT';
-    setInterval(function () { return localStorage.setItem('autosave', document.querySelector("#code-area").innerText); }, 1500);
+    setInterval(function () { return localStorage.setItem('autosave', document.querySelector(".code-editor").innerText); }, 1500);
 };
 function showHelp() {
     Swal.fire({
@@ -58,7 +59,7 @@ function showHelp() {
     });
 }
 function runCode() {
-    var code = document.querySelector("#code-area").innerText;
+    var code = document.querySelector(".code-editor").innerText;
     constants = {};
     variables = {};
     arrays = {};
@@ -66,6 +67,6 @@ function runCode() {
     if (code)
         parseCode(code);
 }
-function clearCode() {
-    document.querySelector("#console").innerText = "";
+function abort() {
+    document.querySelector(".console").innerText = "";
 }

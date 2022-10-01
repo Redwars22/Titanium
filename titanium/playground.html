@@ -1,37 +1,85 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Titanium Playground - Online Titanium Interpreter in JS</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="style.css">
-	<meta name="Titanium is a general-purpose fictional programming language designed specifically for one of my stories. It's been developed by the fictional characters Matheus, Gustavo N, and Léo Andrew. Since it's all fictional, there's no compiler for it, but you can develop one for it if you want.">
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
-<body class="indigo darken-4">
-	<img width="80px" height="80px" src="https://redwars22.github.io/Titanium/titanium.png"></img>
-	<div class="menu">
-		<a class="waves-effect waves-light btn" onclick="runCode()"><i class="material-icons left">play_circle_filled</i>RUN</a>
-		<a class="waves-effect waves-light btn" onclick="clearCode()"><i class="material-icons left">clear</i>CLEAR</a>
-		<a class="waves-effect waves-light btn" 
-			href="titanium_cheatsheet.pdf"
-		><i class="material-icons left">book</i>REFERENCE GUIDE</a>
-		<a class="waves-effect waves-light btn" 
-		href="https://github.com/Redwars22/Titanium/tree/main/examples"
-	><i class="material-icons left">folder</i>EXAMPLES</a>
-		<!--<a class="waves-effect waves-light btn" onclick="showHelp()"><i class="material-icons left">help</i>INFO</a>-->
-	</div>
-	<div class="editor-container">
-		<div class="card-panel grey darken-4 white-text code-area" contenteditable id="code-area"></div>
-		<div class="card-panel black green-text console" id="console">
-			Welcome to Titanium's console... <br/>
-		</div>
-	</div>
+<html lang="en">
 
-	<!--TITANIUM DEF FILES-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titanium Playground - Codename Gusleothew</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <header>
+        <div style="display: flex; flex-direction: row; gap: 10px; align-items: center;">
+            <img src="https://redwars22.github.io/Titanium/titanium.png" width="35" height="35" />
+            <b class="app-title">GUSLEOTHEW</b>
+            <span >Titanium's official interactive playground</span>
+    </div>
+    <div>
+        <span class="auto-save-text">
+            <i class="bi bi-hdd"></i>
+            Saving your work automatically...
+        </span>
+    </div>
+    </header>
+
+    <main>
+        <div class="v-menu">
+            <div class="btn-group-vertical ">
+                <button class="btn btn-dark">
+                    <i class="bi bi-save"></i>
+                </button class="btn btn-dark">
+                <button class="btn btn-dark">
+                    <i class="bi bi-folder2-open"></i>
+                </button class="btn btn-dark">
+                <button class="btn btn-dark">
+                    <i class="bi bi-file-plus"></i>
+                </button class="btn btn-dark">
+                <button class="btn btn-dark" onclick="runCode()">
+                    <i class="bi bi-play-fill"></i>
+                </button class="btn btn-dark">
+
+                <button class="btn btn-dark" onclick="abort()">
+                    <i class="bi bi-stop-fill"></i>
+                </button class="btn btn-dark">
+                <button class="btn btn-dark">
+                    <i class="bi bi-filetype-py"></i>
+                </button class="btn btn-dark">
+                <button class="btn btn-dark">
+                    <i class="bi bi-trash"></i>
+                </button class="btn btn-dark">
+                <button class="btn btn-dark" onclick="window.open('https://bit.ly/3BZH6RV')">
+                    <i class="bi bi-book"></i>
+                </button class="btn btn-dark">
+                <button class="btn btn-dark">
+                    <i class="bi bi-info-circle-fill"></i>
+                </button class="btn btn-dark">
+            </div>
+        </div>
+
+        <div class="code-editor" contenteditable>
+
+        </div>
+
+        <div class="vertical-container">
+            <div class="console-div">
+                <span class="sect-title"><i class="bi bi-terminal-fill"></i>Console</span>
+                <div class="console"></div>
+            </div>
+            <div class="errors-log-div">
+                <span class="sect-title"><i class="bi bi-bug-fill"></i>Errors</span>
+                <div class="errors-log"></div>
+            </div>
+        </div>
+    </main>
+
+    	<!--TITANIUM DEF FILES-->
 	<script src="./lang/data/io.js"></script>
 	<script src="./lang/data/data.js"></script>
 
@@ -58,4 +106,5 @@
 
 	<script type="text/javascript" src="./playground.js"></script>
 </body>
+
 </html>
