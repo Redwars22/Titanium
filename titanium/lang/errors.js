@@ -31,8 +31,8 @@ var error = {
     CANNOT_MODIFY_ARRY: "You cannot modify or redeclare an array that already exists"
 };
 function throwError(err, line) {
-    document.getElementById("console").innerText += "\n\u274C\uFE0F Line: " + (line + 1) + " - " + err + " \n";
+    document.querySelector(".errors-log").innerText += "\n\u274C\uFE0F Line: " + (line + 1) + " - " + err + " \n";
 }
 function throwWarning(msg) {
-    document.getElementById("console").innerText += "\n\u26A0\uFE0F " + msg + " \n";
+    document.querySelector(".errors-log").innerText += "\n\u26A0\uFE0F " + msg + " \n";
 }

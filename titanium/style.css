@@ -1,89 +1,98 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap');
-
-* {
-	font-family: 'Ubuntu Mono', monospace;
-	font-weight: 700;
-}
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=ZCOOL+QingKe+HuangYou&display=swap");
 
 body {
-	display: flex;
-	margin:  0;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	height:  100vh;
-	background-color: #dde1eb;
+  background-color: #1d1d1d;
+  color: white;
+  font-family: "Share Tech Mono", monospace;
 }
 
-.console {
-	overflow: auto;
-	padding:  15px;
-	color: #50A2F5 !important;
+header {
+  display: flex;
+  gap: 15px;
+  flex-direction: row;
+  align-items: center;
+  background-color: #010118;
+  padding: 10px;
+  justify-content: space-between;
 }
 
-.code-area {
-	overflow: auto;
+span {
+  display: flex;
+  gap: 10px;
+  font-weight: bold;
 }
 
-@media (max-width: 500px){
-	body {
-		justify-content: space-evenly;
-	}
+.auto-save-text {
+  animation: blinker 2s linear infinite;
+}
 
-	.console {
-		width:  90vw;
-		height: 30vh;
-		max-height:  30vh;
-		font-size: 19px;
-	}
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+.app-title {
+  color: #fff;
+  font-size: 27px !important;
+  font-family: "ZCOOL QingKe HuangYou", cursive;
+  font-weight: bolder;
+  animation: text-blinker 10s linear infinite;
+  text-shadow: 0 1px 0 #d83cc3, 0 2px 0 #6e31df, 0 3px 0 rgb(5, 38, 99),
+    0 4px 0 #8c01b6, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1),
+    0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
+    0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
+}
 
-	.input-field {
-		width:  600px !important;
-	}
-
-	.input-container {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items:  center;
-		width:  90vw;
-		max-width:  90vw;
-		min-width:  90vw;
-		gap:  10px;
+@keyframes text-blinker {
+	70% {
+		opacity: 0;
 	}
 }
 
-@media (min-width: 501px){
-	.console {
-		width: 40vw;
-		height: 65vh;
-		max-height:  65vh;
-		font-size: 16px;
-	}
+.code-editor {
+  min-height: 88vh;
+  height: 88vh;
+  min-width: 60vw;
+  max-width: 60vw;
+  background-color: #000701;
+  border: 2px dashed white;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 8px;
+  overflow: auto;
+  color: rgb(1, 104, 238);
+  font-weight: bolder;
+  font-size: 17.5px;
+}
 
-	.code-area {
-		height: 65vh;
-		width: 40vw;
-		font-size: 19px;
-	}
+main {
+  display: flex;
+  flex-direction: row;
+}
 
-	.input-field {
-		width:  600px !important;
-	}
+.vertical-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
 
-	.input-container {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items:  center;
-		width:  70vw;
-		max-width:  70vw;
-		min-width:  70vw;
-		gap:  10px;
-	}
+.console-div,
+.errors-log-div {
+  border: 2px dashed white;
+  border-radius: 10px;
+  width: 35vw;
+  height: 45vh;
+  padding: 10px;
+  overflow: auto;
+}
 
-	.editor-container {
-		display: flex;
-		flex-direction: row;
-	}
+.v-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.sect-title {
+  border-bottom: 2px dotted white;
 }
