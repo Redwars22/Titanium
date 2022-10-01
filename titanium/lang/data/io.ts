@@ -25,7 +25,7 @@ SOFTWARE.
 //@ts-check
 
 function clearConsole() {
-  document.getElementById("console")!.innerText = "";
+  document.querySelector(".console")!.innerText = "";
 }
 
 function scanfFunction(command) {
@@ -39,17 +39,17 @@ function scanfFunction(command) {
 
 function printToConsole(data, isArray?: boolean) {
   if (isArray) {
-    document.getElementById("console")!.innerText += `\n> [${data}]`;
+    document.querySelector(".console")!.innerText += `\n> [${data}]`;
     return;
   }
   
   if (isNaN(data)) {
     if (data.match(string))
-      document.getElementById("console")!.innerText += `\n> ${data.replaceAll(
+      document.querySelector(".console")!.innerText += `\n> ${data.replaceAll(
         '"',
         ""
       )}`;
-  } else document.getElementById("console")!.innerText += `\n> ${data}`;
+  } else document.querySelector(".console")!.innerText += `\n> ${data}`;
 }
 
 function printFunction(command) {
