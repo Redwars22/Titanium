@@ -22,14 +22,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 //@ts-check
+var iterations = 0;
 var currentLine = 0;
 var hasThrownAnError = false;
+var linesOfCodeArray = [];
 function skipLine() {
     currentLine++;
 }
 function parseCode(code) {
     var linesOfCodeArray = code.split("\n");
     currentLine = 0;
+    iterations = 0;
     hasThrownAnError = false;
     try {
         while (currentLine < linesOfCodeArray.length && !hasThrownAnError) {
@@ -64,6 +67,17 @@ function parseCode(code) {
                 parseLine(linesOfCodeArray[currentLine]);
             if (hasThrownAnError)
                 break;
+            if (linesOfCodeArray[currentLine].match(jumpStatement)) {
+                var parsed = linesOfCodeArray[currentLine].split(' ');
+                while (iterations < Number(parsed[2] - 1)) {
+                    iterations++;
+                    currentLine = Number(parsed[1] - 1);
+                    while (currentLine < linesOfCodeArray.length / 2) {
+                        parseLine(linesOfCodeArray[currentLine]);
+                        currentLine++;
+                    }
+                }
+            }
             currentLine++;
         }
     }

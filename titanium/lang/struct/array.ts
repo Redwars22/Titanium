@@ -57,7 +57,31 @@ class TitaniumArray {
   }
 
   retrieveElement(statement) {
-    return null;
+    const arrayData = {
+      name: statement[0],
+      index: statement[1]
+    }
+
+    if(!arrays[arrayData.name])
+      throw(`${arrayData.name} doesn't exist or is accessed before its declaration`);
+
+    const array = arrays[arrayData.name];
+    const length = array.length
+
+    switch(arrayData.index){
+      case keywords.ARRAY_LENGTH:
+        return length;
+        break;
+      case keywords.ARRAY_LENGTH_ALT:
+        return length;
+        break;
+      default:
+        if(arrayData.index > (length - 1))
+          throw(`the index ${arrayData.index} doesn't exist in ${arrayData.name}`);
+
+        return(arrays[arrayData.name][arrayData.index])
+        break;
+    }
   }
 }
 
@@ -70,6 +94,12 @@ function handleCreateNewArray(declaration: string) {
   array.createArray(arrayStatement);
 }
 
-function handleRetrieveElementFromArray(){
+function handleRetrieveElementFromArray(statement: string) {
+  const array = new TitaniumArray();
+  const arrayRetrieveElementStatement = statement.replace(
+    operators.ARRAY_END,
+    ""
+  ).split('[');
 
+  return array.retrieveElement(arrayRetrieveElementStatement);
 }

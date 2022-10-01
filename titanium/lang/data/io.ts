@@ -38,14 +38,18 @@ function scanfFunction(command) {
 }
 
 function printToConsole(data, isArray?: boolean) {
-  if (isArray) { document.getElementById("console")!.innerText += `\n[${data}]`; return; }
-
-  if(data.includes("\"")){
-    document.getElementById("console")!.innerText += `\n${data.replaceAll('"', '')}`;
+  if (isArray) {
+    document.getElementById("console")!.innerText += `\n> [${data}]`;
     return;
   }
-
-  document.getElementById("console")!.innerText += `\n${data}`;
+  
+  if (isNaN(data)) {
+    if (data.match(string))
+      document.getElementById("console")!.innerText += `\n> ${data.replaceAll(
+        '"',
+        ""
+      )}`;
+  } else document.getElementById("console")!.innerText += `\n> ${data}`;
 }
 
 function printFunction(command) {
@@ -80,6 +84,9 @@ function printFunction(command) {
     case "logicExpr":
       printToConsole(eval(data));
       break;
+    case "arrRetrieveEl":
+      printToConsole(handleRetrieveElementFromArray(data));
+      break;
     default:
       if (variables[data] !== undefined) printToConsole(variables[data]);
       else if (constants[data] !== undefined) printToConsole(constants[data]);
@@ -87,4 +94,8 @@ function printFunction(command) {
       else throw error.VAR_DOES_NOT_EXIST;
       break;
   }
+}
+
+function printLine() {
+  printToConsole("");
 }

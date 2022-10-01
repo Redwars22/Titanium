@@ -34,14 +34,15 @@ function scanfFunction(command) {
 }
 function printToConsole(data, isArray) {
     if (isArray) {
-        document.getElementById("console").innerText += "\n[" + data + "]";
+        document.getElementById("console").innerText += "\n> [" + data + "]";
         return;
     }
-    if (data.includes("\"")) {
-        document.getElementById("console").innerText += "\n" + data.replaceAll('"', '');
-        return;
+    if (isNaN(data)) {
+        if (data.match(string))
+            document.getElementById("console").innerText += "\n> " + data.replaceAll('"', "");
     }
-    document.getElementById("console").innerText += "\n" + data;
+    else
+        document.getElementById("console").innerText += "\n> " + data;
 }
 function printFunction(command) {
     var data = command.replace(functions.PRINT + "(", "").replace(")", "");
@@ -71,6 +72,9 @@ function printFunction(command) {
         case "logicExpr":
             printToConsole(eval(data));
             break;
+        case "arrRetrieveEl":
+            printToConsole(handleRetrieveElementFromArray(data));
+            break;
         default:
             if (variables[data] !== undefined)
                 printToConsole(variables[data]);
@@ -82,4 +86,7 @@ function printFunction(command) {
                 throw error.VAR_DOES_NOT_EXIST;
             break;
     }
+}
+function printLine() {
+    printToConsole("");
 }

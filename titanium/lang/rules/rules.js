@@ -22,10 +22,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 var arrayDeclaration = /ARR .*[A-Za-z_] = \[.*[0-9A-Za-z_"!@]\]/gm;
-var arrayRetrieveElement = /.*[A-Za-z_]\[.*[0-9]\]/gm;
+var arrayRetrieveElement = /.*[A-Za-z_]\[.*[0-9LENMAX]\]/gm;
 var clearConsoleCommand = /clear\(\)/g;
 var constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9\(\)]"?/;
-var printCommand = /print\("?.*[0-9A-Z a-z!,_ ?:><=!]"?\)/g;
+var jumpStatement = /JUMP .*[0-9] .*[0-9]/g;
+var printCommand = /print\("?.*[\[\]0-9A-Z a-z!,_ ?:><=!]"?\)/g;
+var printLineCommand = /printLine()/gm;
 var returnStatement = /(RET) (.*[0-9A-Za-z])?/gm;
 var scanfCommand = /get\(.*[A-Za-z_]\)/gi;
 var singleLineComment = /--.*[A-Za-z0-9_ ]/gi;
