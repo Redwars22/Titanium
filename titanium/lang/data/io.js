@@ -40,6 +40,9 @@ function printToConsole(data, isArray) {
     if (isNaN(data)) {
         if (data.match(string))
             document.querySelector(".console").innerText += "\n> " + data.replaceAll('"', "");
+        else {
+            document.querySelector(".console").innerText += "\n> " + data;
+        }
     }
     else
         document.querySelector(".console").innerText += "\n> " + data;

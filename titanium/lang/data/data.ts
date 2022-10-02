@@ -190,7 +190,7 @@ function assignToConstant(expr) {
         constants[name] = eval(data);
         break;
       default:
-        constants[name] = data;
+        throw(error.UNKNOWN_TYPE);
         break;
     }
   }
