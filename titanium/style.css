@@ -23,7 +23,7 @@ span {
 }
 
 .auto-save-text {
-  animation: blinker 2s linear infinite;
+  animation: blinker 4s linear infinite;
 }
 
 @keyframes blinker {
@@ -36,18 +36,11 @@ span {
   font-size: 27px !important;
   font-family: "ZCOOL QingKe HuangYou", cursive;
   font-weight: bolder;
-  animation: text-blinker 10s linear infinite;
   text-shadow: 0 1px 0 #d83cc3, 0 2px 0 #6e31df, 0 3px 0 rgb(5, 38, 99),
     0 4px 0 #8c01b6, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1),
     0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
     0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
     0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
-}
-
-@keyframes text-blinker {
-	70% {
-		opacity: 0;
-	}
 }
 
 .code-editor {

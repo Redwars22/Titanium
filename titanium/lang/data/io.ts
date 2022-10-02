@@ -49,6 +49,9 @@ function printToConsole(data, isArray?: boolean) {
         '"',
         ""
       )}`;
+    else {
+      document.querySelector(".console")!.innerText += `\n> ${data}`;
+    }
   } else document.querySelector(".console")!.innerText += `\n> ${data}`;
 }
 
@@ -63,7 +66,6 @@ function printFunction(command) {
 
   /* It checks the type of the argument given to the print function */
   const typeOfData = checkType(data);
-
   /* If it isn't either a string or a number, then it treats it as a variable and
   prints its value, if it exists.
   */
