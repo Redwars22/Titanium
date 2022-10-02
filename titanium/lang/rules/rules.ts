@@ -25,7 +25,7 @@ SOFTWARE.
 const arrayDeclaration = /ARR .*[A-Za-z_] = \[.*[0-9A-Za-z_"!@]\]/gm;
 const arrayRetrieveElement = /.*[A-Za-z_]\[.*[0-9LENMAX]\]/gm;
 const clearConsoleCommand = /clear\(\)/g;
-const constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9\(\)]"?/;
+const constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9\(\)]?"?/;
 const jumpStatement = /JUMP .*[0-9] .*[0-9]/g;
 const printCommand = /print\("?.*[\[\]0-9A-Z a-z!,_ ?:><=!]?"?\)/g;
 const printLineCommand = /printLine()/gm;

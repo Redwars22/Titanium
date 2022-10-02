@@ -24,7 +24,7 @@ SOFTWARE.
 var arrayDeclaration = /ARR .*[A-Za-z_] = \[.*[0-9A-Za-z_"!@]\]/gm;
 var arrayRetrieveElement = /.*[A-Za-z_]\[.*[0-9LENMAX]\]/gm;
 var clearConsoleCommand = /clear\(\)/g;
-var constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9\(\)]"?/;
+var constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9\(\)]?"?/;
 var jumpStatement = /JUMP .*[0-9] .*[0-9]/g;
 var printCommand = /print\("?.*[\[\]0-9A-Z a-z!,_ ?:><=!]?"?\)/g;
 var printLineCommand = /printLine()/gm;
