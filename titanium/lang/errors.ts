@@ -34,9 +34,9 @@ const error = {
 }
 
 function throwError(err, line){
-    document.querySelector(".errors-log").innerText += `\n❌️ Line: ${line + 1} - ${err} \n`;
+    (document.querySelector(".errors-log") as HTMLDivElement).innerText += `\n❌️ Line: ${line + 1} - ${err} \n`;
 }
 
 function throwWarning(msg){
-    document.querySelector(".errors-log").innerText += `\n⚠️ ${msg} \n`;
+    (document.querySelector(".errors-log") as HTMLDivElement).innerText += `\n⚠️ ${msg} \n`;
 }
