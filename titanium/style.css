@@ -77,7 +77,6 @@ main {
   width: 35vw;
   height: 45vh;
   padding: 10px;
-  overflow: auto;
 }
 
 .v-menu {

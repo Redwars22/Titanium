@@ -68,5 +68,6 @@ function runCode() {
         parseCode(code);
 }
 function abort() {
-    document.querySelector(".console").innerText = "";
+    (document.querySelector(".console") as HTMLDivElement).innerText = "";
+    (document.querySelector(".errors-log") as HTMLDivElement).innerText = "";
 }

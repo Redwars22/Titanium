@@ -69,4 +69,5 @@ function runCode() {
 }
 function abort() {
     document.querySelector(".console").innerText = "";
+    document.querySelector(".errors-log").innerText = "";
 }
