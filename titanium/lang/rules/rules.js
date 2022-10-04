@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 var arrayDeclaration = /ARR .*[A-Za-z_] = \[.*[0-9A-Za-z_"!@]\]/gm;
-var arrayRetrieveElement = /.*[A-Za-z_]\[.*[0-9LENMAX]\]/gm;
+var arrayRetrieveElement = /.*[A-Za-z_]\[.*[0-9A-Za-z_]\]/gm;
 var clearConsoleCommand = /clear\(\)/g;
 var constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9\(\)]?"?/;
 var jumpStatement = /JUMP .*[0-9] .*[0-9]/g;

@@ -26,6 +26,14 @@ const variables = {};
 const constants = {};
 const arrays = {};
 
+function searchInVariablesAndConstants(name: string){
+  if(variables[name] != undefined) return variables[name];
+  
+  if(constants[name] != undefined) return constants[name];
+
+  throw(error.VAR_DOES_NOT_EXIST);
+}
+
 function createVariable(command) {
   if (command.includes(keywords.VARIABLE)) {
     command = command.replace(keywords.VARIABLE, "");

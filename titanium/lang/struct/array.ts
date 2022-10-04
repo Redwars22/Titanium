@@ -76,6 +76,9 @@ class TitaniumArray {
         return length;
         break;
       default:
+        if(isNaN(arrayData.index))
+          arrayData.index = searchInVariablesAndConstants(arrayData.index);
+
         if(arrayData.index > (length - 1))
           throw(`the index ${arrayData.index} doesn't exist in ${arrayData.name}`);
 
