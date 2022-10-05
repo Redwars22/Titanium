@@ -31,6 +31,8 @@ const keywords = {
     BOOL_YES: "YES",
     BOOL_NO: "NO",
     CONSTANT: "DEF ",
+    DECREMENT: "DEC",
+    INCREMENT: "INC",
     VARIABLE: "DECL ",
     WHILE: "WHILE",
     END_WHILE: "ENDWHILE",

@@ -203,3 +203,26 @@ function assignToConstant(expr) {
     }
   }
 }
+
+function checkIfCanBeChanged(identifier: string){
+  if(variables[identifier] != undefined){
+    return;
+  } else throw(`you cannot increment/decrement ${identifier} because it either is a constant or doesn't exist`)
+}
+
+function increment(statement){
+  const varToIncrement = statement.replace(keywords.INCREMENT, '').trim();
+  checkIfCanBeChanged(varToIncrement);
+  const currentValue = variables[varToIncrement];
+
+  if(currentValue != undefined)
+    if(!isNaN(currentValue)){
+      variables[varToIncrement] = currentValue + 1;
+      return;
+    }
+
+  throw(`you cannot increment ${varToIncrement} because it either doesn't belong to type number or doesn't exist`)
+}
+
+increment('INC x');
+function decrement(statement){}
