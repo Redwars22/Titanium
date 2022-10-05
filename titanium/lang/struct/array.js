@@ -53,7 +53,7 @@ var TitaniumArray = /** @class */ (function () {
             index: statement[1]
         };
         if (!arrays[arrayData.name])
-            throw (arrayData.name + " doesn't exist or is accessed before its declaration");
+            throw ("".concat(arrayData.name, " doesn't exist or is accessed before its declaration"));
         var array = arrays[arrayData.name];
         var length = array.length;
         switch (arrayData.index) {
@@ -67,7 +67,7 @@ var TitaniumArray = /** @class */ (function () {
                 if (isNaN(arrayData.index))
                     arrayData.index = searchInVariablesAndConstants(arrayData.index);
                 if (arrayData.index > (length - 1))
-                    throw ("the index " + arrayData.index + " doesn't exist in " + arrayData.name);
+                    throw ("the index ".concat(arrayData.index, " doesn't exist in ").concat(arrayData.name));
                 return (arrays[arrayData.name][arrayData.index]);
                 break;
         }

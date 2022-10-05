@@ -61,7 +61,7 @@ function parseCode(code) {
                             : typeOfReturnCode == "logicExpr"
                                 ? eval(valueOfReturnCode)
                                 : "INVALID RETURN STATEMENT!";
-                throw "the program has exited with " + returnCode;
+                throw "the program has exited with ".concat(returnCode);
             }
             if (linesOfCodeArray[currentLine] != "")
                 parseLine(linesOfCodeArray[currentLine]);

@@ -111,12 +111,12 @@ function assignToVariable(command) {
         }
     }
     else {
-        throw "Cannot assign a value to \"" + variable + "\" because it either doesn't exist or is a constant. Are you trying to create a new variable?";
+        throw "Cannot assign a value to \"".concat(variable, "\" because it either doesn't exist or is a constant. Are you trying to create a new variable?");
     }
 }
 function assignToVariableFromScanf(variable) {
     if (variables[variable] || variables[variable] == 0) {
-        var value = window.prompt("Assign a value to \"" + variable + "\"");
+        var value = window.prompt("Assign a value to \"".concat(variable, "\""));
         if (checkIfIsBoolean(value)) {
             variables[variable] = parseBoolean(value);
         }
@@ -185,4 +185,33 @@ function assignToConstant(expr) {
                 break;
         }
     }
+}
+function checkIfCanBeChanged(identifier) {
+    if (variables[identifier] != undefined) {
+        return;
+    }
+    else
+        throw ("you cannot increment/decrement ".concat(identifier, " because it either is a constant or doesn't exist"));
+}
+function increment(statement) {
+    var varToIncrement = statement.replace(keywords.INCREMENT, '').trim();
+    checkIfCanBeChanged(varToIncrement);
+    var currentValue = variables[varToIncrement];
+    if (currentValue != undefined)
+        if (!isNaN(currentValue)) {
+            variables[varToIncrement] = currentValue + 1;
+            return;
+        }
+    throw ("you cannot increment ".concat(varToIncrement, " because it either doesn't belong to type number or doesn't exist"));
+}
+function decrement(statement) {
+    var varToDecrement = statement.replace(keywords.DECREMENT, '').trim();
+    checkIfCanBeChanged(varToDecrement);
+    var currentValue = variables[varToDecrement];
+    if (currentValue != undefined)
+        if (!isNaN(currentValue)) {
+            variables[varToDecrement] = currentValue - 1;
+            return;
+        }
+    throw ("you cannot increment ".concat(varToIncrement, " because it either doesn't belong to type number or doesn't exist"));
 }

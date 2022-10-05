@@ -81,6 +81,10 @@ function parseLine(command) {
 
     if (command.match(jumpStatement)) return;
 
+    if (command.match(incrementStatement)) { increment(command); return; }
+
+    if (command.match(decrementStatement)) { decrement(command); return; }
+
     throw "Invalid token and/or character found or the command is not a valid Titanium keyword!";
   } catch (err) {
     throwError(err, currentLine);

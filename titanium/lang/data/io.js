@@ -34,18 +34,18 @@ function scanfFunction(command) {
 }
 function printToConsole(data, isArray) {
     if (isArray) {
-        document.querySelector(".console").innerText += "\n> [" + data + "]";
+        document.querySelector(".console").innerText += "\n> [".concat(data, "]");
         return;
     }
     if (isNaN(data)) {
         if (data.match(string))
-            document.querySelector(".console").innerText += "\n> " + data.replaceAll('"', "");
+            document.querySelector(".console").innerText += "\n> ".concat(data.replaceAll('"', ""));
         else {
-            document.querySelector(".console").innerText += "\n> " + data;
+            document.querySelector(".console").innerText += "\n> ".concat(data);
         }
     }
     else
-        document.querySelector(".console").innerText += "\n> " + data;
+        document.querySelector(".console").innerText += "\n> ".concat(data);
 }
 function printFunction(command) {
     var data = command.replace(functions.PRINT + "(", "").replace(")", "");

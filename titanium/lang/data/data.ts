@@ -224,5 +224,16 @@ function increment(statement){
   throw(`you cannot increment ${varToIncrement} because it either doesn't belong to type number or doesn't exist`)
 }
 
-increment('INC x');
-function decrement(statement){}
+function decrement(statement){
+  const varToDecrement = statement.replace(keywords.DECREMENT, '').trim();
+  checkIfCanBeChanged(varToDecrement);
+  const currentValue = variables[varToDecrement];
+
+  if(currentValue != undefined)
+    if(!isNaN(currentValue)){
+      variables[varToDecrement] = currentValue - 1;
+      return;
+    }
+
+  throw(`you cannot increment ${varToDecrement} because it either doesn't belong to type number or doesn't exist`)
+}
