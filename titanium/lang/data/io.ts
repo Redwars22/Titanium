@@ -34,6 +34,22 @@ function scanfFunction(command) {
   command = command.replace(")", "");
 
   const variable = command;
+
+  //It verifies if the argument of the function mentions an array
+  if(variable.includes(operators.ARRAY_START) && variable.includes(operators.ARRAY_END)) {
+    const array = variable.replace(operators.ARRAY_DEF, '');
+
+    const arr = new TitaniumArray();
+
+    if(checkIfArrayExists(array)){
+      const value = prompt(`Insert a value for ${array}`);
+      arrays[array].push(value);
+      return;
+    }
+
+    throw(`you cannot push a new value to ${array} because it doesn't exist`)
+  }
+
   assignToVariableFromScanf(variable);
 }
 

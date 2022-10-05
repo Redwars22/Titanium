@@ -26,6 +26,7 @@ SOFTWARE.
 
 const operators = {
     ADD: '+',
+    ARRAY_DEF: '[]',
     SUBTRACT: '-',
     MODULUS: '%',
     MULTIPLY: '*',

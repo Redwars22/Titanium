@@ -29,6 +29,12 @@ class TitaniumArray {
     length: 0,
   };
 
+  checkIfArrayExists(identifier: string){
+    if(arrays[identifier] != undefined) return true;
+
+    return false;
+  }
+
   createArray(statement) {
     const name = statement[0];
     const content = statement[1];
