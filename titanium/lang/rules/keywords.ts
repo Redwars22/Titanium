@@ -34,8 +34,6 @@ const keywords = {
     DECREMENT: "DEC",
     INCREMENT: "INC",
     VARIABLE: "DECL ",
-    WHILE: "WHILE",
-    END_WHILE: "ENDWHILE",
     DO: "DO",
     EXIT: "EXIT",
     RETURN: "RET",
