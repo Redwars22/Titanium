@@ -79,6 +79,9 @@ function createVariable(command) {
       case "logicExpr":
         variables[command[0]] = eval(command[1]);
         break;
+      case "arrRetrieveEl":
+        variables[command[0]] = handleRetrieveElementFromArray(command[1]);
+        break;
       default:
         throw error.UNKNOWN_TYPE;
         break;
@@ -99,6 +102,8 @@ function assignToVariable(command) {
   value = command[1];
   const typeOfData = checkType(value);
 
+  console.log(typeOfData)
+
   if (variables[variable] || variables[variable] == 0) {
     switch (typeOfData) {
       case types.BOOL:
@@ -117,6 +122,9 @@ function assignToVariable(command) {
         break;
       case "logicExpr":
         variables[variable] = eval(value);
+        break;
+      case "arrRetrieveEl":
+        variables[variable] = handleRetrieveElementFromArray(value);
         break;
       default:
         variables[variable] = value;
