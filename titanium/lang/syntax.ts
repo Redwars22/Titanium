@@ -79,8 +79,6 @@ function parseLine(command) {
       return;
     }
 
-    if (command.match(jumpStatement)) return;
-
     if (command.match(incrementStatement)) { increment(command); return; }
 
     if (command.match(decrementStatement)) { decrement(command); return; }

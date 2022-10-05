@@ -85,20 +85,6 @@ function parseCode(code) {
 
       if (hasThrownAnError) break;
 
-      if (linesOfCodeArray[currentLine].match(jumpStatement)){
-        const parsed = linesOfCodeArray[currentLine].split(' ');
-        
-        while(iterations < Number(parsed[2] - 1)){
-          iterations++;
-          currentLine = Number(parsed[1] - 1);
-
-          while(currentLine < linesOfCodeArray.length / 2){
-            parseLine(linesOfCodeArray[currentLine]);
-            currentLine++;
-          }
-        }
-      }
-
       currentLine++;
     }
   } catch (err) {
