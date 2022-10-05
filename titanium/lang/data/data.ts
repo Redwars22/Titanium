@@ -205,6 +205,9 @@ function assignToConstant(expr) {
       case "logicExpr":
         constants[name] = eval(data);
         break;
+      case "arrRetrieveEl":
+        constants[name] = handleRetrieveElementFromArray(data);
+        break;
       default:
         throw(error.UNKNOWN_TYPE);
         break;
