@@ -40,84 +40,99 @@ const ConditionTokens = {
  * prior to being used, it then throws an error
  */
 
-function parseCondition(condition: string){
+function parseCondition(condition: string) {
     const tokens = condition.split(' ');
 
     ConditionTokens.left = tokens[0];
     ConditionTokens.right = tokens[2];
 
-     if(isNaN(ConditionTokens.left)){
-        if(variables[ConditionTokens.left] !== undefined)
+    if (isNaN(ConditionTokens.left)) {
+        if (variables[ConditionTokens.left] !== undefined)
             Ternary.condition =
                 Ternary.condition.replace(
-                    ConditionTokens.left, 
+                    ConditionTokens.left,
                     Number(variables[ConditionTokens.left])
                 )
-        else if(constants[ConditionTokens.left] !== undefined)
+        else if (constants[ConditionTokens.left] !== undefined)
             Ternary.condition =
                 Ternary.condition.replace(
-                    ConditionTokens.left, 
+                    ConditionTokens.left,
                     Number(constants[ConditionTokens.left])
                 )
-        else throw(error.VAR_DOES_NOT_EXIST)
+        else if (handleRetrieveElementFromArray(ConditionTokens.left) !== undefined){
+            const value = handleRetrieveElementFromArray(ConditionTokens.left);
+            Ternary.condition = Ternary.condition.replace(
+                ConditionTokens.left,
+                value
+            )
+        }
+
+        else throw (error.VAR_DOES_NOT_EXIST)
     }
-    
-    if(isNaN(ConditionTokens.right)){
-        if(variables[ConditionTokens.right] !== undefined)
+
+    if (isNaN(ConditionTokens.right)) {
+        if (variables[ConditionTokens.right] !== undefined)
             Ternary.condition =
                 Ternary.condition.replace(
-                    ConditionTokens.right, 
+                    ConditionTokens.right,
                     Number(variables[ConditionTokens.right])
                 )
-        else if(constants[ConditionTokens.right] !== undefined)
+        else if (constants[ConditionTokens.right] !== undefined)
             Ternary.condition =
                 Ternary.condition.replace(
-                    ConditionTokens.right, 
+                    ConditionTokens.right,
                     Number(constants[ConditionTokens.right])
                 )
-        else throw(error.VAR_DOES_NOT_EXIST)
+        else if (handleRetrieveElementFromArray(ConditionTokens.right) !== undefined){
+            const value = handleRetrieveElementFromArray(ConditionTokens.right);
+            Ternary.condition = Ternary.condition.replace(
+                ConditionTokens.right,
+                value
+            )
+        }
+        else throw (error.VAR_DOES_NOT_EXIST)
     }
 }
 
-function TernaryStatement(ternaryExpr: string){
+function TernaryStatement(ternaryExpr: string) {
     const ternaryBlocks = ternaryExpr.split(' ' + operators.TERNARY_CONDITION + ' ');
     Ternary.condition = ternaryBlocks[0];
     const returnValues = ternaryBlocks.join('')
-                        .replace(Ternary.condition, '')
-                        .split(' ' + operators.TERNARY_IF_ELSE + ' ');
+        .replace(Ternary.condition, '')
+        .split(' ' + operators.TERNARY_IF_ELSE + ' ');
 
     Ternary.returnValueIfTrue = returnValues[0];
     Ternary.returnValueIfFalse = returnValues[1];
 
     parseCondition(Ternary.condition);
 
-    switch(eval(Ternary.condition)){
+    switch (eval(Ternary.condition)) {
         case true:
-            const typeOfReturnValue = checkType(Ternary.returnValueIfTrue) ;
+            const typeOfReturnValue = checkType(Ternary.returnValueIfTrue);
 
-            if(typeOfReturnValue == 'boolean')
+            if (typeOfReturnValue == 'boolean')
                 return parseBoolean(Ternary.returnValueIfTrue);
-            
+
             return Ternary.returnValueIfTrue;
             break;
         case false:
-            const typeOfFalseReturnValue = checkType(Ternary.returnValueIfFalse) ;
+            const typeOfFalseReturnValue = checkType(Ternary.returnValueIfFalse);
 
-            if(typeOfReturnValue == 'boolean')
+            if (typeOfReturnValue == 'boolean')
                 return parseBoolean(Ternary.returnValueIfFalse);
-            
+
             return Ternary.returnValueIfFalse;
             break;
         default:
-            throw("unknown error while trying to parse ternary expression")
+            throw ("unknown error while trying to parse ternary expression")
             break;
     }
 }
 
 function checkIfIsTernaryExpression(expr: string): boolean {
-    try { 
-        if(expr.match(ternaryStatementRule)) return true; 
-    } catch(err) {
+    try {
+        if (expr.match(ternaryStatementRule)) return true;
+    } catch (err) {
         return false;
     }
 

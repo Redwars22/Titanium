@@ -47,6 +47,10 @@ function parseCondition(condition) {
         else if (constants[ConditionTokens.left] !== undefined)
             Ternary.condition =
                 Ternary.condition.replace(ConditionTokens.left, Number(constants[ConditionTokens.left]));
+        else if (handleRetrieveElementFromArray(ConditionTokens.left) !== undefined) {
+            var value = handleRetrieveElementFromArray(ConditionTokens.left);
+            Ternary.condition = Ternary.condition.replace(ConditionTokens.left, value);
+        }
         else
             throw (error.VAR_DOES_NOT_EXIST);
     }
@@ -57,6 +61,10 @@ function parseCondition(condition) {
         else if (constants[ConditionTokens.right] !== undefined)
             Ternary.condition =
                 Ternary.condition.replace(ConditionTokens.right, Number(constants[ConditionTokens.right]));
+        else if (handleRetrieveElementFromArray(ConditionTokens.right) !== undefined) {
+            var value = handleRetrieveElementFromArray(ConditionTokens.right);
+            Ternary.condition = Ternary.condition.replace(ConditionTokens.right, value);
+        }
         else
             throw (error.VAR_DOES_NOT_EXIST);
     }
