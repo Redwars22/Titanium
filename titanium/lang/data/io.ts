@@ -41,9 +41,12 @@ function scanfFunction(command) {
 
     const arr = new TitaniumArray();
 
-    if(checkIfArrayExists(array)){
-      const value = prompt(`Insert a value for ${array}`);
-      arrays[array].push(value);
+    if(arr.checkIfArrayExists(array)){
+      let value = prompt(`Insert a value for ${array}`);
+
+      if(isNaN(value))
+        arrays[array].push("\"" + value + "\"");
+      else arrays[array].push(value);
       return;
     }
 

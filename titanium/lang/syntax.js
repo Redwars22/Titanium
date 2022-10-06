@@ -67,7 +67,6 @@ function parseLine(command) {
             printToConsole(MathLibrary.MATH_RANDOM.parse(command));
             return;
         }
-
         if (command.match(incrementStatement)) {
             increment(command);
             return;

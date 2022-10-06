@@ -29,6 +29,11 @@ var TitaniumArray = /** @class */ (function () {
             length: 0,
         };
     }
+    TitaniumArray.prototype.checkIfArrayExists = function (identifier) {
+        if (arrays[identifier] != undefined)
+            return true;
+        return false;
+    };
     TitaniumArray.prototype.createArray = function (statement) {
         var name = statement[0];
         var content = statement[1];

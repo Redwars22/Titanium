@@ -30,6 +30,20 @@ function scanfFunction(command) {
     command = command.replace("(", "");
     command = command.replace(")", "");
     var variable = command;
+    //It verifies if the argument of the function mentions an array
+    if (variable.includes(operators.ARRAY_START) && variable.includes(operators.ARRAY_END)) {
+        var array = variable.replace(operators.ARRAY_DEF, '');
+        var arr = new TitaniumArray();
+        if (arr.checkIfArrayExists(array)) {
+            var value = prompt("Insert a value for ".concat(array));
+            if (isNaN(value))
+                arrays[array].push("\"" + value + "\"");
+            else
+                arrays[array].push(value);
+            return;
+        }
+        throw ("you cannot push a new value to ".concat(array, " because it doesn't exist"));
+    }
     assignToVariableFromScanf(variable);
 }
 function printToConsole(data, isArray) {

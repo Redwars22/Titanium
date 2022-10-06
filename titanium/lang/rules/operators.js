@@ -24,6 +24,7 @@ SOFTWARE.
 //@ts-check
 var operators = {
     ADD: '+',
+    ARRAY_DEF: '[]',
     SUBTRACT: '-',
     MODULUS: '%',
     MULTIPLY: '*',
