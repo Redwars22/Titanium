@@ -117,6 +117,33 @@ function printFunction(command) {
   }
 }
 
+/*
+let statement = "\"O número é: \" && y";
+
+const variables = {
+    y: 0
+}
+
+function concatenate(statement: string){
+    let tokens = statement.split('&&');
+
+    for(let token = 0; token < tokens.length; token++){
+        tokens[token] = tokens[token].trim();
+
+        if(isNaN(tokens[token]) && !(tokens[token].includes("\""))){
+            if(variables[tokens[token]] != undefined){
+                const data = variables[tokens[token]];
+                tokens[token] = data;
+            }
+        }
+    }
+
+    console.log(tokens.join('').replace("\"", ''));
+}
+
+concatenate(statement)
+*/
+
 function printLine() {
   printToConsole("");
 }
