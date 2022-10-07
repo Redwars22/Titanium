@@ -25,6 +25,25 @@ SOFTWARE.
 function clearConsole() {
     document.querySelector(".console").innerText = "";
 }
+function concatenate(statement) {
+    var tokens = statement.split('&&');
+    for (var token = 0; token < tokens.length; token++) {
+        tokens[token] = tokens[token].trim();
+        if (tokens[token].includes("\"") && !(tokens[token].includes("\\\""))) {
+            tokens[token] = tokens[token].replace("\"", "");
+        }
+        if (isNaN(tokens[token]) && !(tokens[token].includes("\""))) {
+            if (tokens[token].match(arrayRetrieveElement)) {
+                var data_1 = handleRetrieveElementFromArray(tokens[token]);
+                tokens[token] = data_1;
+                continue;
+            }
+            var data = searchInVariablesAndConstants(tokens[token]);
+            tokens[token] = data;
+        }
+    }
+    printToConsole(tokens.join('').replace("\"", ''));
+}
 function scanfFunction(command) {
     command = command.replace(functions.GET, "");
     command = command.replace("(", "");
@@ -68,6 +87,11 @@ function printFunction(command) {
         printToConsole(TernaryStatement(data));
         return;
     }
+    if (data.includes('&&')) {
+        concatenate(data);
+        return;
+    }
+    ;
     /* It checks the type of the argument given to the print function */
     var typeOfData = checkType(data);
     /* If it isn't either a string or a number, then it treats it as a variable and

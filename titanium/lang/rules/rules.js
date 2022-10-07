@@ -27,6 +27,7 @@ var clearConsoleCommand = /clear\(\)/g;
 var constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9\(\)]?"?/;
 var decrementStatement = /DEC .*[A-Za-z_]/;
 var incrementStatement = /INC .*[A-Za-z_]/;
+var mathCommand = /MATH/;
 var printCommand = /print\("?.*[\[\]0-9A-Z a-z!,_ ?:><=!]?"?\)/g;
 var printLineCommand = /printLine()/gm;
 var returnStatement = /(RET) (.*[0-9A-Za-z])?/gm;
