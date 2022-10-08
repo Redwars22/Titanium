@@ -69,6 +69,8 @@ function scanfFunction(command) {
     if(arr.checkIfArrayExists(array)){
       let value = prompt(`Insert a value for ${array}`);
 
+      if(value === null) throw("the get() function cannot return null");
+
       if(isNaN(value))
         arrays[array].push("\"" + value + "\"");
       else arrays[array].push(value);

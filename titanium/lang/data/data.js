@@ -120,6 +120,8 @@ function assignToVariable(command) {
 function assignToVariableFromScanf(variable) {
     if (variables[variable] || variables[variable] == 0) {
         var value = window.prompt("Assign a value to \"".concat(variable, "\""));
+        if (value === null)
+            throw ("the get() function cannot return null");
         if (checkIfIsBoolean(value)) {
             variables[variable] = parseBoolean(value);
         }

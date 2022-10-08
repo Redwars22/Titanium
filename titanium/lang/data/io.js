@@ -55,6 +55,8 @@ function scanfFunction(command) {
         var arr = new TitaniumArray();
         if (arr.checkIfArrayExists(array)) {
             var value = prompt("Insert a value for ".concat(array));
+            if (value === null)
+                throw ("the get() function cannot return null");
             if (isNaN(value))
                 arrays[array].push("\"" + value + "\"");
             else

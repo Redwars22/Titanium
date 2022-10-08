@@ -134,6 +134,8 @@ function assignToVariableFromScanf(variable) {
   if (variables[variable] || variables[variable] == 0) {
     const value = window.prompt(`Assign a value to "${variable}"`);
 
+    if (value === null) throw ("the get() function cannot return null");
+
     if (checkIfIsBoolean(value)) {
       variables[variable] = parseBoolean(value);
     } else if (checkIfIsNull(value) || checkIfIsUndefined(value)) {
