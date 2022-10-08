@@ -39,11 +39,6 @@ function createVariable(command) {
     command = command.replace(keywords.VARIABLE, "");
     command = command.split(" " + operators.EQUAL + " ");
 
-    if (command[1].match(MathLibrary.MATH_RANDOM.rule)) {
-      variables[command[0]] = MathLibrary.MATH_RANDOM.parse(command[1]);
-      return;
-    }
-
     if (checkIfIsTernaryExpression(command[1])) {
       variables[command[0]] = TernaryStatement(command[1]);
       return;
@@ -177,13 +172,6 @@ function assignToConstant(expr) {
     throw "you cannot change the value of a constant once it's been declared";
   } else {
     const typeOfData = checkType(data);
-
-    /* Checks if it references the MATH_RANDOM function */
-    if (data.match(MathLibrary.MATH_RANDOM.rule)) {
-      data = MathLibrary.MATH_RANDOM.parse(data);
-      constants[name] = data;
-      return;
-    }
 
     if (checkIfIsTernaryExpression(data)) data = TernaryStatement(data);
 

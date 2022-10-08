@@ -72,13 +72,7 @@ function parseLine(command) {
       assignToVariable(command);
       return;
     }
-
-    /* MATH CLASS */
-    if (command.match(MathLibrary.MATH_RANDOM.rule)) {
-      printToConsole(MathLibrary.MATH_RANDOM.parse(command));
-      return;
-    }
-
+    
     if (command.match(incrementStatement)) { 
       increment(command); 
       return; 
