@@ -30,13 +30,14 @@ const error = {
     FUNCTION_MISSING_ARG: "one or more of the required the arguments of the function is missing",
     RANDOM_INVALID_PARAM: "invalid parameters to the random() function. Both parameters should be of type number",
     UNKNOWN_TYPE: "Titanium couldn't guess the type automatically. Are you sure you used one of the supported types?",
-    CANNOT_MODIFY_ARRY: "You cannot modify or redeclare an array that already exists"
+    CANNOT_MODIFY_ARRY: "You cannot modify or redeclare an array that already exists",
+    MISSING_PARAMS: "one or more of the required parameters is missing"
 }
 
-function throwError(err, line){
+function throwError(err, line) {
     (document.querySelector(".errors-log") as HTMLDivElement).innerText += `\n❌️ Line: ${line + 1} - ${err} \n`;
 }
 
-function throwWarning(msg){
+function throwWarning(msg) {
     (document.querySelector(".errors-log") as HTMLDivElement).innerText += `\n⚠️ ${msg} \n`;
 }

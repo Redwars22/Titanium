@@ -26,12 +26,12 @@ const variables = {};
 const constants = {};
 const arrays = {};
 
-function searchInVariablesAndConstants(name: string){
-  if(variables[name] != undefined) return variables[name];
-  
-  if(constants[name] != undefined) return constants[name];
+function searchInVariablesAndConstants(name: string) {
+  if (variables[name] != undefined) return variables[name];
 
-  throw(error.VAR_DOES_NOT_EXIST);
+  if (constants[name] != undefined) return constants[name];
+
+  throw (error.VAR_DOES_NOT_EXIST);
 }
 
 function createVariable(command) {
@@ -52,9 +52,9 @@ function createVariable(command) {
     const typeOfVariable = checkType(command[1]);
 
     /*
-	  COMMAND[0] = the name of the variable
-	  COMMAND[1] = the value
-	  */
+    COMMAND[0] = the name of the variable
+    COMMAND[1] = the value
+    */
 
     switch (typeOfVariable) {
       case types.STRING:
@@ -163,9 +163,9 @@ function getValueFromVariable(variable) {
 
 function assignToConstant(expr) {
   /*
-	It basically creates a new constant and, if it already exists,
-	it throws an error
-	*/
+  It basically creates a new constant and, if it already exists,
+  it throws an error
+  */
 
   let tokens = expr.replace(keywords.CONSTANT, "");
   tokens = tokens.split(" " + operators.EQUAL + " ");
@@ -209,58 +209,60 @@ function assignToConstant(expr) {
         constants[name] = handleRetrieveElementFromArray(data);
         break;
       default:
-        throw(error.UNKNOWN_TYPE);
+        throw (error.UNKNOWN_TYPE);
         break;
     }
   }
 }
 
-function checkIfCanBeChanged(identifier: string){
-  if(variables[identifier] != undefined){
+function checkIfCanBeChanged(identifier: string) {
+  if (variables[identifier] != undefined) {
     return;
-  } else throw(`you cannot increment/decrement ${identifier} because it either is a constant or doesn't exist`)
+  } else throw (`you cannot increment/decrement ${identifier} because it either is a constant or doesn't exist`)
 }
 
-function increment(statement){
+function increment(statement) {
   const varToIncrement = statement.replace(keywords.INCREMENT, '').trim();
   checkIfCanBeChanged(varToIncrement);
   const currentValue = variables[varToIncrement];
 
-  if(currentValue != undefined)
-    if(!isNaN(currentValue)){
+  if (currentValue != undefined)
+    if (!isNaN(currentValue)) {
       variables[varToIncrement] = currentValue + 1;
       return;
     }
 
-  throw(`you cannot increment ${varToIncrement} because it either doesn't belong to type number or doesn't exist`)
+  throw (`you cannot increment ${varToIncrement} because it either doesn't belong to type number or doesn't exist`)
 }
 
-function decrement(statement){
+function decrement(statement) {
   const varToDecrement = statement.replace(keywords.DECREMENT, '').trim();
   checkIfCanBeChanged(varToDecrement);
   const currentValue = variables[varToDecrement];
 
-  if(currentValue != undefined)
-    if(!isNaN(currentValue)){
+  if (currentValue != undefined)
+    if (!isNaN(currentValue)) {
       variables[varToDecrement] = currentValue - 1;
       return;
     }
 
-  throw(`you cannot increment ${varToDecrement} because it either doesn't belong to type number or doesn't exist`)
+  throw (`you cannot increment ${varToDecrement} because it either doesn't belong to type number or doesn't exist`)
 }
 
-function deleteFromBinding(identifier: string){
-  if(searchInVariablesAndConstants(identifier)){
-    if(variables[identifier] != undefined)
+function deleteFromBinding(identifier: string) {
+  if (searchInVariablesAndConstants(identifier)) {
+    if (variables[identifier] != undefined)
       delete variables[identifier];
-    else if(constants[identifier] != undefined)
+    else if (constants[identifier] != undefined)
       delete constants[identifier];
 
     return;
-  } else if(arrays[identifier] == undefined){
+  } else if (arrays[identifier] == undefined) {
     delete arrays[identifier];
     return;
   }
 
-  throw(error.VAR_DOES_NOT_EXIST);
+  throw (error.VAR_DOES_NOT_EXIST);
 }
+
+function saveInBinding(identifier) { }

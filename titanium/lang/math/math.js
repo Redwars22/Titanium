@@ -131,7 +131,52 @@ var MathFunctions = {
     SQRT: "SQRT",
     TG: "TG"
 };
+var NumericBases = {
+    BI: 2,
+    HX: 16
+};
 function handleMathFunction(mathFunction) {
     var tokens = mathFunction.split(' ');
-    console.log(tokens);
+    var math = {
+        operation: tokens[1],
+        destination: tokens[2],
+        arg1: Number(tokens[3]),
+        arg2: tokens[4] ? Number(tokens[4]) : undefined,
+        result: undefined
+    };
+    switch (math.operation) {
+        case MathFunctions.ABS:
+            math.result = Math.abs(math.arg1);
+            break;
+        case MathFunctions.BIN:
+            math.result = math.arg1.toString(NumericBases.BI);
+            break;
+        case MathFunctions.COS:
+            math.result = Math.cos(math.arg1);
+            break;
+        case MathFunctions.HEX:
+            math.result = (math.arg1.toString(NumericBases.HX)).toUpperCase();
+            break;
+        case MathFunctions.RAND:
+            if (math.arg2 === undefined)
+                throw (error.MISSING_PARAMS);
+            math.result = Math.random() * (math.arg2 - math.arg1) + math.arg1;
+            break;
+        case MathFunctions.ROUND:
+            math.result = Math.floor(math.arg1);
+            break;
+        case MathFunctions.SIN:
+            math.result = Math.sin(math.arg1);
+            break;
+        case MathFunctions.SQRT:
+            math.result = Math.sqrt(math.arg1);
+            break;
+        case MathFunctions.TG:
+            math.result = Math.tan(math.arg1);
+            break;
+        default:
+            throw ("invalid syntax in the math function");
+    }
+    saveInBinding(math.destination);
+    console.log(math);
 }

@@ -41,3 +41,11 @@ type MathExpression = {
     operator: string;
     right: number;
 }
+
+type MathFunction = {
+    operation: string;
+    destination: string;
+    arg1: number;
+    arg2?: number | undefined;
+    result: number | string | undefined;
+}

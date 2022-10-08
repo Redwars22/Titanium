@@ -58,10 +58,10 @@ const MathLibrary = {
     },
   },
   PRINT_DEC_TO_HEX: {
-    
+
   },
   PRINT_DEC_TO_BIN: {
-    
+
   }
 };
 
@@ -96,40 +96,40 @@ function parseMathExpression(expr) {
     expression.operator = operators.MULTIPLY;
   else if (expr.match(mathExprRules.MODULUS))
     expression.operator = operators.MODULUS;
-  else throw(error.INVALID_EXPRESSION)
+  else throw (error.INVALID_EXPRESSION)
 
   const tokensArray = expr.split(expression.operator);
 
-  if(tokensArray[0].includes(' '))
+  if (tokensArray[0].includes(' '))
     expression.left = tokensArray[0].replaceAll(' ', '');
   else expression.left = tokensArray[0];
 
-  if(tokensArray[1].includes(' '))
+  if (tokensArray[1].includes(' '))
     expression.right = tokensArray[1].replaceAll(' ', '')
   else expression.right = tokensArray[1];
 
   console.log(expression);
 
-  if(isNaN(expression.left))
-    if(variables[expression.left]){
+  if (isNaN(expression.left))
+    if (variables[expression.left]) {
       expression.left = variables[expression.left];
-    } else if(constants[expression.left]){
+    } else if (constants[expression.left]) {
       expression.left = constants[expression.left];
-    } else throw(error.VAR_DOES_NOT_EXIST);
+    } else throw (error.VAR_DOES_NOT_EXIST);
 
-  if(isNaN(expression.right))
-    if(variables[expression.right]){
+  if (isNaN(expression.right))
+    if (variables[expression.right]) {
       expression.right = variables[expression.right];
-    } else if(constants[expression.right]){
+    } else if (constants[expression.right]) {
       expression.right = variables[expression.right];
-    } else throw(error.VAR_DOES_NOT_EXIST);
+    } else throw (error.VAR_DOES_NOT_EXIST);
 
   const parsedMathExpression = [];
 
   parsedMathExpression.push(expression.left);
   parsedMathExpression.push(expression.operator);
   parsedMathExpression.push(expression.right);
-  
+
   return parsedMathExpression.join(' ');
 }
 
@@ -145,8 +145,55 @@ const MathFunctions = {
   TG: "TG"
 }
 
-function handleMathFunction(mathFunction: string){
+const NumericBases = {
+  BI: 2,
+  HX: 16
+}
+
+function handleMathFunction(mathFunction: string) {
   const tokens = mathFunction.split(' ');
 
-  console.log(tokens);
+  const math = {
+    operation: tokens[1],
+    destination: tokens[2],
+    arg1: Number(tokens[3]),
+    arg2: tokens[4] ? Number(tokens[4]) : undefined,
+    result: undefined
+  } as MathFunction;
+
+  switch (math.operation) {
+    case MathFunctions.ABS:
+      math.result = Math.abs(math.arg1);
+      break;
+    case MathFunctions.BIN:
+      math.result = math.arg1.toString(NumericBases.BI)
+      break;
+    case MathFunctions.COS:
+      math.result = Math.cos(math.arg1);
+      break;
+    case MathFunctions.HEX:
+      math.result = (math.arg1.toString(NumericBases.HX)).toUpperCase();
+      break;
+    case MathFunctions.RAND:
+      if (math.arg2 === undefined) throw (error.MISSING_PARAMS);
+      math.result = Math.random() * (math.arg2! - math.arg1) + math.arg1;
+      break;
+    case MathFunctions.ROUND:
+      math.result = Math.floor(math.arg1)
+      break;
+    case MathFunctions.SIN:
+      math.result = Math.sin(math.arg1);
+      break;
+    case MathFunctions.SQRT:
+      math.result = Math.sqrt(math.arg1);
+      break;
+    case MathFunctions.TG:
+      math.result = Math.tan(math.arg1);
+      break;
+    default:
+      throw ("invalid syntax in the math function");
+  }
+
+  saveInBinding(math.destination);
+  console.log(math);
 }

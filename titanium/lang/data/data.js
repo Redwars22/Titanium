@@ -45,9 +45,9 @@ function createVariable(command) {
         }
         var typeOfVariable = checkType(command[1]);
         /*
-          COMMAND[0] = the name of the variable
-          COMMAND[1] = the value
-          */
+        COMMAND[0] = the name of the variable
+        COMMAND[1] = the value
+        */
         switch (typeOfVariable) {
             case types.STRING:
                 command[1] = command[1].replaceAll('"', "");
@@ -149,9 +149,9 @@ function getValueFromVariable(variable) {
 }
 function assignToConstant(expr) {
     /*
-      It basically creates a new constant and, if it already exists,
-      it throws an error
-      */
+    It basically creates a new constant and, if it already exists,
+    it throws an error
+    */
     var tokens = expr.replace(keywords.CONSTANT, "");
     tokens = tokens.split(" " + operators.EQUAL + " ");
     var name = tokens[0];
@@ -239,3 +239,4 @@ function deleteFromBinding(identifier) {
     }
     throw (error.VAR_DOES_NOT_EXIST);
 }
+function saveInBinding(identifier) { }
