@@ -75,14 +75,6 @@ function parseLine(command) {
             decrement(command);
             return;
         }
-        if (command.match(deleteStatement)) {
-            deleteFromBinding(command.split(' ')[1]);
-            return;
-        }
-        if (command.match(mathCommand)) {
-            handleMathFunction(command);
-            return;
-        }
         throw "Invalid token and/or character found or the command is not a valid Titanium keyword!";
     }
     catch (err) {

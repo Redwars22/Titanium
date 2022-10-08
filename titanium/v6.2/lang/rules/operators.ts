@@ -21,24 +21,23 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-var keywords = {
-    ARRAY: 'ARR ',
-    ARRAY_LENGTH: 'MAX',
-    ARRAY_LENGTH_ALT: 'LEN',
-    BOOL_TRUE: "TRUE",
-    BOOL_FALSE: "FALSE",
-    BOOL_YES: "YES",
-    BOOL_NO: "NO",
-    CONSTANT: "DEF ",
-    DECREMENT: "DEC",
-    DESTROY: "DEL",
-    INCREMENT: "INC",
-    VARIABLE: "DECL ",
-    DO: "DO",
-    EXIT: "EXIT",
-    RETURN: "RET",
-};
-var functions = {
-    PRINT: 'print',
-    GET: 'get',
-};
+
+//@ts-check
+
+const operators = {
+    ADD: '+',
+    ARRAY_DEF: '[]',
+    SUBTRACT: '-',
+    MODULUS: '%',
+    MULTIPLY: '*',
+    DIVIDE: '/',
+    TERNARY_CONDITION: '?',
+    TERNARY_IF_ELSE: ':',
+    EQUAL: '=',
+    LEFT_PARENTHESIS: '(',
+    RIGHT_PARENTHESIS: ')',
+    ARRAY_START: '[',
+    ARRAY_END: ']',
+    ARRAY_ELEMENT_SEPARATOR: ',',
+    MULTILINE_COMMENT: '$$'
+}

@@ -21,24 +21,19 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-var keywords = {
-    ARRAY: 'ARR ',
-    ARRAY_LENGTH: 'MAX',
-    ARRAY_LENGTH_ALT: 'LEN',
-    BOOL_TRUE: "TRUE",
-    BOOL_FALSE: "FALSE",
-    BOOL_YES: "YES",
-    BOOL_NO: "NO",
-    CONSTANT: "DEF ",
-    DECREMENT: "DEC",
-    DESTROY: "DEL",
-    INCREMENT: "INC",
-    VARIABLE: "DECL ",
-    DO: "DO",
-    EXIT: "EXIT",
-    RETURN: "RET",
-};
-var functions = {
-    PRINT: 'print',
-    GET: 'get',
-};
+
+const arrayDeclaration = /ARR .*[A-Za-z_] = \[.*[0-9A-Za-z_"!@]\]/gm;
+const arrayRetrieveElement = /.*[A-Za-z_]\[.*[0-9A-Za-z_]\]/gm;
+const clearConsoleCommand = /clear\(\)/g;
+const constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9\(\)]?"?/;
+const decrementStatement = /DEC .*[A-Za-z_]/;
+const incrementStatement = /INC .*[A-Za-z_]/;
+const mathCommand = /MATH/;
+const printCommand = /print\("?.*[\[\]0-9A-Z a-z!,_ ?:><=!]?"?\)/g;
+const printLineCommand = /printLine()/gm;
+const returnStatement = /(RET) (.*[0-9A-Za-z])?/gm;
+const scanfCommand = /get\(.*[A-Za-z_\[\]]\)/gi;
+const singleLineComment = /--.*[A-Za-z0-9_ ]/gi;
+const ternaryStatementRule = /.*["A-Za-z ><=!] ? .*["A-Z0-9a-z] : .*["A-Z0-9a-z]/gm; 
+const variableAssignment = /.*[A-Za-z_] = "?.*[A-Za-z0-9 ?:><=!\(\)]"?/gi;
+const variableDeclaration = /DECL .*[A-Za-z_] = "?.*[A-Za-z0-9\+]?"?/gm;

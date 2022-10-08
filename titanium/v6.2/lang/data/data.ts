@@ -248,19 +248,3 @@ function decrement(statement){
 
   throw(`you cannot increment ${varToDecrement} because it either doesn't belong to type number or doesn't exist`)
 }
-
-function deleteFromBinding(identifier: string){
-  if(searchInVariablesAndConstants(identifier)){
-    if(variables[identifier] != undefined)
-      delete variables[identifier];
-    else if(constants[identifier] != undefined)
-      delete constants[identifier];
-
-    return;
-  } else if(arrays[identifier] == undefined){
-    delete arrays[identifier];
-    return;
-  }
-
-  throw(error.VAR_DOES_NOT_EXIST);
-}

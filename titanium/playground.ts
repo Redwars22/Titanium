@@ -34,6 +34,7 @@ var info = {
         "<li>Printing simple math expressions, such as 2 + 2 or 9 % 2</li>" +
         "<li>Support for String (without special symbols such as ! @ ?), Boolean and Number</li></ol></left>",
 };
+
 window.onload = function () {
     console.log('carregou')
     Swal.fire({
@@ -50,6 +51,7 @@ window.onload = function () {
             'DECL msg = "Hello World!"\nprint(msg)\nEXIT';
     setInterval(function () { return localStorage.setItem('autosave', document.querySelector(".code-editor").innerText); }, 1500);
 };
+
 function showHelp() {
     Swal.fire({
         title: "",
@@ -58,6 +60,7 @@ function showHelp() {
         confirmButtonText: "I understand!",
     });
 }
+
 function runCode() {
     var code = document.querySelector(".code-editor").innerText;
     constants = {};
@@ -67,6 +70,7 @@ function runCode() {
     if (code)
         parseCode(code);
 }
+
 function abort() {
     (document.querySelector(".console") as HTMLDivElement).innerText = "";
     (document.querySelector(".errors-log") as HTMLDivElement).innerText = "";

@@ -1,3 +1,4 @@
+
 /*
 MIT License
 
@@ -21,24 +22,26 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-var keywords = {
-    ARRAY: 'ARR ',
-    ARRAY_LENGTH: 'MAX',
-    ARRAY_LENGTH_ALT: 'LEN',
-    BOOL_TRUE: "TRUE",
-    BOOL_FALSE: "FALSE",
-    BOOL_YES: "YES",
-    BOOL_NO: "NO",
-    CONSTANT: "DEF ",
-    DECREMENT: "DEC",
-    DESTROY: "DEL",
-    INCREMENT: "INC",
-    VARIABLE: "DECL ",
-    DO: "DO",
-    EXIT: "EXIT",
-    RETURN: "RET",
-};
-var functions = {
-    PRINT: 'print',
-    GET: 'get',
-};
+
+function checkIfIsNull(value): boolean {
+  if (value.includes(types.NULL)) return true;
+  return false;
+}
+
+function checkIfIsUndefined(value): boolean {
+  if (value.includes(types.UNDEFINED)) return true;
+  return false;
+}
+
+function parseNullValue(value) {
+  switch (value) {
+    case types.NULL:
+      return "NULL";
+      break;
+    case types.UNDEFINED:
+      return "UNDEFINED";
+      break;
+    default:
+      break;
+  }
+}

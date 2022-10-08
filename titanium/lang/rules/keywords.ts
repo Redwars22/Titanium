@@ -32,6 +32,7 @@ const keywords = {
     BOOL_NO: "NO",
     CONSTANT: "DEF ",
     DECREMENT: "DEC",
+    DESTROY: "DEL",
     INCREMENT: "INC",
     VARIABLE: "DECL ",
     DO: "DO",
@@ -41,5 +42,5 @@ const keywords = {
 
 const functions = {
     PRINT: 'print',
-    GET: 'get'
+    GET: 'get',
 }

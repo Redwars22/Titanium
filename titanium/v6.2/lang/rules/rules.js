@@ -21,24 +21,18 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-var keywords = {
-    ARRAY: 'ARR ',
-    ARRAY_LENGTH: 'MAX',
-    ARRAY_LENGTH_ALT: 'LEN',
-    BOOL_TRUE: "TRUE",
-    BOOL_FALSE: "FALSE",
-    BOOL_YES: "YES",
-    BOOL_NO: "NO",
-    CONSTANT: "DEF ",
-    DECREMENT: "DEC",
-    DESTROY: "DEL",
-    INCREMENT: "INC",
-    VARIABLE: "DECL ",
-    DO: "DO",
-    EXIT: "EXIT",
-    RETURN: "RET",
-};
-var functions = {
-    PRINT: 'print',
-    GET: 'get',
-};
+var arrayDeclaration = /ARR .*[A-Za-z_] = \[.*[0-9A-Za-z_"!@]\]/gm;
+var arrayRetrieveElement = /.*[A-Za-z_]\[.*[0-9A-Za-z_]\]/gm;
+var clearConsoleCommand = /clear\(\)/g;
+var constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9\(\)]?"?/;
+var decrementStatement = /DEC .*[A-Za-z_]/;
+var incrementStatement = /INC .*[A-Za-z_]/;
+var mathCommand = /MATH/;
+var printCommand = /print\("?.*[\[\]0-9A-Z a-z!,_ ?:><=!]?"?\)/g;
+var printLineCommand = /printLine()/gm;
+var returnStatement = /(RET) (.*[0-9A-Za-z])?/gm;
+var scanfCommand = /get\(.*[A-Za-z_\[\]]\)/gi;
+var singleLineComment = /--.*[A-Za-z0-9_ ]/gi;
+var ternaryStatementRule = /.*["A-Za-z ><=!] ? .*["A-Z0-9a-z] : .*["A-Z0-9a-z]/gm;
+var variableAssignment = /.*[A-Za-z_] = "?.*[A-Za-z0-9 ?:><=!\(\)]"?/gi;
+var variableDeclaration = /DECL .*[A-Za-z_] = "?.*[A-Za-z0-9\+]?"?/gm;

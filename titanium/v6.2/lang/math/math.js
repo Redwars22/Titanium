@@ -120,18 +120,3 @@ function parseMathExpression(expr) {
     parsedMathExpression.push(expression.right);
     return parsedMathExpression.join(' ');
 }
-var MathFunctions = {
-    ABS: "ABS",
-    BIN: "BIN",
-    COS: "COS",
-    HEX: "HEX",
-    RAND: "RAND",
-    ROUND: "ROUND",
-    SIN: "SIN",
-    SQRT: "SQRT",
-    TG: "TG"
-};
-function handleMathFunction(mathFunction) {
-    var tokens = mathFunction.split(' ');
-    console.log(tokens);
-}

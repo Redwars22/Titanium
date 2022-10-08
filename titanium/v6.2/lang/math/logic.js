@@ -21,24 +21,29 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-var keywords = {
-    ARRAY: 'ARR ',
-    ARRAY_LENGTH: 'MAX',
-    ARRAY_LENGTH_ALT: 'LEN',
-    BOOL_TRUE: "TRUE",
-    BOOL_FALSE: "FALSE",
-    BOOL_YES: "YES",
-    BOOL_NO: "NO",
-    CONSTANT: "DEF ",
-    DECREMENT: "DEC",
-    DESTROY: "DEL",
-    INCREMENT: "INC",
-    VARIABLE: "DECL ",
-    DO: "DO",
-    EXIT: "EXIT",
-    RETURN: "RET",
+var logicExprRules = {
+    EQUAL: /.*[0-9] == .*[0-9]/,
+    EQUAL_ALTERNATIVE: /.*[0-9] IS .*[0-9]/,
+    NOT_EQUAL: /.*[0-9] != .*[0-9]/,
+    GREATER_THAN: /.*[0-9] > .*[0-9]/,
+    LESS_THAN: /.*[0-9] < .*[0-9]/,
+    GREATER_OR_EQUAL: /.*[0-9] >= .*[0-9]/,
+    LESS_OR_EQUAL: /.*[0-9] <= .*[0-9]/,
 };
-var functions = {
-    PRINT: 'print',
-    GET: 'get',
-};
+function checkIfIsLogicExpr(expr) {
+    if (expr.match(logicExprRules.EQUAL))
+        return true;
+    if (expr.match(logicExprRules.EQUAL_ALTERNATIVE))
+        return true;
+    if (expr.match(logicExprRules.NOT_EQUAL))
+        return true;
+    if (expr.match(logicExprRules.GREATER_THAN))
+        return true;
+    if (expr.match(logicExprRules.GREATER_OR_EQUAL))
+        return true;
+    if (expr.match(logicExprRules.LESS_THAN))
+        return true;
+    if (expr.match(logicExprRules.LESS_OR_EQUAL))
+        return true;
+    return false;
+}

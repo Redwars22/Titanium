@@ -132,21 +132,3 @@ function parseMathExpression(expr) {
   
   return parsedMathExpression.join(' ');
 }
-
-const MathFunctions = {
-  ABS: "ABS",
-  BIN: "BIN",
-  COS: "COS",
-  HEX: "HEX",
-  RAND: "RAND",
-  ROUND: "ROUND",
-  SIN: "SIN",
-  SQRT: "SQRT",
-  TG: "TG"
-}
-
-function handleMathFunction(mathFunction: string){
-  const tokens = mathFunction.split(' ');
-
-  console.log(tokens);
-}

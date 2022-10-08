@@ -1,3 +1,4 @@
+
 /*
 MIT License
 
@@ -21,24 +22,21 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-var keywords = {
-    ARRAY: 'ARR ',
-    ARRAY_LENGTH: 'MAX',
-    ARRAY_LENGTH_ALT: 'LEN',
-    BOOL_TRUE: "TRUE",
-    BOOL_FALSE: "FALSE",
-    BOOL_YES: "YES",
-    BOOL_NO: "NO",
-    CONSTANT: "DEF ",
-    DECREMENT: "DEC",
-    DESTROY: "DEL",
-    INCREMENT: "INC",
-    VARIABLE: "DECL ",
-    DO: "DO",
-    EXIT: "EXIT",
-    RETURN: "RET",
-};
-var functions = {
-    PRINT: 'print',
-    GET: 'get',
-};
+
+function parseBoolean(value) {
+  if (value == keywords.BOOL_TRUE || value == keywords.BOOL_YES) return true;
+
+  if (value == keywords.BOOL_FALSE || value == keywords.BOOL_NO) return false;
+}
+
+function checkIfIsBoolean(value): boolean {
+  if (
+    value.includes(keywords.BOOL_TRUE) ||
+    value.includes(keywords.BOOL_FALSE) ||
+    value.includes(keywords.BOOL_YES) ||
+    value.includes(keywords.BOOL_NO)
+  )
+    return true;
+
+  return false;
+}
