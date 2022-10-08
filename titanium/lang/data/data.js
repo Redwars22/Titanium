@@ -25,9 +25,9 @@ var variables = {};
 var constants = {};
 var arrays = {};
 function searchInVariablesAndConstants(name) {
-    if (variables[name] != undefined)
+    if (variables[name] != undefined || variables[name] == 0)
         return variables[name];
-    if (constants[name] != undefined)
+    if (constants[name] != undefined || constants[name] == 0)
         return constants[name];
     throw (error.VAR_DOES_NOT_EXIST);
 }
@@ -229,4 +229,12 @@ function deleteFromBinding(identifier) {
     }
     throw (error.VAR_DOES_NOT_EXIST);
 }
-function saveInBinding(identifier) { }
+function saveInBinding(identifier, data) {
+    if (searchInVariablesAndConstants(identifier) !== undefined) {
+        if (variables[identifier] !== undefined || variables[identifier] == 0) {
+            variables[identifier] = data;
+            return;
+        }
+    }
+    throw (error.VAR_DOES_NOT_EXIST);
+}

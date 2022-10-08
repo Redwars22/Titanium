@@ -150,6 +150,5 @@ function handleMathFunction(mathFunction) {
         default:
             throw ("invalid syntax in the math function");
     }
-    saveInBinding(math.destination);
-    console.log(math);
+    saveInBinding(math.destination, math.result);
 }

@@ -27,9 +27,9 @@ const constants = {};
 const arrays = {};
 
 function searchInVariablesAndConstants(name: string) {
-  if (variables[name] != undefined) return variables[name];
+  if (variables[name] != undefined || variables[name] == 0) return variables[name];
 
-  if (constants[name] != undefined) return constants[name];
+  if (constants[name] != undefined || constants[name] == 0) return constants[name];
 
   throw (error.VAR_DOES_NOT_EXIST);
 }
@@ -253,4 +253,13 @@ function deleteFromBinding(identifier: string) {
   throw (error.VAR_DOES_NOT_EXIST);
 }
 
-function saveInBinding(identifier) { }
+function saveInBinding(identifier: string, data: any) {
+  if (searchInVariablesAndConstants(identifier) !== undefined) {
+    if (variables[identifier] !== undefined || variables[identifier] == 0) {
+      variables[identifier] = data;
+      return;
+    }
+  }
+
+  throw (error.VAR_DOES_NOT_EXIST);
+}
