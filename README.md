@@ -7,10 +7,8 @@ Since its goal was to be a very minimalist programming language, it contains few
 However, I might create a superset of it in the future which would include those aforementioned things (just like TypeScript is a superset of JavaScript). Also, two of Titanium’s outstanding characteristics are the use of capitalized keywords, inspired by COBOL, and the use of short keywords, with an average of three or four letters. It’s also worth mentioning that spaces in Titanium are mandatory, in order to keep the code readable and organized.
 
 ```jsx
-START
-    --This is a single-line comment in Titanium
-    print("Hello, world!")
-END
+--This is a single-line comment in Titanium
+print("Hello, world!")
 ```
 
 You can try Titanium in its playground by clicking in the link below:
@@ -19,6 +17,4 @@ You can try Titanium in its playground by clicking in the link below:
 
 ## USEFUL LINKS
 
-[TITANIUM PROGRESS TRACKER](https://leoandrew.notion.site/TITANIUM-PROGRESS-TRACKER-821957e6a8c44f8bb533124254b1f9e6)
-
-[TITANIUM PROGRAMMING LANGUAGE]()
+[TITANIUM PROGRAMMING LANGUAGE](https://leoandrew.notion.site/TITANIUM-PROGRAMMING-LANGUAGE-57522923b2d64fc4ad2a98408289e23e)
