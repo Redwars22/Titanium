@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="module" src="https://unpkg.com/@fluentui/web-components"></script>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Ubuntu:wght@300&display=swap');
+		
+		body {
+			font-family: 'Ubuntu', sans-serif;
+			margin: 0px;
+			color: #036ac4 !important;
+		}
+		
+		header {
+			display: flex;
+			font-family: 'Rubik Mono One', sans-serif;
+			align-items: center;
+			gap: 20px;
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+		
+		main {
+			text-align: center;
+		}
+		
+		.titanium-logo {
+			width: 35px;
+			height: 35px;
+		}  
+		
+		.blue-container {
+			width: 100%;
+			background-color: #4c9ae8;
+			height: 30px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 17px;
+			padding: 5px;
+		}
+		
+		.white {
+			color: white;
+		}
+		
+		.card {
+			--card-width: 80vw;
+			color: #036ac4;
+			padding: 14px;
+			display: flex;
+			gap: 35px;
+			align-items: center;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 10px;
+			padding: 15px;
+		}
+		
+		.code-sample {
+			border-radius: 10px;
+			border: 2px solid #036ac4;
+			padding: 10px;
+			background-color: black;
+			width: 550px;
+			height: 130px;
+			filter: saturate(400%);
+		}
+		
+		.horizontal-layout {
+			display: flex;
+			gap: 25px;
+			padding-left: 110px;
+			padding-right: 110px;
+		}
+		
+		.features-card {
+			--card-height: 240px;
+			--card-width: 350px;
+			color: #036ac4;
+			padding: 10px;
+		}
+		
+		.icon {
+			font-size: 45px;
+		}
+		
+		.smaller-card {
+			padding: 10px;
+		}
+	</style>
+	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	  <script>
+	  	function openPlayground(){
+			window.open('https://redwars22.github.io/Titanium/titanium/playground');
+		}
+		  
+		function openDoc(){
+			window.open('https://redwars22.github.io/Titanium/titanium/titanium_cheatsheet.pdf');
+		}
+		  
+		function getSource(){
+			window.open('https://github.com/Redwars22/Titanium');
+		}
+	  </script>
+  </head>
+	<body>
+		<header>
+			<img src="https://redwars22.github.io/Titanium/titanium.png" class="titanium-logo"/>
+			<h1 style="color: #4c9ae8; font-size: 19px;">TITANIUM</h1>
+			<fluent-button appearance="accent" onclick="getSource()">Source Code</fluent-button>
+			<fluent-button appearance="accent" onclick="openDoc()">Documentation</fluent-button>
+			<fluent-button appearance="accent" onclick="openPlayground()">Playground</fluent-button>
+			<p style="font-family: 'Ubuntu', sans-serif; margin-left: auto;">Created with <i class="bi bi-heart"></i> by <a style="text-decoration: none; color: red;" href="https://github.com/Redwars22/">AndrewNation(@Redwars22)</a></p>
+		</header>
+		
+		<main>
+			<fluent-card class="card">
+				<div>
+					<h1>A minimalistic experimental interpreted programming language!</h1>
+					<p>Titanium's goal was initially to help me understand how programming
+					languages work and are built, but you can also try it out and write
+					your first programs in Titanium too!
+					</p>
+					<fluent-button appearance="accent" onclick="openPlayground()">Try Titanium Now</fluent-button>
+				</div>
+				<img class="code-sample" src="titanium_code.png"/>
+			</fluent-card>
+			<div class="blue-container">
+				<p style="font-size: 19px;">
+					<a class="white" href="https://github.com/Redwars22/Titanium/releases/tag/v1.0.0-beta">
+						🎉 Titanium 1.0 is now available and is currently in beta!
+					</a>
+				</p>
+			</div>
+			<h2>What is Titanium?</h2>
+			<div class="horizontal-layout">
+				<fluent-card class="features-card">
+					<i class="icon bi bi-file-earmark-code"></i>
+					<h3>Minimalistic</h3>
+					<p>
+						Titanium was designed to have an easy-to-read and clean syntax
+						and to be easy to learn
+					</p>
+				</fluent-card>
+				<fluent-card class="features-card">
+					<i class="icon bi bi-share"></i>
+					<h3>Open-source</h3>
+					<p>
+						You can freely download, read, and modify Titanium's source code. 
+						Wanna add new features? Then go for it!
+					</p>
+				</fluent-card>
+				<fluent-card class="features-card">
+					<i class="icon bi bi-cpu"></i>
+					<h3>Portable</h3>
+					<p>
+						Titanium was written in TypeScript, which ensures that it can be compilled, adapted, and ported
+						to run virtually anywhere.
+					</p>
+				</fluent-card>
+			</div>
+			<h2>Get Started</h2>
+			<div class="horizontal-layout">
+				<fluent-card class="smaller-card">
+					<i class="icon bi bi-journal-album"></i>
+					<h3>Documentation</h3>
+					<fluent-button appearance="accent" onclick="openDoc()">Learn Titanium</fluent-button>
+				</fluent-card>
+				<fluent-card class="smaller-card">
+					<i class="icon bi bi-tools"></i>
+					<h3>Playground</h3>
+					<fluent-button appearance="accent" onclick="openPlayground()">Try in Your Browser</fluent-button>
+				</fluent-card>
+				<fluent-card class="smaller-card">
+					<i class="icon bi bi-download"></i>
+					<h3>Download</h3>
+					<fluent-button appearance="accent" onclick="getSource()">Get Titanium's Source Code</fluent-button>
+				</fluent-card>
+			</div>
+		</main>
+	</body>
+</html>
