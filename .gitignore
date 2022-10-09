@@ -1,4 +1,5 @@
 .tar.gz
 release/
 node_modules/
-titanium/alchemist
+titanium/.alchemist
+.py
