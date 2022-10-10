@@ -3,3 +3,4 @@ release/
 node_modules/
 titanium/.alchemist
 .py
+titanium.js
