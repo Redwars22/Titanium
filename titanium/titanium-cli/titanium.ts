@@ -74,6 +74,7 @@ const keywords = {
     DO: "DO",
     EXIT: "EXIT",
     RETURN: "RET",
+    REPEAT: "REP"
 }
 
 const operators = {
@@ -108,6 +109,7 @@ const incrementStatement = /INC .*[A-Za-z_]/;
 const mathCommand = /MATH .*[A-Za-z0-9\[\]_ ]/;
 const printCommand = /print\("?.*[\[\]0-9A-Z a-z!,_ ?:><=!]?"?\)/g;
 const printLineCommand = /printLine()/gm;
+const repeatCommand = /REP .*[0-9]( )?,( )?.*/g;
 const returnStatement = /(RET) (.*[0-9A-Za-z])?/gm;
 const scanfCommand = /get\(.*[A-Za-z_\[\]]\)/gi;
 const singleLineComment = /--.*[A-Za-z0-9_ ]/gi;
@@ -145,6 +147,11 @@ const defaultUserInput = require('prompt-sync')();
 
 function parseLine(command) {
     try {
+        if (command.match(repeatCommand)) {
+            handleRepeatStatement(command);
+            return;
+        }
+
         /* -------------------------- COMMENTS -------------------------- */
         if (command.match(singleLineComment)) {
             return;
@@ -322,7 +329,8 @@ const error = {
     RANDOM_INVALID_PARAM: "invalid parameters to the random() function. Both parameters should be of type number",
     UNKNOWN_TYPE: "Titanium couldn't guess the type automatically. Are you sure you used one of the supported types?",
     CANNOT_MODIFY_ARRY: "You cannot modify or redeclare an array that already exists",
-    MISSING_PARAMS: "one or more of the required parameters is missing"
+    MISSING_PARAMS: "one or more of the required parameters is missing",
+    NOT_NUMBER: "the argument of the function should be of number type"
 }
 
 function throwError(err, line) {
@@ -1114,6 +1122,31 @@ function parseNullValue(value) {
         default:
             break;
     }
+}
+
+function handleRepeatStatement(statement: string): void {
+    let tokens = statement.split(',');
+    tokens[0] = tokens[0].replace(keywords.REPEAT, "").trim();
+
+    //tokens[0] = the number of iterations
+    //tokens[1] = command to be executed
+
+    let iteration = 0;
+
+    if(!isNaN(tokens[0])){
+        if(tokens[1]){
+            while(iteration < tokens[0]){
+                parseLine(tokens[1].trim());
+                iteration++;
+            }
+
+            return;
+        } else {
+            throw("the second argument must not be empty");
+        }
+    }
+
+    throw(error.NOT_NUMBER);
 }
 
 function checkIfIsNumber(value): boolean {

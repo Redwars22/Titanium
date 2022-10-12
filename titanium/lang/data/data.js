@@ -201,7 +201,7 @@ function increment(statement) {
     var currentValue = variables[varToIncrement];
     if (currentValue != undefined)
         if (!isNaN(currentValue)) {
-            variables[varToIncrement] = currentValue + 1;
+            variables[varToIncrement] = Number(currentValue) + 1;
             return;
         }
     throw ("you cannot increment ".concat(varToIncrement, " because it either doesn't belong to type number or doesn't exist"));
@@ -212,7 +212,7 @@ function decrement(statement) {
     var currentValue = variables[varToDecrement];
     if (currentValue != undefined)
         if (!isNaN(currentValue)) {
-            variables[varToDecrement] = currentValue - 1;
+            variables[varToDecrement] = Number(currentValue) - 1;
             return;
         }
     throw ("you cannot increment ".concat(varToDecrement, " because it either doesn't belong to type number or doesn't exist"));
