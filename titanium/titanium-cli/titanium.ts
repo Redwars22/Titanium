@@ -660,7 +660,7 @@ function increment(statement) {
 
     if (currentValue != undefined)
         if (!isNaN(currentValue)) {
-            variables[varToIncrement] = currentValue + 1;
+            variables[varToIncrement] = Number(currentValue) + 1;
             return;
         }
 
@@ -674,7 +674,7 @@ function decrement(statement) {
 
     if (currentValue != undefined)
         if (!isNaN(currentValue)) {
-            variables[varToDecrement] = currentValue - 1;
+            variables[varToDecrement] = Number(currentValue) - 1;
             return;
         }
 
