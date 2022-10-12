@@ -38,6 +38,7 @@ const keywords = {
     DO: "DO",
     EXIT: "EXIT",
     RETURN: "RET",
+    REPEAT: "REP"
 }
 
 const functions = {

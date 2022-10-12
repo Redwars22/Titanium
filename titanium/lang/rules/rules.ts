@@ -32,6 +32,7 @@ const incrementStatement = /INC .*[A-Za-z_]/;
 const mathCommand = /MATH .*[A-Za-z0-9\[\]_ ]/;
 const printCommand = /print\("?.*[\[\]0-9A-Z a-z!,_ ?:><=!]?"?\)/g;
 const printLineCommand = /printLine()/gm;
+const repeatCommand = /REP .*[0-9]( )?,( )?.*/g;
 const returnStatement = /(RET) (.*[0-9A-Za-z])?/gm;
 const scanfCommand = /get\(.*[A-Za-z_\[\]]\)/gi;
 const singleLineComment = /--.*[A-Za-z0-9_ ]/gi;

@@ -22,8 +22,38 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+function handleRepeatStatement(statement: string): void {
+  let tokens = statement.split(',');
+  tokens[0] = tokens[0].replace(keywords.REPEAT, "").trim();
+
+  //tokens[0] = the number of iterations
+  //tokens[1] = command to be executed
+
+  let iteration = 0;
+
+  if(!isNaN(tokens[0])){
+      if(tokens[1]){
+          while(iteration < tokens[0]){
+              parseLine(tokens[1].trim());
+              iteration++;
+          }
+
+          return;
+      } else {
+          throw("the second argument must not be empty");
+      }
+  }
+
+  throw(error.NOT_NUMBER);
+}
+
 function parseLine(command) {
   try {
+    if (command.match(repeatCommand)) {
+      handleRepeatStatement(command);
+      return;
+    }
+
     /* -------------------------- COMMENTS -------------------------- */
     if (command.match(singleLineComment)) {
       return;
@@ -46,7 +76,7 @@ function parseLine(command) {
       return;
     }
 
-    if (command.match(printLineCommand)){
+    if (command.match(printLineCommand)) {
       printLine();
       return;
     }
@@ -72,19 +102,19 @@ function parseLine(command) {
       assignToVariable(command);
       return;
     }
-    
-    if (command.match(incrementStatement)) { 
-      increment(command); 
-      return; 
+
+    if (command.match(incrementStatement)) {
+      increment(command);
+      return;
     }
 
-    if (command.match(decrementStatement)) { 
-      decrement(command); 
-      return; 
+    if (command.match(decrementStatement)) {
+      decrement(command);
+      return;
     }
 
     if (command.match(deleteStatement)) {
-      deleteFromBinding(command.split(' ')[1]);
+      deleteFromBinding(command.split(" ")[1]);
       return;
     }
 

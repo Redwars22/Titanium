@@ -31,6 +31,7 @@ var incrementStatement = /INC .*[A-Za-z_]/;
 var mathCommand = /MATH .*[A-Za-z0-9\[\]_ ]/;
 var printCommand = /print\("?.*[\[\]0-9A-Z a-z!,_ ?:><=!]?"?\)/g;
 var printLineCommand = /printLine()/gm;
+var repeatCommand = /REP .*[0-9]( )?,( )?.*/g;
 var returnStatement = /(RET) (.*[0-9A-Za-z])?/gm;
 var scanfCommand = /get\(.*[A-Za-z_\[\]]\)/gi;
 var singleLineComment = /--.*[A-Za-z0-9_ ]/gi;

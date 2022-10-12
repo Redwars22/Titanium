@@ -37,6 +37,7 @@ var keywords = {
     DO: "DO",
     EXIT: "EXIT",
     RETURN: "RET",
+    REPEAT: "REP"
 };
 var functions = {
     PRINT: 'print',

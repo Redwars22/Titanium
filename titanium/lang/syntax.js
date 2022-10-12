@@ -21,8 +21,32 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+function handleRepeatStatement(statement) {
+    var tokens = statement.split(',');
+    tokens[0] = tokens[0].replace(keywords.REPEAT, "").trim();
+    //tokens[0] = the number of iterations
+    //tokens[1] = command to be executed
+    var iteration = 0;
+    if (!isNaN(tokens[0])) {
+        if (tokens[1]) {
+            while (iteration < tokens[0]) {
+                parseLine(tokens[1].trim());
+                iteration++;
+            }
+            return;
+        }
+        else {
+            throw ("the second argument must not be empty");
+        }
+    }
+    throw (error.NOT_NUMBER);
+}
 function parseLine(command) {
     try {
+        if (command.match(repeatCommand)) {
+            handleRepeatStatement(command);
+            return;
+        }
         /* -------------------------- COMMENTS -------------------------- */
         if (command.match(singleLineComment)) {
             return;
@@ -71,7 +95,7 @@ function parseLine(command) {
             return;
         }
         if (command.match(deleteStatement)) {
-            deleteFromBinding(command.split(' ')[1]);
+            deleteFromBinding(command.split(" ")[1]);
             return;
         }
         if (command.match(mathCommand)) {
