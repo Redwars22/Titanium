@@ -24,6 +24,7 @@ SOFTWARE.
 
 const arrayDeclaration = /ARR .*[A-Za-z_] = \[.*[0-9A-Za-z_"!@]\]/gm;
 const arrayRetrieveElement = /.*[A-Za-z_]\[.*[0-9A-Za-z_]\]/gm;
+const blockStatement = /.*[A-Za-z_]:/g;
 const clearConsoleCommand = /clear\(\)/g;
 const constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9\(\)]?"?/;
 const decrementStatement = /DEC .*[A-Za-z_]/;

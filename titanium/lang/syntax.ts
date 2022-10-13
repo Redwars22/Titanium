@@ -48,7 +48,11 @@ function handleRepeatStatement(statement: string): void {
 }
 
 function parseLine(command) {
+  command = command.trim();
+
   try {
+    if (command.match(blockStatement)) return;
+
     if (command.match(repeatCommand)) {
       handleRepeatStatement(command);
       return;

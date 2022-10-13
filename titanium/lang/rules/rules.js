@@ -23,6 +23,7 @@ SOFTWARE.
 */
 var arrayDeclaration = /ARR .*[A-Za-z_] = \[.*[0-9A-Za-z_"!@]\]/gm;
 var arrayRetrieveElement = /.*[A-Za-z_]\[.*[0-9A-Za-z_]\]/gm;
+var blockStatement = /.*[A-Za-z_]:/g;
 var clearConsoleCommand = /clear\(\)/g;
 var constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9\(\)]?"?/;
 var decrementStatement = /DEC .*[A-Za-z_]/;

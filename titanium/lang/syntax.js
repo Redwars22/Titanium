@@ -42,7 +42,11 @@ function handleRepeatStatement(statement) {
     throw (error.NOT_NUMBER);
 }
 function parseLine(command) {
+    command = command.trim();
+    
     try {
+        if (command.match(blockStatement)) return;
+
         if (command.match(repeatCommand)) {
             handleRepeatStatement(command);
             return;
