@@ -1174,6 +1174,11 @@ function mainLoop() {
     parseLine(command);
 }
 
+const terminal = require('terminal-kit').terminal;
+terminal.clear();
+terminal.bold.blue();
+terminal.windowTitle("🛠️ Titanium CLI - Andrew Toolchain");
+
 console.log("Welcome to 🛠️ Andrew Toolchain, Titanium's official CLI interpreter written in TypeScript.");
 console.log("Before you continue, I'd like to thank my friends Gustavo Nogueira, Gustavo A. Tilpe, and Matheus do Espírito Santo for all the motivation and support with this project. ❤️");
 console.log("Please visit Titanium's official repo here: https://github.com/Redwars22/Titanium");

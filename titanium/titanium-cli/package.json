@@ -9,6 +9,10 @@
   "author": "Redwars22",
   "license": "ISC",
   "dependencies": {
-    "prompt-sync": "^4.2.0"
+    "prompt-sync": "^4.2.0",
+    "terminal-kit": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.0"
   }
 }
