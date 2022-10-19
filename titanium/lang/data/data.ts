@@ -189,6 +189,9 @@ function assignToConstant(expr) {
       case types.NULL || types.UNDEFINED:
         data = parseNullValue(data);
         break;
+      case types.STRING:
+        constants[name] = data;
+        break;
       case "mathExpr":
         constants[name] = eval(parseMathExpression(data));
         break;
