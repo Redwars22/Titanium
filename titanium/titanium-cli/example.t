@@ -1,3 +1,2 @@
-_block:
-    DEF x = 10
-    print(x)
+_program:
+    print("Entry")

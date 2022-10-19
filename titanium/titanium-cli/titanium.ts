@@ -147,6 +147,8 @@ function checkType(value): string {
 const defaultUserInput = require('prompt-sync')();
 
 function parseLine(command) {
+    command = command.trim();
+
     try {
         if (command.match(blockStatement)) return;
 
