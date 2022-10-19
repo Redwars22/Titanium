@@ -4,3 +4,5 @@ get(x)
 print("Valor final: ")
 REP 18, INC x
 print(x)
+DEF y = "aaaa"
+print(y)

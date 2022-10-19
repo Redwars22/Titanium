@@ -247,6 +247,7 @@ function parseLine(command) {
 
         throw "Invalid token and/or character found or the command is not a valid Titanium keyword!";
     } catch (err) {
+        console.log('FALHOU AQUI: ', command);
         throwError(err, currentLine);
         hasThrownAnError = true;
         isRunning = false;
@@ -1136,20 +1137,20 @@ function handleRepeatStatement(statement: string): void {
 
     let iteration = 0;
 
-    if(!isNaN(tokens[0])){
-        if(tokens[1]){
-            while(iteration < tokens[0]){
+    if (!isNaN(tokens[0])) {
+        if (tokens[1]) {
+            while (iteration < tokens[0]) {
                 parseLine(tokens[1].trim());
                 iteration++;
             }
 
             return;
         } else {
-            throw("the second argument must not be empty");
+            throw ("the second argument must not be empty");
         }
     }
 
-    throw(error.NOT_NUMBER);
+    throw (error.NOT_NUMBER);
 }
 
 function checkIfIsNumber(value): boolean {
@@ -1159,10 +1160,10 @@ function checkIfIsNumber(value): boolean {
 }
 
 function mainLoop() {
-    const command = defaultUserInput("👻: ");
+    const titanium_command = defaultUserInput("👻: ");
 
-    if (command.match(/titanium .*[A-Za-z_]\.t/)) {
-        const filename = command.replace("titanium ", "");
+    if (titanium_command.match(/titanium .*[A-Za-z_]\.t/)) {
+        const filename = titanium_command.replace("titanium ", "");
         var file = require('fs');
 
         file.readFile(filename, 'utf-8', (err, data) => {
@@ -1172,9 +1173,10 @@ function mainLoop() {
         })
 
         isRunning = false;
+        return;
     }
 
-    parseLine(command);
+    parseLine(titanium_command);
 }
 
 const terminal = require('terminal-kit').terminal;
