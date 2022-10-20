@@ -36,6 +36,7 @@ const printLineCommand = /printLine()/gm;
 const repeatCommand = /REP .*[0-9]( )?,( )?.*/g;
 const returnStatement = /(RET) (.*[0-9A-Za-z])?/gm;
 const scanfCommand = /get\(.*[A-Za-z_\[\]]\)/gi;
+const sleepStatement = /SLEEP .*[0-9]/g;
 const singleLineComment = /--.*[A-Za-z0-9_ ]/gi;
 const ternaryStatementRule = /.*["A-Za-z ><=!] ? .*["A-Z0-9a-z] : .*["A-Z0-9a-z]/gm; 
 const variableAssignment = /.*[A-Za-z_] = "?.*[A-Za-z0-9 ?:><=!\(\)]"?/gi;

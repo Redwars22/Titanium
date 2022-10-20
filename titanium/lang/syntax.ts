@@ -31,20 +31,36 @@ function handleRepeatStatement(statement: string): void {
 
   let iteration = 0;
 
-  if(!isNaN(tokens[0])){
-      if(tokens[1]){
-          while(iteration < tokens[0]){
-              parseLine(tokens[1].trim());
-              iteration++;
-          }
-
-          return;
-      } else {
-          throw("the second argument must not be empty");
+  if (!isNaN(tokens[0])) {
+    if (tokens[1]) {
+      while (iteration < tokens[0]) {
+        parseLine(tokens[1].trim());
+        iteration++;
       }
+
+      return;
+    } else {
+      throw ("the second argument must not be empty");
+    }
   }
 
-  throw(error.NOT_NUMBER);
+  throw (error.NOT_NUMBER);
+}
+
+function handleSleepStatement(command) {
+  let tokens = command.split(' ');
+
+  if (Number(tokens[1]) == 0)
+    throw (error.SLEEP_INVALID_ARG);
+  else if (Number(tokens[1]) > 0) {
+    const sleep = tokens[1];
+    setTimeout(() => { }, sleep);
+    return;
+  }
+  else if (Number(tokens[1]) < 0)
+    throw (error.SLEEP_INVALID_ARG);
+
+  throw ('invalid argument given to the sleep function')
 }
 
 function parseLine(command) {
@@ -57,6 +73,11 @@ function parseLine(command) {
       handleRepeatStatement(command);
       return;
     }
+
+    if (command.match(sleepStatement)) {
+      handleSleepStatement(command);
+      return;
+    };
 
     /* -------------------------- COMMENTS -------------------------- */
     if (command.match(singleLineComment)) {

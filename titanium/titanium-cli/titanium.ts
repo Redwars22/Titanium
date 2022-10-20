@@ -74,7 +74,8 @@ const keywords = {
     DO: "DO",
     EXIT: "EXIT",
     RETURN: "RET",
-    REPEAT: "REP"
+    REPEAT: "REP",
+    SLEEP: "SLEEP"
 }
 
 const operators = {
@@ -114,6 +115,7 @@ const repeatCommand = /REP .*[0-9]( )?,( )?.*/g;
 const returnStatement = /(RET) (.*[0-9A-Za-z])?/gm;
 const scanfCommand = /get\(.*[A-Za-z_\[\]]\)/gi;
 const singleLineComment = /--.*[A-Za-z0-9_ ]/gi;
+const sleepStatement = /SLEEP .*[0-9]/g;
 const ternaryStatementRule = /.*["A-Za-z ><=!] ? .*["A-Z0-9a-z] : .*["A-Z0-9a-z]/gm;
 const variableAssignment = /.*[A-Za-z_] = "?.*[A-Za-z0-9 ?:><=!\(\)]"?/gi;
 const variableDeclaration = /DECL .*[A-Za-z_] = "?.*[A-Za-z0-9\+]?"?/gm;
@@ -122,7 +124,6 @@ const functions = {
     PRINT: 'print',
     GET: 'get',
 }
-
 
 const string = /\".*\"/gm;
 
@@ -156,6 +157,11 @@ function parseLine(command) {
             handleRepeatStatement(command);
             return;
         }
+
+        if (command.match(sleepStatement)) {
+            handleSleepStatement(command);
+            return;
+        };
 
         /* -------------------------- COMMENTS -------------------------- */
         if (command.match(singleLineComment)) {
@@ -252,7 +258,7 @@ function parseLine(command) {
 
         throw "Invalid token and/or character found or the command is not a valid Titanium keyword!";
     } catch (err) {
-        console.log('FALHOU AQUI: ', command);
+        console.log('At ', command);
         throwError(err, currentLine);
         hasThrownAnError = true;
         isRunning = false;
@@ -328,6 +334,23 @@ function parseCode(code) {
     }
 }
 
+function handleSleepStatement(command) {
+    let tokens = command.split(' ');
+
+    if (Number(tokens[1]) == 0)
+        throw (error.SLEEP_INVALID_ARG);
+    else if (Number(tokens[1]) > 0) {
+        const sleep = tokens[1];
+        setTimeout(() => { }, sleep);
+        return;
+    }
+    else if (Number(tokens[1]) < 0)
+        throw (error.SLEEP_INVALID_ARG);
+
+    throw ('invalid argument given to the sleep function')
+}
+
+
 const error = {
     VAR_DOES_NOT_EXIST: "the variable/constant you tried to access doesn't exist",
     INVALID_EXPRESSION: "the expression is invalid or the variable doesn't exist",
@@ -336,7 +359,8 @@ const error = {
     UNKNOWN_TYPE: "Titanium couldn't guess the type automatically. Are you sure you used one of the supported types?",
     CANNOT_MODIFY_ARRY: "You cannot modify or redeclare an array that already exists",
     MISSING_PARAMS: "one or more of the required parameters is missing",
-    NOT_NUMBER: "the argument of the function should be of number type"
+    NOT_NUMBER: "the argument of the function should be of number type",
+    SLEEP_INVALID_ARG: "the argument of the sleep function must be an integer number greater than 0",
 }
 
 function throwError(err, line) {
@@ -914,6 +938,8 @@ const MathFunctions = {
     BIN: "BIN",
     COS: "COS",
     HEX: "HEX",
+    PI: "PI",
+    POW: "POW",
     RAND: "RAND",
     ROUND: "ROUND",
     SIN: "SIN",
@@ -949,6 +975,10 @@ function handleMathFunction(mathFunction: string) {
             break;
         case MathFunctions.HEX:
             math.result = (math.arg1.toString(NumericBases.HX)).toUpperCase();
+            break;
+        case MathFunctions.POW:
+            if (math.arg2 === undefined) throw (error.MISSING_PARAMS);
+            math.result = Math.pow(math.arg1, math.arg2);
             break;
         case MathFunctions.RAND:
             if (math.arg2 === undefined) throw (error.MISSING_PARAMS);
@@ -1143,8 +1173,8 @@ function handleRepeatStatement(statement: string): void {
     let iteration = 0;
 
     if (!isNaN(tokens[0])) {
-        if (tokens[1]) {
-            while (iteration < tokens[0]) {
+        if (!(Number(tokens[1]) == 0 && Number(tokens[1]) < 0)) {
+            while (iteration < Number(tokens[0])) {
                 parseLine(tokens[1].trim());
                 iteration++;
             }

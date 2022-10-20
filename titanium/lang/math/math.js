@@ -98,6 +98,7 @@ var MathFunctions = {
     BIN: "BIN",
     COS: "COS",
     HEX: "HEX",
+    POW: "POW",
     RAND: "RAND",
     ROUND: "ROUND",
     SIN: "SIN",
@@ -129,6 +130,11 @@ function handleMathFunction(mathFunction) {
             break;
         case MathFunctions.HEX:
             math.result = (math.arg1.toString(NumericBases.HX)).toUpperCase();
+            break;
+        case MathFunctions.POW:
+            if (math.arg2 === undefined)
+                throw (error.MISSING_PARAMS);
+            math.result = Math.pow(math.arg1, math.arg2);
             break;
         case MathFunctions.RAND:
             if (math.arg2 === undefined)

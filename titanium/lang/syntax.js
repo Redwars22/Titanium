@@ -41,6 +41,19 @@ function handleRepeatStatement(statement) {
     }
     throw (error.NOT_NUMBER);
 }
+function handleSleepStatement(command) {
+    var tokens = command.split(' ');
+    if (Number(tokens[1]) == 0)
+        throw (error.SLEEP_INVALID_ARG);
+    else if (Number(tokens[1]) > 0) {
+        var sleep = tokens[1];
+        setTimeout(function () { }, sleep);
+        return;
+    }
+    else if (Number(tokens[1]) < 0)
+        throw (error.SLEEP_INVALID_ARG);
+    throw ('invalid argument given to the sleep function');
+}
 function parseLine(command) {
     command = command.trim();
     try {
@@ -50,6 +63,11 @@ function parseLine(command) {
             handleRepeatStatement(command);
             return;
         }
+        if (command.match(sleepStatement)) {
+            handleSleepStatement(command);
+            return;
+        }
+        ;
         /* -------------------------- COMMENTS -------------------------- */
         if (command.match(singleLineComment)) {
             return;

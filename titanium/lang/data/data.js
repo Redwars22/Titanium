@@ -133,7 +133,7 @@ function assignToVariableFromScanf(variable) {
         }
     }
     else {
-        throw "Cannot assign a value to a variable that doesn't exist";
+        throw "Cannot assign a value to a variable that doesn't exist or to a constant";
     }
 }
 function getValueFromVariable(variable) {

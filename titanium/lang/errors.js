@@ -30,7 +30,8 @@ var error = {
     UNKNOWN_TYPE: "Titanium couldn't guess the type automatically. Are you sure you used one of the supported types?",
     CANNOT_MODIFY_ARRY: "You cannot modify or redeclare an array that already exists",
     MISSING_PARAMS: "one or more of the required parameters is missing",
-    NOT_NUMBER: "the argument of the function should be of number type"
+    NOT_NUMBER: "the argument of the function should be of number type",
+    SLEEP_INVALID_ARG: "the argument of the sleep function must be an integer number greater than 0",
 };
 function throwError(err, line) {
     document.querySelector(".errors-log").innerText += "\n\u274C\uFE0F Line: ".concat(line + 1, " - ").concat(err, " \n");

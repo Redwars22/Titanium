@@ -35,6 +35,7 @@ var printLineCommand = /printLine()/gm;
 var repeatCommand = /REP .*[0-9]( )?,( )?.*/g;
 var returnStatement = /(RET) (.*[0-9A-Za-z])?/gm;
 var scanfCommand = /get\(.*[A-Za-z_\[\]]\)/gi;
+var sleepStatement = /SLEEP .*[0-9]/g;
 var singleLineComment = /--.*[A-Za-z0-9_ ]/gi;
 var ternaryStatementRule = /.*["A-Za-z ><=!] ? .*["A-Z0-9a-z] : .*["A-Z0-9a-z]/gm;
 var variableAssignment = /.*[A-Za-z_] = "?.*[A-Za-z0-9 ?:><=!\(\)]"?/gi;
