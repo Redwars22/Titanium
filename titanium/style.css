@@ -31,6 +31,7 @@ span {
     opacity: 0;
   }
 }
+
 .app-title {
   color: #fff;
   font-size: 27px !important;
@@ -44,19 +45,12 @@ span {
 }
 
 .code-editor {
-  min-height: 88vh;
-  height: 88vh;
-  min-width: 60vw;
-  max-width: 60vw;
   background-color: #000701;
-  border: 2px dashed white;
-  border-radius: 10px;
   padding: 10px;
-  margin: 8px;
-  overflow: auto;
   color: white;
   font-weight: bolder;
   font-size: 17.5px;
+  width: 100%;
 }
 
 main {
@@ -88,4 +82,27 @@ main {
 
 .sect-title {
   border-bottom: 2px dotted white;
+}
+
+.code-editor-container {
+  display: flex;
+  min-height: 88vh;
+  height: 88vh;
+  min-width: 60vw;
+  max-width: 60vw;
+  background-color: #000701;
+  border: 2px dashed white;
+  border-radius: 10px;
+  overflow: auto;
+  color: white;
+  font-weight: bolder;
+  font-size: 17.5px;
+}
+
+.line-number {
+  padding-top: 10px;
+  background-color: #061725;
+  padding-left: 6px;
+  padding-right: 6px;
+  height: 100%;
 }

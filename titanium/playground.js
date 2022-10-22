@@ -49,6 +49,13 @@ window.onload = function () {
         document.querySelector(".code-editor").innerText =
             'DECL msg = "Hello World!"\nprint(msg)\nEXIT';
     setInterval(function () { return localStorage.setItem('autosave', document.querySelector(".code-editor").innerText); }, 1500);
+    setInterval(function () {
+        var code = document.querySelector(".code-editor").innerText.split("\n");
+        document.querySelector(".line-number").innerText = "";
+        for (var i = 1; i < code.length - 1; i++) {
+            document.querySelector(".line-number").innerText += "".concat(i, "\n");
+        }
+    }, 800);
 };
 function showHelp() {
     Swal.fire({

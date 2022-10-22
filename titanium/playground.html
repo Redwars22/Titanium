@@ -19,14 +19,14 @@
         <div style="display: flex; flex-direction: row; gap: 10px; align-items: center;">
             <img src="https://redwars22.github.io/Titanium/titanium.png" width="35" height="35" />
             <b class="app-title">GUSLEOTHEW</b>
-            <span >Titanium's official interactive playground</span>
-    </div>
-    <div>
-        <span class="auto-save-text">
-            <i class="bi bi-hdd"></i>
-            Saving your work automatically...
-        </span>
-    </div>
+            <span>Titanium's official interactive playground</span>
+        </div>
+        <div>
+            <span class="auto-save-text">
+                <i class="bi bi-hdd"></i>
+                Saving your work automatically...
+            </span>
+        </div>
     </header>
 
     <main>
@@ -66,8 +66,13 @@
             </div>
         </div>
 
-        <div class="code-editor" contenteditable>
+        <div class="code-editor-container">
+            <div class="line-number">
+                1
+            </div>
+            <div class="code-editor" contenteditable>
 
+            </div>
         </div>
 
         <div class="vertical-container">
@@ -82,32 +87,32 @@
         </div>
     </main>
 
-    	<!--TITANIUM DEF FILES-->
-	<script src="./lang/data/io.js"></script>
-	<script src="./lang/data/data.js"></script>
+    <!--TITANIUM DEF FILES-->
+    <script src="./lang/data/io.js"></script>
+    <script src="./lang/data/data.js"></script>
 
-	<script src="./lang/math/logic.js"></script>
-	<script src="./lang/math/math.js"></script>
+    <script src="./lang/math/logic.js"></script>
+    <script src="./lang/math/math.js"></script>
 
-	<script src="./lang/parse.js"></script>
-	<script src="./lang/errors.js"></script>
-	<script src="./lang/syntax.js"></script>
+    <script src="./lang/parse.js"></script>
+    <script src="./lang/errors.js"></script>
+    <script src="./lang/syntax.js"></script>
 
-	<script src="./lang/rules/rules.js"></script>
-	<script src="./lang/rules/operators.js"></script>
-	<script src="./lang/rules/keywords.js"></script>
+    <script src="./lang/rules/rules.js"></script>
+    <script src="./lang/rules/operators.js"></script>
+    <script src="./lang/rules/keywords.js"></script>
 
-	<script src="./lang/types/types.js"></script>
-	<script src="./lang/types/number.js"></script>
-	<script src="./lang/types/boolean.js"></script>
-	<script src="./lang/types/string.js"></script>
-	<script src="./lang/types/null.js"></script>
-	<script src="./lang/types/array.js"></script>
+    <script src="./lang/types/types.js"></script>
+    <script src="./lang/types/number.js"></script>
+    <script src="./lang/types/boolean.js"></script>
+    <script src="./lang/types/string.js"></script>
+    <script src="./lang/types/null.js"></script>
+    <script src="./lang/types/array.js"></script>
 
-	<script src="./lang/struct/ternary.js"></script>
-	<script src="./lang/struct/array.js"></script>
+    <script src="./lang/struct/ternary.js"></script>
+    <script src="./lang/struct/array.js"></script>
 
-	<script type="text/javascript" src="./playground.js"></script>
+    <script type="text/javascript" src="./playground.js"></script>
 </body>
 
 </html>
