@@ -1,5 +1,7 @@
 <img src="https://redwars22.github.io/Titanium/titanium.png" width="150" height="150"/>
 
+> ⚠️ For the source code and downloadable zip files of Titanium CLI, please visit the AndrewToolchain repository [here](https://github.com/Redwars22/AndrewToolchain)
+
 Titanium is a minimalist interpreted fictional programming language designed for one of my stories (actually, it was initially planned to be fictional, but I want to take it a step further, if possible). It’s been developed by the fictional characters Matheus, Gustavo N, and Léo Andrew. The language itself and its online playground (which is currently the only way you can run Titanium) are being written in TypeScript and then compiled to JS. Python and Lua have heavily inspired Titanium’s syntax and its goal is to be easy to read and understand, clear, and concise. 
 
 Since its goal was to be a very minimalist programming language, it contains few keywords and functionalities, but you should be able to declare variables and constants, print them to the screen, get input from the user, generate random numbers, use boolean, use the ternary operator, and even converting decimal numbers to binary and hexadecimal (will be added later). The language, however, comes neither with IF, FOR, and SWITCH control structures nor with more complex things, such as functions and the object-oriented paradigm. Since its goal is to be as minimalist and as simple as possible, I probably won’t be adding those features to the language. 
