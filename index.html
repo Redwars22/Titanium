@@ -110,6 +110,10 @@
 		function getSource() {
 			window.open('https://github.com/Redwars22/Titanium');
 		}
+		
+		function getCLI() {
+			window.open('https://github.com/Redwars22/AndrewToolchain');
+		}
 	</script>
 </head>
 
@@ -120,6 +124,7 @@
 		<fluent-button appearance="accent" onclick="getSource()">Source Code</fluent-button>
 		<fluent-button appearance="accent" onclick="openDoc()">Documentation</fluent-button>
 		<fluent-button appearance="accent" onclick="openPlayground()">Playground</fluent-button>
+		<fluent-button appearance="accent" onclick="getCLI()">Download</fluent-button>
 		<p style="font-family: 'Ubuntu', sans-serif; margin-left: auto;">Created with <i class="bi bi-heart"></i> by <a
 				style="text-decoration: none; color: red;"
 				href="https://github.com/Redwars22/">AndrewNation(@Redwars22)</a></p>
@@ -131,16 +136,19 @@
 				<h1>A minimalistic experimental interpreted programming language!</h1>
 				<p>Titanium's goal was initially to help me understand how programming
 					languages work and are built, but you can also try it out and write
-					your first programs in Titanium too!
+					your first programs in Titanium too! You can download AndrewToolchain
+					and run Titanium source code files in your PC. Please read the instructions
+					in its repository to download, compile and run it in your machine.
 				</p>
 				<fluent-button appearance="accent" onclick="openPlayground()">Try Titanium Now</fluent-button>
+				<fluent-button appearance="accent" onclick="getCLI()">Download the Interpreter</fluent-button>						     
 			</div>
 			<img class="code-sample" src="titanium_code.png" />
 		</fluent-card>
 		<div class="blue-container">
 			<p style="font-size: 19px;">
-				<a class="white" href="https://github.com/Redwars22/Titanium/releases/tag/v1.0.0-beta">
-					🎉 Titanium 1.0 is now available and is currently in beta!
+				<a class="white" href="https://github.com/Redwars22/Titanium/releases/tag/v1.2.0">
+					🎉 Titanium 1.2.0 is now available and is currently in beta!
 				</a>
 			</p>
 		</div>
@@ -186,7 +194,7 @@
 			<fluent-card class="smaller-card">
 				<i class="icon bi bi-download"></i>
 				<h3>Download</h3>
-				<fluent-button appearance="accent" onclick="getSource()">Get Titanium's Source Code</fluent-button>
+				<fluent-button appearance="accent" onclick="getCLI()">Download CLI Interpreter</fluent-button>
 			</fluent-card>
 		</div>
 	</main>
