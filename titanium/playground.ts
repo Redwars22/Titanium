@@ -85,3 +85,15 @@ function abort() {
     (document.querySelector(".errors-log") as HTMLDivElement).innerText = "";
 }
 
+function handleAthena(){
+    const titaniumCode = (document.querySelector(".code-editor") as HTMLDivElement).innerText.split('\n');
+
+    Swal.fire({
+        title: "Wait a second!",
+        text: 'This module to convert Titanium to JavaScript is in its very early development stages and won\'t support all Titanium commands. Use it at your own risk!',
+        icon: "info",
+        confirmButtonText: "I understand!",
+    });
+
+    convertTitanium_To_JS(titaniumCode);
+}

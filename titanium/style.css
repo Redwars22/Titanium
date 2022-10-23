@@ -69,7 +69,7 @@ main {
   border: 2px dashed white;
   border-radius: 10px;
   width: 35vw;
-  height: 45vh;
+  height: 43vh;
   padding: 10px;
   overflow: auto;
 }
@@ -86,8 +86,8 @@ main {
 
 .code-editor-container {
   display: flex;
-  min-height: 88vh;
-  height: 88vh;
+  min-height: 87vh;
+  height: 87vh;
   min-width: 60vw;
   max-width: 60vw;
   background-color: #000701;
@@ -97,6 +97,7 @@ main {
   color: white;
   font-weight: bolder;
   font-size: 17.5px;
+  margin: 10px;
 }
 
 .line-number {

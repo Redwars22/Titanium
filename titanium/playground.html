@@ -32,7 +32,7 @@
     <main>
         <div class="v-menu">
             <div class="btn-group-vertical ">
-                <button class="btn btn-dark" title="Save">
+                <!--<button class="btn btn-dark" title="Save">
                     <i class="bi bi-save"></i>
                 </button class="btn btn-dark">
                 <button class="btn btn-dark" title="Open">
@@ -40,7 +40,7 @@
                 </button class="btn btn-dark">
                 <button class="btn btn-dark">
                     <i class="bi bi-file-plus" title="New file"></i>
-                </button class="btn btn-dark">
+                </button class="btn btn-dark">-->
                 <button class="btn btn-dark" title="Run" onclick="runCode()">
                     <i class="bi bi-play-fill"></i>
                 </button class="btn btn-dark">
@@ -48,10 +48,10 @@
                 <button class="btn btn-dark" title="Stop" onclick="abort()">
                     <i class="bi bi-stop-fill"></i>
                 </button class="btn btn-dark">
-                <button class="btn btn-dark" title="Compile to Python">
+                <!--<button class="btn btn-dark" title="Compile to Python">
                     <i class="bi bi-filetype-py"></i>
-                </button class="btn btn-dark">
-                <button class="btn btn-dark" title="Compile to JavaScript">
+                </button class="btn btn-dark">-->
+                <button class="btn btn-dark" title="Compile to JavaScript" onclick="handleAthena()">
                     <i class="bi bi-filetype-js"></i>
                 </button class="btn btn-dark">
                 <button class="btn btn-dark" title="Delete this file">
@@ -88,6 +88,8 @@
     </main>
 
     <!--TITANIUM DEF FILES-->
+    <script src="./titanium_to_js/athena.js"></script>
+
     <script src="./lang/data/io.js"></script>
     <script src="./lang/data/data.js"></script>
 
