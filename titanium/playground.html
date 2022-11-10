@@ -2,89 +2,102 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Titanium Playground - Codename Gusleothew</title>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Titanium Programming Language</title>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
 </head>
 
 <body>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=ZCOOL+QingKe+HuangYou&display=swap");
+
+        body {
+            background-color: rgb(2, 38, 78);
+            margin: 0px;
+        }
+
+        h1 {
+            font-size: 25px;
+            font-weight: 700;
+            color: #0d6efd;
+        }
+
+        header,
+        .horizontal-row,
+        nav,
+        .logo-container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .logo-container {
+            gap: 15px;
+            align-items: center;
+        }
+
+        nav {
+            gap: 15px;
+        }
+
+        header {
+            padding: 10px;
+            align-items: center;
+            color: white;
+            gap: 30px;
+        }
+
+        .code-editor,
+        .output {
+            background-color: rgb(1, 15, 31);
+            height: 88vh;
+            width: 50vw;
+            font-family: "Share Tech Mono", monospace;
+            font-size: 19px;
+            font-weight: 900;
+            padding: 20px;
+            color: rgb(226, 226, 226);
+            overflow-x: auto;
+            overflow-y: auto;
+        }
+
+        .code-editor {
+            border-right: 1px solid rgba(6, 101, 179, 0.37);
+        }
+
+        .run {
+            position: absolute;
+            font-size: 25px;
+            right: 25px;
+            bottom: 25px;
+        }
+    </style>
     <header>
-        <div style="display: flex; flex-direction: row; gap: 10px; align-items: center;">
-            <img src="https://redwars22.github.io/Titanium/titanium.png" width="35" height="35" />
-            <b class="app-title">GUSLEOTHEW</b>
-            <span>Titanium's official interactive playground</span>
+        <div class="logo-container">
+            <img src="https://camo.githubusercontent.com/b9edbd4db4e2537ba55ca553abcdb227cebcdcb7ec1a0057fad45e98d43df40a/68747470733a2f2f7265647761727332322e6769746875622e696f2f546974616e69756d2f746974616e69756d2e706e67"
+                height="50px" width="50px" />
+            <h1 class="titanium-logo-text">TITANIUM</h1>
         </div>
-        <div>
-            <span class="auto-save-text">
-                <i class="bi bi-hdd"></i>
-                Saving your work automatically...
-            </span>
-        </div>
+        <nav>
+            <a class="btn btn-primary"
+                href="https://leoandrew.notion.site/TITANIUM-PROGRAMMING-LANGUAGE-57522923b2d64fc4ad2a98408289e23e">Language
+                Reference</a>
+            <a class="btn btn-primary" href="https://github.com/Redwars22/Titanium">GitHub</a>
+            <a class="btn btn-primary" href="https://github.com/Redwars22/AndrewToolchain">Download AndrewToolchain</a>
+        </nav>
     </header>
-
     <main>
-        <div class="v-menu">
-            <div class="btn-group-vertical ">
-                <!--<button class="btn btn-dark" title="Save">
-                    <i class="bi bi-save"></i>
-                </button class="btn btn-dark">
-                <button class="btn btn-dark" title="Open">
-                    <i class="bi bi-folder2-open"></i>
-                </button class="btn btn-dark">
-                <button class="btn btn-dark">
-                    <i class="bi bi-file-plus" title="New file"></i>
-                </button class="btn btn-dark">-->
-                <button class="btn btn-dark" title="Run" onclick="runCode()">
-                    <i class="bi bi-play-fill"></i>
-                </button class="btn btn-dark">
-
-                <button class="btn btn-dark" title="Stop" onclick="abort()">
-                    <i class="bi bi-stop-fill"></i>
-                </button class="btn btn-dark">
-                <!--<button class="btn btn-dark" title="Compile to Python">
-                    <i class="bi bi-filetype-py"></i>
-                </button class="btn btn-dark">-->
-                <button class="btn btn-dark" title="Compile to JavaScript" onclick="handleAthena()">
-                    <i class="bi bi-filetype-js"></i>
-                </button class="btn btn-dark">
-                <button class="btn btn-dark" title="Delete this file">
-                    <i class="bi bi-trash"></i>
-                </button class="btn btn-dark">
-                <button class="btn btn-dark" title="Reference Guide" onclick="window.open('https://bit.ly/3BZH6RV')">
-                    <i class="bi bi-book"></i>
-                </button class="btn btn-dark">
-                <button class="btn btn-dark" title="About Gusleothew">
-                    <i class="bi bi-info-circle-fill"></i>
-                </button class="btn btn-dark">
-            </div>
+        <div class="horizontal-row">
+            <div contenteditable="" class="code-editor"></div>
+            <div class="output console errors-log"></div>
         </div>
-
-        <div class="code-editor-container">
-            <div class="line-number">
-                1
-            </div>
-            <div class="code-editor" contenteditable>
-
-            </div>
-        </div>
-
-        <div class="vertical-container">
-            <div class="console-div">
-                <span class="sect-title"><i class="bi bi-terminal-fill"></i>Console</span>
-                <div class="console"></div>
-            </div>
-            <div class="errors-log-div">
-                <span class="sect-title"><i class="bi bi-bug-fill"></i>Errors</span>
-                <div class="errors-log"></div>
-            </div>
-        </div>
+        <button class="run btn btn-success" onclick="runCode()">
+            <i class="bi bi-play-fill"></i>
+        </button>
     </main>
 
     <!--TITANIUM DEF FILES-->
