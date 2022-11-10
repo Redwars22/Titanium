@@ -50,15 +50,6 @@ window.onload = function () {
         document.querySelector(".code-editor").innerText =
             'DECL msg = "Hello World!"\nprint(msg)\nEXIT';
     setInterval(function () { return localStorage.setItem('autosave', document.querySelector(".code-editor").innerText); }, 1500);
-    setInterval(()=>{
-        var code = (document.querySelector(".code-editor") as HTMLDivElement).innerText.split("\n");
-
-        document.querySelector(".line-number").innerText = ``;
-
-        for (let i = 1; i < code.length - 1; i++) {
-            document.querySelector(".line-number").innerText += `${i}\n`;
-        }
-    }, 800);
 };
 
 function showHelp() {
@@ -72,6 +63,7 @@ function showHelp() {
 
 function runCode() {
     var code = document.querySelector(".code-editor").innerText;
+    abort();
     constants = {};
     variables = {};
     arrays = {};
@@ -85,7 +77,7 @@ function abort() {
     (document.querySelector(".errors-log") as HTMLDivElement).innerText = "";
 }
 
-function handleAthena(){
+function handleAthena() {
     const titaniumCode = (document.querySelector(".code-editor") as HTMLDivElement).innerText.split('\n');
 
     Swal.fire({
