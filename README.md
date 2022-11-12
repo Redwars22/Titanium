@@ -2,7 +2,8 @@
 
 > # 💥️ TITANIUM 1.4.0 - JAMMY JAKARTA
 > This version includes procedures, IF and FOR control structures and a few bug fixes and new features!
-> [DOWNLOAD IT NOW!](https://github.com/Redwars22/AndrewToolchain)
+>
+> 👇️ [DOWNLOAD IT NOW!](https://github.com/Redwars22/AndrewToolchain/releases/tag/v1.4.0-release-candidate)
 
 
 > ⚠️ For the source code and downloadable zip files of Titanium CLI, please visit the AndrewToolchain repository [here](https://github.com/Redwars22/AndrewToolchain). From now on, all Titanium releases will be published in that repository.
