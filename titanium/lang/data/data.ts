@@ -25,6 +25,7 @@ SOFTWARE.
 const variables = {};
 const constants = {};
 const arrays = {};
+const procedures = {};
 
 function searchInVariablesAndConstants(name: string) {
   if (variables[name] != undefined || variables[name] == 0) return variables[name];

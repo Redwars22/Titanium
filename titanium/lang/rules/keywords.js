@@ -37,7 +37,13 @@ var keywords = {
     DO: "DO",
     EXIT: "EXIT",
     RETURN: "RET",
-    REPEAT: "REP"
+    REPEAT: "REP",
+    PROCEDURE: "PROC",
+    CALL_PROCED: "CALL",
+    IF: "IF",
+    END_IF: "ENDIF",
+    FOR: "FOR",
+    END_FOR: "ENDFOR",
 };
 var functions = {
     PRINT: 'print',
