@@ -30,6 +30,7 @@ function skipLine() {
     currentLine++;
 }
 function parseCode(code) {
+    var _a, _b, _c;
     var linesOfCodeArray = code.split("\n");
     currentLine = 0;
     iterations = 0;
@@ -45,6 +46,100 @@ function parseCode(code) {
                 currentLine++;
                 //It should throw an error if it reaches the end of the file 
                 //and still hasn't found the other $$ operator
+            }
+            if (linesOfCodeArray[currentLine].match(/ENDPROC/)) {
+                currentLine++;
+                continue;
+            }
+            if ((_a = linesOfCodeArray[currentLine]) === null || _a === void 0 ? void 0 : _a.match(callProcedureStatement)) {
+                var identifier = linesOfCodeArray[currentLine].split(" ")[1];
+                var i = 0;
+                while (i < procedures[identifier].length) {
+                    parseLine(procedures[identifier][i]);
+                    i++;
+                }
+                currentLine++;
+                continue;
+            }
+            if (linesOfCodeArray[currentLine].match(procedureDeclaration)) {
+                var statement = linesOfCodeArray[currentLine];
+                skipLine();
+                var proc = {
+                    identifier: statement.split(" ")[1],
+                    commands: [],
+                };
+                while (!linesOfCodeArray[currentLine].match(/ENDPROC/)) {
+                    proc.commands.push(linesOfCodeArray[currentLine].trim());
+                    skipLine();
+                }
+                currentLine++;
+                procedures[proc.identifier] = proc.commands;
+                continue;
+            }
+            if ((_b = linesOfCodeArray[currentLine]) === null || _b === void 0 ? void 0 : _b.match(ifStatement)) {
+                var statement = linesOfCodeArray[currentLine].trim();
+                var commandsToExecuteIfTrue = [];
+                skipLine();
+                while (linesOfCodeArray[currentLine].trim() !== keywords.END_IF) {
+                    commandsToExecuteIfTrue.push(linesOfCodeArray[currentLine].trim());
+                    skipLine();
+                }
+                var condition = statement
+                    .replace("IF", "")
+                    .replace(operators.STATEMENT_BLOCK_BEGIN, "").split(' ');
+                for (var i = 0; i < condition.length; i++) {
+                    if (isNaN(condition[i]) && !condition[i].match(/.*[><\=\!]/)) {
+                        var typeOfData = checkType(condition[i]);
+                        if (typeOfData == types.BOOL) {
+                            condition[i] = parseBoolean(condition[i]);
+                            continue;
+                        }
+                        condition[i] = checkType(condition[i]) === "arrRetrieveEl" ? handleRetrieveElementFromArray(condition[i].trim()) : searchInVariablesAndConstants(condition[i].trim());
+                    }
+                }
+                var evaluateCondition = eval(condition.join(''));
+                if (evaluateCondition) {
+                    for (var i = 0; i < commandsToExecuteIfTrue.length; i++) {
+                        parseLine(commandsToExecuteIfTrue[i]);
+                    }
+                }
+                currentLine++;
+                continue;
+            }
+            if ((_c = linesOfCodeArray[currentLine]) === null || _c === void 0 ? void 0 : _c.match(forStatement)) {
+                var statement = linesOfCodeArray[currentLine].trim();
+                var commandsToBeRepeated = [];
+                var parsed = statement
+                    .replace(keywords.FOR, "")
+                    .replace(operators.STATEMENT_BLOCK_BEGIN, "");
+                skipLine();
+                while (linesOfCodeArray[currentLine].trim() != keywords.END_FOR) {
+                    commandsToBeRepeated.push(linesOfCodeArray[currentLine]);
+                    skipLine();
+                }
+                var conditionIsStillTrue = true;
+                while (conditionIsStillTrue) {
+                    var expression = parsed.trim().split(' ');
+                    for (var i = 0; i < expression.length; i++) {
+                        if (isNaN(expression[i]) && !expression[i].match(/.*[><\=\!]/)) {
+                            var typeOfData = checkType(expression[i]);
+                            if (typeOfData == types.BOOL) {
+                                expression[i] = parseBoolean(expression[i]);
+                                continue;
+                            }
+                            expression[i] = searchInVariablesAndConstants(expression[i]);
+                        }
+                    }
+                    if (eval(expression.join(''))) {
+                        for (var i = 0; i < commandsToBeRepeated.length; i++) {
+                            parseLine(commandsToBeRepeated[i]);
+                        }
+                        continue;
+                    }
+                    conditionIsStillTrue = false;
+                }
+                currentLine++;
+                continue;
             }
             if (linesOfCodeArray[currentLine].includes(keywords.EXIT))
                 throw "the program has exited";

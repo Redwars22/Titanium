@@ -37,5 +37,6 @@ var operators = {
     ARRAY_START: '[',
     ARRAY_END: ']',
     ARRAY_ELEMENT_SEPARATOR: ',',
-    MULTILINE_COMMENT: '$$'
+    MULTILINE_COMMENT: '$$',
+    STATEMENT_BLOCK_BEGIN: "=>",
 };

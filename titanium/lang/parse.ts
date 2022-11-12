@@ -56,6 +56,132 @@ function parseCode(code) {
         //and still hasn't found the other $$ operator
       }
 
+      if (linesOfCodeArray[currentLine].match(/ENDPROC/)) {
+        currentLine++;
+        continue;
+      }
+
+      if (linesOfCodeArray[currentLine]?.match(callProcedureStatement)) {
+        const identifier = linesOfCodeArray[currentLine].split(" ")[1];
+        let i = 0;
+
+        while (i < procedures[identifier].length) {
+          parseLine(procedures[identifier][i]);
+          i++;
+        }
+
+        currentLine++;
+        continue;
+      }
+
+      if (linesOfCodeArray[currentLine].match(procedureDeclaration)) {
+        let statement = linesOfCodeArray[currentLine];
+        skipLine();
+
+        const proc = {
+          identifier: statement.split(" ")[1],
+          commands: [],
+        };
+
+        while (!linesOfCodeArray[currentLine].match(/ENDPROC/)) {
+          proc.commands.push(linesOfCodeArray[currentLine].trim());
+          skipLine();
+        }
+
+        currentLine++;
+
+        procedures[proc.identifier] = proc.commands;
+        continue;
+      }
+
+      if (linesOfCodeArray[currentLine]?.match(ifStatement)) {
+        const statement = linesOfCodeArray[currentLine].trim();
+        const commandsToExecuteIfTrue: string[] = [];
+
+        skipLine();
+
+        while (linesOfCodeArray[currentLine].trim() !== keywords.END_IF) {
+          commandsToExecuteIfTrue.push(linesOfCodeArray[currentLine].trim());
+          skipLine();
+        }
+
+        let condition = statement
+          .replace("IF", "")
+          .replace(operators.STATEMENT_BLOCK_BEGIN, "").split(' ');
+
+        for (let i = 0; i < condition.length; i++) {
+          if (isNaN(condition[i]) && !condition[i].match(/.*[><\=\!]/)) {
+            const typeOfData = checkType(condition[i]);
+
+            if (typeOfData == types.BOOL) {
+              condition[i] = parseBoolean(condition[i])
+              continue;
+            }
+
+            condition[i] = checkType(condition[i]) === "arrRetrieveEl" ? handleRetrieveElementFromArray(condition[i].trim()) : searchInVariablesAndConstants(condition[i].trim())
+          }
+        }
+
+        const evaluateCondition = eval(condition.join(''));
+
+        if (evaluateCondition) {
+          for (let i = 0; i < commandsToExecuteIfTrue.length; i++) {
+            parseLine(commandsToExecuteIfTrue[i]);
+          }
+        }
+
+        currentLine++;
+        continue;
+      }
+
+      if (linesOfCodeArray[currentLine]?.match(forStatement)) {
+        const statement = linesOfCodeArray[currentLine].trim();
+        const commandsToBeRepeated: string[] = [];
+
+        const parsed = statement
+          .replace(keywords.FOR, "")
+          .replace(operators.STATEMENT_BLOCK_BEGIN, "")
+
+
+        skipLine();
+
+        while (linesOfCodeArray[currentLine].trim() != keywords.END_FOR) {
+          commandsToBeRepeated.push(linesOfCodeArray[currentLine]);
+          skipLine();
+        }
+
+        let conditionIsStillTrue: boolean = true;
+
+        while (conditionIsStillTrue) {
+          let expression = parsed.trim().split(' ')
+
+          for (let i = 0; i < expression.length; i++) {
+            if (isNaN(expression[i]) && !expression[i].match(/.*[><\=\!]/)) {
+              const typeOfData = checkType(expression[i]);
+
+              if (typeOfData == types.BOOL) {
+                expression[i] = parseBoolean(expression[i])
+                continue;
+              }
+
+              expression[i] = searchInVariablesAndConstants(expression[i])
+            }
+          }
+
+          if (eval(expression.join(''))) {
+            for (let i = 0; i < commandsToBeRepeated.length; i++) {
+              parseLine(commandsToBeRepeated[i])
+            }
+            continue;
+          }
+
+          conditionIsStillTrue = false;
+        }
+
+        currentLine++;
+        continue;
+      }
+
       if (linesOfCodeArray[currentLine].includes(keywords.EXIT))
         throw "the program has exited";
 
@@ -70,12 +196,12 @@ function parseCode(code) {
           typeOfReturnCode == types.STRING || typeOfReturnCode == types.BOOL
             ? valueOfReturnCode
             : typeOfReturnCode == types.NUMBER
-            ? Number(valueOfReturnCode)
-            : typeOfReturnCode == "mathExpr"
-            ? eval(parseMathExpression(valueOfReturnCode))
-            : typeOfReturnCode == "logicExpr"
-            ? eval(valueOfReturnCode)
-            : "INVALID RETURN STATEMENT!";
+              ? Number(valueOfReturnCode)
+              : typeOfReturnCode == "mathExpr"
+                ? eval(parseMathExpression(valueOfReturnCode))
+                : typeOfReturnCode == "logicExpr"
+                  ? eval(valueOfReturnCode)
+                  : "INVALID RETURN STATEMENT!";
 
         throw `the program has exited with ${returnCode}`;
       }

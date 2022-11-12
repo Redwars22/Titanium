@@ -25,14 +25,18 @@ SOFTWARE.
 const arrayDeclaration = /ARR .*[A-Za-z_] = \[.*[0-9A-Za-z_"!@]\]/gm;
 const arrayRetrieveElement = /.*[A-Za-z_]\[.*[0-9A-Za-z_]\]/gm;
 const blockStatement = /.*[A-Za-z_]:/g;
+const callProcedureStatement = /CALL .*[A-Za-z_]/gm;
 const clearConsoleCommand = /clear\(\)/g;
 const constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9\(\)]?"?/;
 const decrementStatement = /DEC .*[A-Za-z_]/;
 const deleteStatement = /DEL .*[A-Za-z_]/;
+const forStatement = /FOR .* =>/;
+const ifStatement = /IF .* =>/;
 const incrementStatement = /INC .*[A-Za-z_]/;
 const mathCommand = /MATH .*[A-Za-z0-9\[\]_ ]/;
 const printCommand = /print\("?.*[\[\]0-9A-Z a-z!,_ ?:><=!]?"?\)/g;
 const printLineCommand = /printLine()/gm;
+const procedureDeclaration = /PROC .*[A-Za-z_] =>/gm;
 const repeatCommand = /REP .*[0-9]( )?,( )?.*/g;
 const returnStatement = /(RET) (.*[0-9A-Za-z])?/gm;
 const scanfCommand = /get\(.*[A-Za-z_\[\]]\)/gi;

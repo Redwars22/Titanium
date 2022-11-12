@@ -24,14 +24,18 @@ SOFTWARE.
 var arrayDeclaration = /ARR .*[A-Za-z_] = \[.*[0-9A-Za-z_"!@]\]/gm;
 var arrayRetrieveElement = /.*[A-Za-z_]\[.*[0-9A-Za-z_]\]/gm;
 var blockStatement = /.*[A-Za-z_]:/g;
+var callProcedureStatement = /CALL .*[A-Za-z_]/gm;
 var clearConsoleCommand = /clear\(\)/g;
 var constantDeclaration = /DEF .*[A-Za-z_] = "?.*[A-Za-z0-9\(\)]?"?/;
 var decrementStatement = /DEC .*[A-Za-z_]/;
 var deleteStatement = /DEL .*[A-Za-z_]/;
+var forStatement = /FOR .* =>/;
+var ifStatement = /IF .* =>/;
 var incrementStatement = /INC .*[A-Za-z_]/;
 var mathCommand = /MATH .*[A-Za-z0-9\[\]_ ]/;
 var printCommand = /print\("?.*[\[\]0-9A-Z a-z!,_ ?:><=!]?"?\)/g;
 var printLineCommand = /printLine()/gm;
+var procedureDeclaration = /PROC .*[A-Za-z_] =>/gm;
 var repeatCommand = /REP .*[0-9]( )?,( )?.*/g;
 var returnStatement = /(RET) (.*[0-9A-Za-z])?/gm;
 var scanfCommand = /get\(.*[A-Za-z_\[\]]\)/gi;
