@@ -1,5 +1,11 @@
 <img src="https://redwars22.github.io/Titanium/titanium.png" width="150" height="150"/>
 
+> # ⚠️ Dear user,
+> Titanium and Arctic are two projects of mine and my goal was to implement an intepreted minimalistic programming language.
+> These repos probably won't be updated from now on, mainly due to the lack of time and motivation to keep working on those projects.
+> However, if you want to try them all, please read their docs and download their interpreters and try writing a few simple programs using them. If you want to clone any of those projects and keep working on them or even use them as a basis for your own programming language, feel free to do so.
+> A huge hug from @AndrewNation!
+
 > # 💥️ TITANIUM 1.4.0 - JAMMY JAKARTA
 > This version includes procedures, IF and FOR control structures and a few bug fixes and new features!
 >
